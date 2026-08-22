@@ -4,11 +4,11 @@ import { motion } from "motion/react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 
-/** Hero section showcasing QuarkMade's sunset artwork, fluidly animating rotating headline, and editorial typography. */
+/** Grandiose Hero section showcasing QuarkMade's sunset artwork, epic scale headline, and fluid rotating text. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
-      <div className="h-screen min-h-180 max-h-240 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-140">
+      <div className="h-screen min-h-200 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-160">
         {/* Parallax Background Layer with User's Sunset Artwork */}
         <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
           <div
@@ -29,21 +29,21 @@ export default function HeroSection() {
           className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, rgba(11, 10, 18, 0.45) 0%, rgba(42, 24, 84, 0.4) 50%, rgba(11, 10, 18, 0.85) 100%)",
+              "linear-gradient(180deg, rgba(11, 10, 18, 0.4) 0%, rgba(42, 24, 84, 0.35) 45%, rgba(11, 10, 18, 0.9) 100%)",
           }}
         />
 
-        {/* Hero Content */}
-        <div className="h-full flex flex-col justify-end pb-20 md:pb-28 px-6 relative z-3 mx-auto max-w-screen max-md:pb-16 max-md:px-4">
+        {/* Grandiose Hero Content */}
+        <div className="h-full flex flex-col justify-end pb-20 md:pb-28 px-6 relative z-3 mx-auto max-w-screen max-md:pb-14 max-md:px-4">
           <div
             data-reveal
-            className="flex flex-col items-center text-center max-w-5xl mx-auto gap-6 text-white"
+            className="flex flex-col items-center text-center max-w-7xl mx-auto gap-8 text-white"
           >
-            {/* Main Headline with fluid synchronized spring layout motion for all words */}
+            {/* Grandiose & Epic Scale Main Headline */}
             <motion.h1
               layout
               transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.18] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 text-center"
+              className="[font-family:'Ivar_Headline',_serif] text-5xl sm:text-7xl md:text-8xl lg:text-[5.75rem] xl:text-[6.75rem] font-normal leading-[1.05] tracking-tight flex flex-wrap items-baseline justify-center gap-x-4 sm:gap-x-5 gap-y-2 text-center drop-shadow-2xl"
               data-component="heading"
             >
               <motion.span
@@ -68,7 +68,7 @@ export default function HeroSection() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-120%", opacity: 0 }}
                 staggerDuration={0.02}
-                splitLevelClassName="overflow-hidden pb-0.5"
+                splitLevelClassName="overflow-hidden pb-1"
                 transition={{ type: "spring", damping: 28, stiffness: 280 }}
                 widthTransition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
                 rotationInterval={2800}
@@ -83,13 +83,8 @@ export default function HeroSection() {
               </motion.span>
             </motion.h1>
 
-            {/* Subtext */}
-            <p className="[font-family:Denim,_serif] text-base md:text-xl text-white/85 max-w-2xl font-light leading-relaxed">
-              QuarkMade designs bespoke, high-performance web experiences where brand prestige, motion craftsmanship, and technical rigor unite.
-            </p>
-
-            {/* CTA Action Buttons */}
-            <div className="flex flex-wrap justify-center items-center gap-4 mt-3">
+            {/* Grandiose CTA Action Buttons */}
+            <div className="flex flex-wrap justify-center items-center gap-5 mt-2">
               <Button href="#works" variant="gold">
                 Explore Selected Works
               </Button>
