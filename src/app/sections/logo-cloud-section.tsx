@@ -131,7 +131,7 @@ export default function LogoCloudSection({ listRowData = listRowDataContent, lis
         <div className="flex w-full">
           <div className="flex flex-col gap-7 w-full max-md:gap-6">
             <nav className="flex relative p-1 rounded-xs justify-stretch items-center gap-1 bg-surface [backdrop-filter:blur(12px)] w-full" data-component="nav">
-              <div className="w-[405.3px] h-7.5 block absolute top-1 min-w-0 rounded-xs bg-background pointer-events-none max-md:w-[6.8125rem] max-md:h-[28.5px] md:max-lg:w-[234.7px] 2xl:w-128" />
+              <div className="w-[calc(33.333%-4px)] h-7.5 block absolute top-1 left-1 min-w-0 rounded-xs bg-background pointer-events-none transition-all duration-300" />
               {navLink2Data.map((d, i) => <NavLink2 key={i} d={d} styles={NavLink2_styles[i]} />)}
             </nav>
             <div className="grid gap-1 grid-cols-3">

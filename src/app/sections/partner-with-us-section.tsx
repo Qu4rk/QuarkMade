@@ -1,4 +1,4 @@
-import Icon5 from "../svgs/svg-icon5";
+import Button from "../components/Button";
 
 /** Partner With Us section with parallax background and Base31 button styling. */
 export default function PartnerWithUsSection() {
@@ -33,16 +33,13 @@ export default function PartnerWithUsSection() {
               </div>
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.625rem] leading-[4.5625rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem] max-md:tracking-[0.2px]" data-component="heading">
                 <p className="block">
-                  Partner with us to shape what's next
+                  Partner with us to shape what&apos;s next
                 </p>
               </div>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                <div className="block">
-                  <a className="btn-base btn-primary-inverse" data-component="button" href="/partnerships">
-                    <Icon5 />
-                    See partnership opportunities
-                  </a>
-                </div>
+                <Button href="/partnerships" variant="primary-inverse">
+                  See partnership opportunities
+                </Button>
               </div>
             </div>
           </div>

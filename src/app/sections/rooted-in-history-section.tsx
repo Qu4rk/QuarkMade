@@ -1,4 +1,4 @@
-import Icon5 from "../svgs/svg-icon5";
+import Button from "../components/Button";
 
 /** Rooted In History section with reveal animations and Base31 button styles. */
 export default function RootedInHistorySection() {
@@ -7,18 +7,14 @@ export default function RootedInHistorySection() {
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
           <p className="block">
-            {"Rooted in history, "}
+            Rooted in history,
             <br className="inline" />
             alive with culture
           </p>
         </div>
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block whitespace-nowrap">
-            The heartbeat
-          </p>
-          {" "}
-          <p className="block whitespace-nowrap">
-            of The County
+            The heartbeat of The County
           </p>
         </div>
         <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden">
@@ -38,10 +34,9 @@ export default function RootedInHistorySection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-4 text-center">
                 <img className="w-[8.9375rem] h-20 block max-w-full max-h-[7.1875rem] overflow-clip aspect-[auto_143/80] align-middle text-clr-2" data-component="image" alt="B31 District Logo" height="80" src="/assets/cloned/svg/43be17a0424f.svg" width="143" />
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <a className="btn-base btn-primary-inverse" data-component="button" href="/district">
-                    <Icon5 />
+                  <Button href="/district" variant="primary-inverse">
                     Explore B31 District
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>

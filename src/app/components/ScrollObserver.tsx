@@ -6,12 +6,21 @@ import { useEffect } from "react";
  * Global ScrollObserver:
  * 1. Manages header color switching based on current active section.
  * 2. Manages parallax translation on [data-parallax] elements.
- * 3. Triggers entrance reveals on [data-reveal] elements with IntersectionObserver.
+ * 3. Triggers entrance reveals on [data-reveal] elements.
  */
 export default function ScrollObserver() {
   useEffect(() => {
     // 1. Intersection Observer for Scroll Reveals
     const revealElements = document.querySelectorAll("[data-reveal]");
+    
+    // Immediately reveal elements that are already visible in viewport on initial load
+    revealElements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 1.1) {
+        el.classList.add("revealed");
+      }
+    });
+
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -21,7 +30,7 @@ export default function ScrollObserver() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 100px 0px" }
     );
 
     revealElements.forEach((el) => revealObserver.observe(el));

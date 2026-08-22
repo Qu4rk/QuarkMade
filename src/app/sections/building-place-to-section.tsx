@@ -1,4 +1,4 @@
-import Icon5 from "../svgs/svg-icon5";
+import Button from "../components/Button";
 
 /** Building Place To section with reveal animations and Base31 button styles. */
 export default function BuildingPlaceToSection() {
@@ -16,11 +16,7 @@ export default function BuildingPlaceToSection() {
         </div>
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block">
-            A new kind
-          </p>
-          {" "}
-          <p className="block whitespace-nowrap">
-            of homecoming
+            A new kind of homecoming
           </p>
         </div>
         <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden">
@@ -40,10 +36,9 @@ export default function BuildingPlaceToSection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-4 text-center">
                 <img className="w-44 h-7.5 block max-w-full max-h-[7.1875rem] overflow-clip aspect-[auto_176/30] align-middle text-clr-2" data-component="image" alt="Base Living Logo" height="30" src="/assets/cloned/svg/55b7cc3ec0ee.svg" width="176" />
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <a className="btn-base btn-primary-inverse" data-component="button" href="/living">
-                    <Icon5 />
+                  <Button href="/living" variant="primary-inverse">
                     Explore Base Living
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>

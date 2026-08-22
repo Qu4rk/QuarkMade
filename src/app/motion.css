@@ -120,9 +120,21 @@
   background-color: rgba(0, 40, 0, 0.85);
 }
 
-/* Header Scrolled Styles */
+/* Header Scrolled and Subnav Styles */
 #header {
   transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1), color 0.3s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+#header .nav-sub-pill-active {
+  background-color: #ffffff;
+}
+
+#header .tab-active {
+  color: #002800 !important;
+}
+
+#header .tab-inactive {
+  color: #ffffff !important;
 }
 
 #header.scrolled {
@@ -133,10 +145,16 @@
 
 #header.scrolled .nav-sub-pill {
   background-color: rgba(0, 40, 0, 0.06) !important;
-  color: #002800 !important;
 }
 
 #header.scrolled .nav-sub-pill-active {
   background-color: #002800 !important;
+}
+
+#header.scrolled .tab-active {
   color: #ffffff !important;
+}
+
+#header.scrolled .tab-inactive {
+  color: #002800 !important;
 }

@@ -1,4 +1,4 @@
-import Icon5 from "../svgs/svg-icon5";
+import Button from "../components/Button";
 
 /** Where Vision And section with parallax background and reveal animations. */
 export default function WhereVisionAndSection() {
@@ -39,33 +39,16 @@ export default function WhereVisionAndSection() {
               </div>
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.625rem] leading-[4.5625rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem] max-md:tracking-[0.2px]" data-component="heading">
                 <p className="block">
-                  {"Where "}
-                  <em className="inline italic">
-                    vision
-                  </em>
-                  {" and "}
-                  <em className="inline italic">
-                    v
-                  </em>
-                  <em className="inline italic">
-                    alues
-                  </em>
-                  {" come together"}
+                  Where <em className="inline italic">vision</em> and <em className="inline italic">values</em> come together
                 </p>
               </div>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                <div className="block">
-                  <a className="btn-base btn-primary-inverse" data-component="button" href="/our-story">
-                    <Icon5 />
-                    What we're building together
-                  </a>
-                </div>
-                <div className="block">
-                  <a className="btn-base btn-secondary-inverse" data-component="button" href="/history">
-                    <Icon5 />
-                    History of The Base
-                  </a>
-                </div>
+                <Button href="/our-story" variant="primary-inverse">
+                  What we&apos;re building together
+                </Button>
+                <Button href="/history" variant="secondary-inverse">
+                  History of The Base
+                </Button>
               </div>
             </div>
           </div>

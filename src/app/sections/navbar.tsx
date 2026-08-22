@@ -1,18 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import NavLink from "../components/nav-link";
 import Tile from "../components/tile";
 import Icon from "../svgs/svg-icon";
 import Icon2 from "../svgs/svg-icon2";
 import Illustration from "../svgs/svg-illustration";
 import Icon3 from "../svgs/svg-icon3";
 import Icon4 from "../svgs/svg-icon4";
-import { NavLink_styles, Tile_styles } from "../_styles";
-import { navLinkData as navLinkDataContent, tileData as tileDataContent } from "../content";
+import { Tile_styles } from "../_styles";
+import { tileData as tileDataContent } from "../content";
 
 /** Top navigation bar with authentic Base31 styling, dynamic scroll theme, and interactive panels. */
-export default function Navbar({ navLinkData = navLinkDataContent, tileData = tileDataContent } = {}) {
+export default function Navbar({ tileData = tileDataContent } = {}) {
+  const [activeTab, setActiveTab] = useState<"base31" | "district" | "living">("base31");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -24,15 +24,64 @@ export default function Navbar({ navLinkData = navLinkDataContent, tileData = ti
       <div className="block overflow-hidden">
         <div className="h-19 block sticky top-0 z-20 max-md:h-[4.675rem]">
           <div className="flex pt-5 pb-3 px-6 justify-between mx-auto w-full max-w-screen max-md:p-4">
+            {/* Sub-navigation Pill (District Switcher) */}
             <nav
-              className="nav-sub-pill w-[18.95rem] flex relative p-1 rounded-xs justify-stretch items-center gap-1 bg-white/15 backdrop-blur-md max-md:w-[21.4375rem] transition-colors duration-300"
+              className="nav-sub-pill w-[21.5rem] flex relative p-1 rounded-xs justify-stretch items-center gap-1 bg-white/15 backdrop-blur-md max-md:w-full transition-colors duration-300"
               data-component="nav"
+              aria-label="District switcher"
             >
-              <div className="nav-sub-pill-active w-[4.4375rem] h-9 block absolute top-1 min-w-0 rounded-xs bg-white pointer-events-none max-md:w-[6.8125rem] max-md:h-[2.175rem] transition-colors duration-300" />
-              {navLinkData.map((d, i) => (
-                <NavLink key={i} d={d} styles={NavLink_styles[i]} />
-              ))}
+              {/* Sliding Active Pill Background */}
+              <div
+                className="nav-sub-pill-active h-8 block absolute top-1 rounded-xs bg-white pointer-events-none transition-all duration-300 ease-out"
+                style={{
+                  width: "calc(33.333% - 4px)",
+                  left:
+                    activeTab === "base31"
+                      ? "4px"
+                      : activeTab === "district"
+                      ? "calc(33.333% + 2px)"
+                      : "calc(66.666% + 0px)",
+                }}
+              />
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("base31")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "base31"
+                    ? "tab-active text-[#002800]"
+                    : "tab-inactive hover:opacity-80"
+                }`}
+              >
+                BASE31
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("district")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "district"
+                    ? "tab-active text-[#002800]"
+                    : "tab-inactive hover:opacity-80"
+                }`}
+              >
+                B31 DISTRICT
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("living")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'FT_Polar',_serif] text-[14px] leading-none tracking-[0.14px] capitalize whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "living"
+                    ? "tab-active text-[#002800]"
+                    : "tab-inactive hover:opacity-80"
+                }`}
+              >
+                Base Living
+              </button>
             </nav>
+
+            {/* Right Header Status Bar (Date & Time) */}
             <div className="flex pr-3 items-center gap-7 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-right uppercase whitespace-nowrap text-nowrap max-md:hidden">
               {tileData.map((d, i) => (
                 <Tile key={i} d={d} styles={Tile_styles[i]} />
@@ -159,6 +208,7 @@ export default function Navbar({ navLinkData = navLinkDataContent, tileData = ti
           className="flex pb-5 justify-center items-center basis-1/5 cursor-pointer w-full max-lg:basis-3/5 max-lg:pb-0 group"
           data-component="link"
           href="/"
+          aria-label="Base31 Home"
         >
           <div className="h-full block">
             <Illustration />

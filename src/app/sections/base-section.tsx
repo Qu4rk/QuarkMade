@@ -4,7 +4,7 @@ import { useState } from "react";
 import CardGridItem from "../components/card-grid-item";
 import Icon6 from "../svgs/svg-icon6";
 import Icon7 from "../svgs/svg-icon7";
-import Icon5 from "../svgs/svg-icon5";
+import Button from "../components/Button";
 import { cards as cardsContent } from "../content";
 
 /** Base section with interactive carousel slider, smooth transitions, and Base31 buttons. */
@@ -92,14 +92,9 @@ export default function BaseSection({ cards = cardsContent } = {}) {
         </div>
 
         <div data-reveal className="flex justify-center">
-          <a
-            className="btn-base btn-primary-dark"
-            data-component="button"
-            href="/on-base-blog"
-          >
-            <Icon5 />
+          <Button href="/on-base-blog" variant="primary-dark">
             View All
-          </a>
+          </Button>
         </div>
       </div>
     </section>
