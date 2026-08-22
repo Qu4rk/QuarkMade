@@ -37,14 +37,6 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-4xl mx-auto gap-6 text-white"
           >
-            {/* Tag / Category Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/50 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-              <span className="[font-family:'Saans_Mono',_monospace] text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
-                A NEW ERA OF DIGITAL ARCHITECTURE
-              </span>
-            </div>
-
             {/* Main Headline */}
             <h1
               className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight"

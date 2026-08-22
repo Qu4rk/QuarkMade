@@ -7,89 +7,17 @@ import Icon2 from "../svgs/svg-icon2";
 import Icon3 from "../svgs/svg-icon3";
 import Icon4 from "../svgs/svg-icon4";
 
-/** Top navigation bar with authentic QuarkMade branding, dynamic scroll theme, and interactive panels. */
+/** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and interactive panels. */
 export default function Navbar() {
-  const [activeTab, setActiveTab] = useState<"design" | "craft" | "works">("design");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header
-      className="h-47 block fixed inset-x-0 z-50 text-background max-md:h-[9.925rem] md:max-lg:h-40"
+      className="fixed inset-x-0 top-0 z-50 text-background transition-all duration-300 py-4 md:py-5"
       id="header"
     >
-      <div className="block overflow-hidden">
-        <div className="h-19 block sticky top-0 z-20 max-md:h-[4.675rem]">
-          <div className="flex pt-5 pb-3 px-6 justify-between mx-auto w-full max-w-screen max-md:p-4 items-center">
-            {/* Sub-navigation Pill (Studio Capability Switcher) */}
-            <nav
-              className="nav-sub-pill w-[21.5rem] flex relative p-1 rounded-xs justify-stretch items-center gap-1 bg-white/15 backdrop-blur-md max-md:w-full transition-colors duration-300"
-              data-component="nav"
-              aria-label="Studio capabilities"
-            >
-              {/* Sliding Active Pill Background */}
-              <div
-                className="nav-sub-pill-active h-8 block absolute top-1 rounded-xs bg-white pointer-events-none transition-all duration-300 ease-out"
-                style={{
-                  width: "calc(33.333% - 4px)",
-                  left:
-                    activeTab === "design"
-                      ? "4px"
-                      : activeTab === "craft"
-                      ? "calc(33.333% + 2px)"
-                      : "calc(66.666% + 0px)",
-                }}
-              />
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("design")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "design"
-                    ? "tab-active text-[#4442DB]"
-                    : "tab-inactive hover:opacity-80"
-                }`}
-              >
-                WEB DESIGN
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("craft")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "craft"
-                    ? "tab-active text-[#4442DB]"
-                    : "tab-inactive hover:opacity-80"
-                }`}
-              >
-                DIGITAL CRAFT
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("works")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "works"
-                    ? "tab-active text-[#4442DB]"
-                    : "tab-inactive hover:opacity-80"
-                }`}
-              >
-                SELECTED WORKS
-              </button>
-            </nav>
-
-            {/* Right Header Status Bar (Availability / Commission Status) */}
-            <div className="flex pr-3 items-center gap-4 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-right uppercase whitespace-nowrap text-nowrap max-md:hidden">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/40 text-[#D4AF37] backdrop-blur-md text-[11px]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-ping inline-block" />
-                OPEN FOR COMMISSIONS 2026
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex relative pt-5 px-6 justify-between mx-auto w-full max-w-screen max-lg:py-3 max-md:px-4 items-center">
+      <div className="flex relative px-6 justify-between items-center mx-auto w-full max-w-screen max-md:px-4">
         {/* Mobile Search Overlay */}
         <div
           className={`fixed inset-0 isolate min-w-0 flex-col bg-background h-screen z-50 transition-opacity duration-300 ${
@@ -252,7 +180,7 @@ export default function Navbar() {
 
         {/* Desktop Search Panel */}
         <div
-          className={`h-30 block absolute top-28 left-1/2 -translate-x-1/2 z-30 min-w-0 overflow-auto bg-background rounded-xs shadow-2xl max-h-[calc(95vh-120px)] w-[90vw] max-w-4xl max-lg:hidden transition-all duration-300 ${
+          className={`h-30 block absolute top-20 left-1/2 -translate-x-1/2 z-30 min-w-0 overflow-auto bg-background rounded-xs shadow-2xl max-h-[calc(95vh-120px)] w-[90vw] max-w-4xl max-lg:hidden transition-all duration-300 ${
             isSearchOpen
               ? "opacity-100 pointer-events-auto translate-y-0"
               : "opacity-0 pointer-events-none -translate-y-4"
