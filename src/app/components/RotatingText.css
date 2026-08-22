@@ -1,9 +1,10 @@
 .text-rotate {
   display: inline-flex;
-  flex-wrap: wrap;
-  white-space: pre-wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   position: relative;
   vertical-align: baseline;
+  align-items: baseline;
 }
 
 .text-rotate-sr-only {

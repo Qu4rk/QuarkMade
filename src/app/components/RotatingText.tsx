@@ -39,13 +39,13 @@ export interface RotatingTextRef {
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
-    transition = { type: "spring", damping: 25, stiffness: 300 },
+    transition = { type: "spring", damping: 30, stiffness: 350 },
     initial = { y: "100%", opacity: 0 },
     animate = { y: 0, opacity: 1 },
     exit = { y: "-120%", opacity: 0 },
-    animatePresenceMode = "wait",
+    animatePresenceMode = "popLayout",
     animatePresenceInitial = false,
-    rotationInterval = 2500,
+    rotationInterval = 2800,
     staggerDuration = 0.025,
     staggerFrom = "last",
     loop = true,
@@ -170,13 +170,19 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   }, [next, rotationInterval, auto]);
 
   return (
-    <motion.span className={cn("text-rotate", mainClassName)} {...(rest as any)} layout transition={transition}>
+    <motion.span
+      className={cn("text-rotate", mainClassName)}
+      {...(rest as any)}
+      layout
+      transition={transition}
+    >
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
         <motion.span
           key={currentTextIndex}
           className={cn(splitBy === "lines" ? "text-rotate-lines" : "text-rotate")}
           layout
+          transition={transition}
           aria-hidden="true"
         >
           {elements.map((wordObj, wordIndex, array) => {

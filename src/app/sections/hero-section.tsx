@@ -1,9 +1,10 @@
 "use client";
 
+import { motion } from "motion/react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 
-/** Hero section showcasing QuarkMade's sunset artwork, animated rotating headline, and editorial typography. */
+/** Hero section showcasing QuarkMade's sunset artwork, fluidly animating rotating headline, and editorial typography. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
@@ -36,14 +37,23 @@ export default function HeroSection() {
         <div className="h-full flex flex-col justify-end pb-20 md:pb-28 px-6 relative z-3 mx-auto max-w-screen max-md:pb-16 max-md:px-4">
           <div
             data-reveal
-            className="flex flex-col items-center text-center max-w-4xl mx-auto gap-6 text-white"
+            className="flex flex-col items-center text-center max-w-5xl mx-auto gap-6 text-white"
           >
-            {/* Main Animated Headline with RotatingText */}
-            <h1
-              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.14] tracking-tight"
+            {/* Main Headline with fluid layout animation for adjacent words */}
+            <motion.h1
+              layout
+              transition={{ type: "spring", damping: 30, stiffness: 350 }}
+              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.18] tracking-tight flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center"
               data-component="heading"
             >
-              Crafting{" "}
+              <motion.span
+                layout
+                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                className="inline-block"
+              >
+                Crafting
+              </motion.span>
+
               <RotatingText
                 texts={[
                   "digital flagships",
@@ -52,18 +62,26 @@ export default function HeroSection() {
                   "bespoke websites",
                   "digital sanctuaries",
                 ]}
-                mainClassName="text-[#F3E5AB] italic font-normal inline-flex align-baseline"
+                mainClassName="text-[#F3E5AB] italic font-normal inline-flex"
                 staggerFrom="last"
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-120%", opacity: 0 }}
                 staggerDuration={0.025}
                 splitLevelClassName="overflow-hidden pb-0.5"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2600}
+                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                rotationInterval={2800}
+                animatePresenceMode="popLayout"
               />
-              {" "}that command attention.
-            </h1>
+
+              <motion.span
+                layout
+                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                className="inline-block"
+              >
+                that command attention.
+              </motion.span>
+            </motion.h1>
 
             {/* Subtext */}
             <p className="[font-family:Denim,_serif] text-base md:text-xl text-white/85 max-w-2xl font-light leading-relaxed">
