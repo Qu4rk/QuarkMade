@@ -1,11 +1,17 @@
 import Icon5 from "../svgs/svg-icon5";
-/** Partner With Us section. */
+
+/** Partner With Us section with parallax background and Base31 button styling. */
 export default function PartnerWithUsSection() {
   return (
-    <section className="block bg-foreground">
+    <section className="block bg-foreground overflow-hidden">
       <div className="h-200 min-h-160 block relative z-1 max-h-224 overflow-hidden w-full max-md:h-[43.3625rem] max-lg:min-h-0 max-lg:max-h-none md:max-lg:h-240 2xl:h-270 2xl:min-h-240 2xl:max-h-336">
-        <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
-          <div className="h-300 block absolute -top-100 inset-x-0 transform-[matrix(1,0,0,1,0,-17.6406)] max-md:h-[65.0375rem] max-md:top-[-346.9px] md:max-lg:h-360 md:max-lg:-top-120 2xl:h-405 2xl:-top-135">
+        {/* Parallax Background Layer */}
+        <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
+          <div
+            data-parallax
+            data-parallax-speed="0.2"
+            className="h-300 block absolute -top-50 inset-x-0 max-md:h-[65.0375rem] max-md:-top-32 md:max-lg:h-360 md:max-lg:-top-40 2xl:h-405 2xl:-top-60"
+          >
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden max-md:hidden">
               <picture className="inline">
                 <source className="inline" sizes="(max-width: 3024px) 100vw, 3024px" srcSet="/assets/cloned/images/e6d33de22440.png 756w, /assets/cloned/images/cfc7c6bc6957.png 1512w, /assets/cloned/images/b996d8c968b2.png 2268w, /assets/cloned/images/92c8ab103f68.png 3024w" type="image/webp" />
@@ -18,9 +24,10 @@ export default function PartnerWithUsSection() {
             </div>
           </div>
         </div>
+
         <div className="h-full block absolute top-0 inset-x-0 z-3">
           <div className="flex py-16 px-6 flex-col justify-center items-center mx-auto max-w-screen h-full w-full max-md:py-10 max-md:px-4">
-            <div className="w-full max-w-162 flex flex-col items-center gap-12 text-background text-center max-md:gap-10">
+            <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-12 text-background text-center max-md:gap-10">
               <div className="block [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]">
                 Building together
               </div>
@@ -31,7 +38,7 @@ export default function PartnerWithUsSection() {
               </div>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
                 <div className="block">
-                  <a className="inline-flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/partnerships">
+                  <a className="btn-base btn-primary-inverse" data-component="button" href="/partnerships">
                     <Icon5 />
                     See partnership opportunities
                   </a>
@@ -40,7 +47,7 @@ export default function PartnerWithUsSection() {
             </div>
           </div>
           <div className="h-[8.2rem] flex absolute bottom-0 inset-x-0 pb-16 px-6 mx-auto max-w-screen max-md:h-[8.625rem] max-md:pb-10 max-md:px-4">
-            <div className="block max-w-181 mx-auto text-background [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
+            <div data-reveal className="block max-w-181 mx-auto text-background [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
               <p className="h-full block">
                 Base31 is shaped through collaboration with local businesses, artists, organizations, and institutions. These partnerships help ensure the site grows with intention, creating opportunities that reflect the character, values, and long-term needs of the County.
               </p>

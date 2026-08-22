@@ -1,10 +1,11 @@
 import Icon5 from "../svgs/svg-icon5";
-/** Building Place To section. */
+
+/** Building Place To section with reveal animations and Base31 button styles. */
 export default function BuildingPlaceToSection() {
   return (
     <section className="block bg-background">
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
-        <div className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
+        <div data-reveal className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
           <p className="block whitespace-nowrap">
             Building a place
           </p>
@@ -13,7 +14,7 @@ export default function BuildingPlaceToSection() {
             to call home
           </p>
         </div>
-        <div className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
+        <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block">
             A new kind
           </p>
@@ -22,7 +23,7 @@ export default function BuildingPlaceToSection() {
             of homecoming
           </p>
         </div>
-        <div className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428]">
+        <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground [clip-path:inset(2.381%_round_8px)]">
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden max-md:hidden">
               <picture className="inline">
@@ -39,7 +40,7 @@ export default function BuildingPlaceToSection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-4 text-center">
                 <img className="w-44 h-7.5 block max-w-full max-h-[7.1875rem] overflow-clip aspect-[auto_176/30] align-middle text-clr-2" data-component="image" alt="Base Living Logo" height="30" src="/assets/cloned/svg/55b7cc3ec0ee.svg" width="176" />
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <a className="basis-full shrink-0 flex py-3 px-4 justify-center items-center gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/living">
+                  <a className="btn-base btn-primary-inverse" data-component="button" href="/living">
                     <Icon5 />
                     Explore Base Living
                   </a>
@@ -48,7 +49,7 @@ export default function BuildingPlaceToSection() {
             </div>
           </div>
         </div>
-        <div className="grid max-w-181 mx-auto flex-col gap-12 grid-cols-1 max-md:flex max-md:gap-8 max-md:grid-cols-[repeat(1,_1fr)]">
+        <div data-reveal className="grid max-w-181 mx-auto flex-col gap-12 grid-cols-1 max-md:flex max-md:gap-8 max-md:grid-cols-[repeat(1,_1fr)]">
           <div className="block [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
             <p className="block">
               Thoughtfully designed homes, walkable streets, and shared green spaces come together to create neighbourhoods rooted in connection, balance, and belonging.

@@ -7,7 +7,7 @@ import Icon7 from "../svgs/svg-icon7";
 import Icon5 from "../svgs/svg-icon5";
 import { cards as cardsContent } from "../content";
 
-/** Base section with interactive carousel slider and smooth transitions. */
+/** Base section with interactive carousel slider, smooth transitions, and Base31 buttons. */
 export default function BaseSection({ cards = cardsContent } = {}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxIndex = Math.max(0, cards.length - 1);
@@ -25,7 +25,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
   return (
     <section className="block bg-background">
       <div className="flex py-16 px-6 flex-col gap-8 mx-auto w-full max-w-screen max-md:py-10 max-md:px-4 max-md:gap-6">
-        <div className="grid pb-8 gap-y-16 gap-x-4 grid-cols-12 max-md:pb-6 max-md:gap-y-12 max-md:gap-x-3">
+        <div data-reveal className="grid pb-8 gap-y-16 gap-x-4 grid-cols-12 max-md:pb-6 max-md:gap-y-12 max-md:gap-x-3">
           <div className="block col-start-3 col-end-[span_8] [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:col-span-full max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
             <p className="h-full block">
               <span className="inline" />
@@ -56,7 +56,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           {/* Interactive Progress Bar */}
           <div className="flex relative my-8 justify-center items-center max-md:my-6">
             <div
-              className="block relative rounded-full overflow-hidden text-center bg-accent backdrop-blur-md h-1 w-full"
+              className="block relative rounded-full overflow-hidden text-center bg-accent backdrop-blur-md h-0.5 w-full"
               data-component="button"
               aria-valuemax={cards.length}
               aria-valuemin={1}
@@ -74,7 +74,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           <div className="flex justify-center items-center gap-5 mx-auto">
             <button
               onClick={prevSlide}
-              className="flex left-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent hover:scale-110 active:scale-95 transition-all"
+              className="flex left-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent transition-colors duration-150"
               data-component="button"
               aria-label="Previous slide"
             >
@@ -82,7 +82,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
             </button>
             <button
               onClick={nextSlide}
-              className="flex right-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent hover:scale-110 active:scale-95 transition-all"
+              className="flex right-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent transition-colors duration-150"
               data-component="button"
               aria-label="Next slide"
             >
@@ -91,9 +91,9 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div data-reveal className="flex justify-center">
           <a
-            className="flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-background [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-foreground backdrop-blur-md cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-7 hover:scale-105 active:scale-95 transition-all duration-200"
+            className="btn-base btn-primary-dark"
             data-component="button"
             href="/on-base-blog"
           >

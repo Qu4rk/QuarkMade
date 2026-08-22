@@ -1,17 +1,18 @@
 import Icon5 from "../svgs/svg-icon5";
-/** Rooted In History section. */
+
+/** Rooted In History section with reveal animations and Base31 button styles. */
 export default function RootedInHistorySection() {
   return (
     <section className="block bg-background">
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
-        <div className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
+        <div data-reveal className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
           <p className="block">
             {"Rooted in history, "}
             <br className="inline" />
             alive with culture
           </p>
         </div>
-        <div className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
+        <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block whitespace-nowrap">
             The heartbeat
           </p>
@@ -20,7 +21,7 @@ export default function RootedInHistorySection() {
             of The County
           </p>
         </div>
-        <div className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428]">
+        <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground [clip-path:inset(2.381%_round_8px)]">
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden max-md:hidden">
               <picture className="inline">
@@ -37,7 +38,7 @@ export default function RootedInHistorySection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-4 text-center">
                 <img className="w-[8.9375rem] h-20 block max-w-full max-h-[7.1875rem] overflow-clip aspect-[auto_143/80] align-middle text-clr-2" data-component="image" alt="B31 District Logo" height="80" src="/assets/cloned/svg/43be17a0424f.svg" width="143" />
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <a className="basis-full shrink-0 flex py-3 px-4 justify-center items-center gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/district">
+                  <a className="btn-base btn-primary-inverse" data-component="button" href="/district">
                     <Icon5 />
                     Explore B31 District
                   </a>
@@ -46,7 +47,7 @@ export default function RootedInHistorySection() {
             </div>
           </div>
         </div>
-        <div className="grid max-w-181 mx-auto flex-col gap-12 grid-cols-1 max-md:flex max-md:gap-8 max-md:grid-cols-[repeat(1,_1fr)]">
+        <div data-reveal className="grid max-w-181 mx-auto flex-col gap-12 grid-cols-1 max-md:flex max-md:gap-8 max-md:grid-cols-[repeat(1,_1fr)]">
           <div className="block [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
             <p className="block">
               The District at Base31 is home to galleries, performances, and creative spaces that bring the neighbourhood to life.
