@@ -13,7 +13,7 @@ export const metadata = {
     "type": "website",
     "siteName": "Base31",
     "images": [
-      "https://www.datocms-assets.com/180088/1768502388-base-31-logo.png?auto=format&fit=max&w=1200"
+      "/assets/cloned/images/og-image.png"
     ]
   },
   "twitter": {
@@ -22,7 +22,7 @@ export const metadata = {
     "description": "Explore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.",
     "site": "@base31",
     "images": [
-      "https://www.datocms-assets.com/180088/1768502388-base-31-logo.png?auto=format&fit=max&w=1200"
+      "/assets/cloned/images/og-image.png"
     ]
   },
   "icons": {
