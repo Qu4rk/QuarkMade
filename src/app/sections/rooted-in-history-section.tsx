@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 
-/** Featured Project 1: Chronotomi Case Study. */
+/** Featured Project 1: Chronotomi Case Study with actual website snapshot and official logo mark. */
 export default function RootedInHistorySection() {
   return (
     <section className="block bg-background" id="works">
@@ -17,26 +17,36 @@ export default function RootedInHistorySection() {
             FEATURED PROJECT 01 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP
           </p>
         </div>
-        <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl">
+        <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground">
+            {/* Real Snapshot of Chronotomi */}
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
               <img
-                className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 hover:scale-100"
+                className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                 alt="Chronotomi Luxury Horology Showcase"
-                src="/assets/cloned/images/c421cbf33a68.jpg"
+                src="/assets/portfolio/chronotomi_timepieces_hero.png"
               />
             </div>
+            {/* Subtle Contrast Gradient */}
             <div
-              className="h-full block absolute top-0 inset-x-0 z-2"
+              className="h-full block absolute top-0 inset-x-0 z-2 transition-opacity duration-500 group-hover:opacity-85"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(11, 10, 18, 0.4) 0%, rgba(42, 24, 84, 0.5) 50%, rgba(11, 10, 18, 0.8) 100%)",
+                  "linear-gradient(180deg, rgba(11, 10, 18, 0.45) 0%, rgba(42, 24, 84, 0.5) 50%, rgba(11, 10, 18, 0.85) 100%)",
               }}
             />
             <div className="h-full flex absolute top-0 inset-x-0 z-3 py-22 px-9 justify-center items-center max-md:py-16">
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-6 text-center text-white">
-                <div className="flex flex-col items-center gap-2">
-                  <span className="[font-family:'Saans_Mono',_monospace] text-2xl font-bold tracking-[0.3em] uppercase text-white">
+                <div className="flex flex-col items-center gap-3">
+                  {/* Official Chronotomi Logo Emblem */}
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center">
+                    <img
+                      src="/assets/portfolio/logos/chronotomi-logo.png"
+                      alt="Chronotomi Logo"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="[font-family:'Saans_Mono',_monospace] text-2xl font-bold tracking-[0.3em] uppercase text-white drop-shadow-md">
                     CHRONOTOMI
                   </span>
                   <span className="[font-family:'Saans_Mono',_monospace] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">

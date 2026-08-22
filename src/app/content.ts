@@ -31,7 +31,7 @@ export const cards = [
     summary:
       "A bespoke luxury horology flagship featuring precision kinetic typography, interactive timepiece showcases, and editorial storytelling for collectors.",
     tags: ["HOROLOGY", "LUXURY", "INTERACTIVE"],
-    image: "/assets/cloned/images/4524a083e380.jpg",
+    image: "/assets/portfolio/chronotomi_collection.png",
     link: "http://www.chronotomi.com/",
   },
   {
@@ -40,7 +40,7 @@ export const cards = [
     summary:
       "An architectural real estate and living sanctuary platform crafted with panoramic media viewers, bespoke typography, and seamless property discovery.",
     tags: ["ARCHITECTURE", "RESIDENTIAL", "EDITORIAL"],
-    image: "/assets/cloned/images/4e9837c42d24.jpg",
+    image: "/assets/portfolio/lumina_signature_living.png",
     link: "http://www.lumina-living.net/",
   },
   {
@@ -49,7 +49,7 @@ export const cards = [
     summary:
       "A curated digital experience capturing Mediterranean light and rhythmic coastal stillness through WebGL shaders, smooth motion, and contemplative pacing.",
     tags: ["MEDITERRANEAN", "WEBGL", "WELLNESS"],
-    image: "/assets/branding/hero-sunset.jpg",
+    image: "/assets/portfolio/quietide_capture_space.png",
     link: "https://qu4rk.github.io/quietide-website/",
   },
   {
@@ -58,7 +58,7 @@ export const cards = [
     summary:
       "How purposeful motion, typographic rigor, and bespoke interaction design transform digital products into memorable brand flagships.",
     tags: ["STUDIO ESSAY", "MOTION DESIGN"],
-    image: "/assets/cloned/images/9ed71f9cf06d.png",
+    image: "/assets/portfolio/chronotomi_standard.png",
     link: "#inquire",
   },
 ];
@@ -82,11 +82,32 @@ export const capabilities = [
 ];
 
 export const logos = [
-  { name: "Chronotomi", label: "CHRONOTOMI" },
-  { name: "Lumina Living", label: "LUMINA LIVING" },
-  { name: "QuieTide", label: "QUIETIDE" },
-  { name: "WebGL", label: "WEBGL & THREE.JS" },
-  { name: "Next.js", label: "NEXT.JS" },
+  {
+    name: "Chronotomi",
+    label: "CHRONOTOMI",
+    logo: "/assets/portfolio/logos/chronotomi-logo.png",
+    href: "http://www.chronotomi.com/",
+  },
+  {
+    name: "Lumina Living",
+    label: "LUMINA LIVING",
+    logo: "/assets/portfolio/logos/lumina-logo.png",
+    href: "http://www.lumina-living.net/",
+  },
+  {
+    name: "QuieTide",
+    label: "QUIETIDE",
+    logo: "/assets/portfolio/logos/quietide-logo.png",
+    href: "https://qu4rk.github.io/quietide-website/",
+  },
+  {
+    name: "WebGL",
+    label: "WEBGL & THREE.JS",
+  },
+  {
+    name: "Next.js",
+    label: "NEXT.JS",
+  },
 ];
 
 export const textLinkData = [

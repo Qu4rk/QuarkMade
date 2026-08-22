@@ -19,12 +19,22 @@ export default function LogoCloudSection() {
 
           <div className="flex flex-wrap items-center gap-3">
             {logos.map((item, idx) => (
-              <span
+              <a
                 key={idx}
-                className="px-3 py-1.5 rounded-none border border-white/15 [font-family:'Saans_Mono',_monospace] text-[11px] font-medium tracking-[0.15em] uppercase text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37]/50 transition-colors"
+                href={item.href || "#"}
+                target={item.href ? "_blank" : undefined}
+                rel={item.href ? "noopener noreferrer" : undefined}
+                className="group flex items-center gap-2 px-3 py-1.5 rounded-none border border-white/15 [font-family:'Saans_Mono',_monospace] text-[11px] font-medium tracking-[0.15em] uppercase text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37]/50 transition-all bg-white/5 hover:bg-white/10"
               >
-                {item.label}
-              </span>
+                {item.logo && (
+                  <img
+                    src={item.logo}
+                    alt={item.name}
+                    className="w-4 h-4 object-contain opacity-75 group-hover:opacity-100 group-hover:scale-110 transition-transform"
+                  />
+                )}
+                <span>{item.label}</span>
+              </a>
             ))}
           </div>
         </div>
