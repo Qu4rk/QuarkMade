@@ -1,6 +1,7 @@
 import Button from "../components/Button";
+import { NoiseBackground } from "../components/ui/noise-background";
 
-/** Featured Project 3: QuieTide Case Study with parallax depth. */
+/** Featured Project 3: QuieTide Case Study with parallax depth and animated NoiseBackground pill. */
 export default function PartnerWithUsSection() {
   return (
     <section className="block bg-foreground overflow-hidden" id="quietide-showcase">
@@ -34,10 +35,35 @@ export default function PartnerWithUsSection() {
         <div className="h-full block absolute top-0 inset-x-0 z-3">
           <div className="flex py-16 px-6 flex-col justify-center items-center mx-auto max-w-screen h-full w-full max-md:py-10 max-md:px-4">
             <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-10 text-white text-center max-md:gap-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#D4AF37]/40 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-[#D4AF37] uppercase max-md:text-xs">
-                <span>✦</span>
-                <span>FEATURED PROJECT 03 / DIGITAL SANCTUARY</span>
+              {/* Aceternity Noise Background Badge */}
+              <div className="flex justify-center">
+                <NoiseBackground
+                  containerClassName="w-fit p-1 rounded-full mx-auto bg-black/40 border border-white/10 shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)]"
+                  gradientColors={[
+                    "rgb(68, 66, 219)", // Electric Purple
+                    "rgb(212, 175, 55)", // Imperial Gold
+                    "rgb(165, 148, 249)", // Soft Lavender
+                  ]}
+                  noiseIntensity={0.25}
+                  speed={0.12}
+                >
+                  <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-black/90 via-neutral-950/90 to-black/90 px-4 py-1.5 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.12)_inset,0px_1px_2px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.15em] uppercase flex items-center justify-center gap-2 max-md:text-xs max-md:px-3.5 max-md:py-1.25">
+                    <svg
+                      className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                    <span className="text-white/90">FEATURED PROJECT 03 / DIGITAL SANCTUARY</span>
+                  </div>
+                </NoiseBackground>
               </div>
+
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
                   QuieTide: The <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">art</span> of stillness

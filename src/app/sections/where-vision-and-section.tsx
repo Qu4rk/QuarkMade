@@ -55,7 +55,17 @@ export default function WhereVisionAndSection() {
                   speed={0.12}
                 >
                   <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-black/90 via-neutral-950/90 to-black/90 px-4 py-1.5 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.12)_inset,0px_1px_2px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.15em] uppercase flex items-center justify-center gap-2 max-md:text-xs max-md:px-3.5 max-md:py-1.25">
-                    <span className="text-[#D4AF37]">✦</span>
+                    <svg
+                      className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
                     <span className="text-white/90">DESIGN, MOTION, & ENGINEERING</span>
                   </div>
                 </NoiseBackground>

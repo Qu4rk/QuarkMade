@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "../components/Button";
+import { NoiseBackground } from "../components/ui/noise-background";
 
 /** Project Inquiry and Client Commission Section. */
 export default function StayInTheSection() {
@@ -23,9 +24,32 @@ export default function StayInTheSection() {
 
       <div className="flex flex-col items-center gap-12 mx-auto w-full max-w-4xl relative z-10">
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/40 [font-family:'Saans_Mono',_monospace] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
-            <span>✦</span>
-            <span>COMMISSIONS & INQUIRIES</span>
+          <div className="flex justify-center">
+            <NoiseBackground
+              containerClassName="w-fit p-1 rounded-full mx-auto bg-black/40 border border-white/10 shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)]"
+              gradientColors={[
+                "rgb(68, 66, 219)", // Electric Purple
+                "rgb(212, 175, 55)", // Imperial Gold
+                "rgb(165, 148, 249)", // Soft Lavender
+              ]}
+              noiseIntensity={0.25}
+              speed={0.12}
+            >
+              <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-black/90 via-neutral-950/90 to-black/90 px-4 py-1.5 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.12)_inset,0px_1px_2px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.15em] uppercase flex items-center justify-center gap-2 max-md:text-xs max-md:px-3.5 max-md:py-1.25">
+                <svg
+                  className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+                <span className="text-white/90">COMMISSIONS & INQUIRIES</span>
+              </div>
+            </NoiseBackground>
           </div>
           <h2 className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white" data-component="heading">
             Start a project with <span className="text-[#F3E5AB]">QuarkMade</span>

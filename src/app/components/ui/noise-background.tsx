@@ -53,6 +53,7 @@ export interface NoiseBackgroundProps {
   speed?: number;
   backdropBlur?: boolean;
   animating?: boolean;
+  glimmer?: boolean;
 }
 
 export const NoiseBackground = ({
@@ -64,10 +65,11 @@ export const NoiseBackground = ({
     "rgb(212, 175, 55)",
     "rgb(165, 148, 249)",
   ],
-  noiseIntensity = 0.2,
-  speed = 0.1,
+  noiseIntensity = 0.25,
+  speed = 0.12,
   backdropBlur = false,
   animating = true,
+  glimmer = true,
 }: NoiseBackgroundProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -98,7 +100,7 @@ export const NoiseBackground = ({
   // Generate random velocity
   const generateRandomVelocityRef = useRef(() => {
     const angle = Math.random() * Math.PI * 2;
-    const magnitude = speed * (0.5 + Math.random() * 0.5); // Random speed between 0.5x and 1x
+    const magnitude = speed * (0.5 + Math.random() * 0.5);
     return {
       x: Math.cos(angle) * magnitude,
       y: Math.sin(angle) * magnitude,
@@ -132,7 +134,7 @@ export const NoiseBackground = ({
       lastDirectionChangeRef.current = time;
     }
 
-    // Update position based on velocity (deltaTime is ~16ms per frame at 60fps)
+    // Update position based on velocity
     const deltaTime = 16;
     const currentX = x.get();
     const currentY = y.get();
@@ -171,6 +173,7 @@ export const NoiseBackground = ({
         "group relative overflow-hidden rounded-2xl bg-neutral-200 p-2 backdrop-blur-sm dark:bg-neutral-800",
         "shadow-[0px_0.5px_1px_0px_var(--color-neutral-400)_inset,0px_1px_0px_0px_var(--color-neutral-100)]",
         "dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]",
+        glimmer && "animate-[pillGlowGlimmer_3s_ease-in-out_infinite]",
         backdropBlur &&
           "after:absolute after:inset-0 after:h-full after:w-full after:backdrop-blur-lg after:content-['']",
         containerClassName
@@ -222,6 +225,20 @@ export const NoiseBackground = ({
           style={{ mixBlendMode: "overlay" }}
         />
       </div>
+
+      {/* Constant Specular Glimmer Light Wave */}
+      {glimmer && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
+          <div
+            className="absolute inset-0 -translate-x-[150%] skew-x-[-20deg] pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.03) 75%, transparent 100%)",
+              animation: "glimmerSweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite",
+            }}
+          />
+        </div>
+      )}
 
       {/* Content */}
       <div className={cn("relative z-10", className)}>{children}</div>

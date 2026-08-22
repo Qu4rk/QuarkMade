@@ -40,6 +40,27 @@
   }
 }
 
+@keyframes glimmerSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  50%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+@keyframes pillGlowGlimmer {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(68, 66, 219, 0.35), 0 0 25px rgba(212, 175, 55, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(68, 66, 219, 0.75), 0 0 45px rgba(212, 175, 55, 0.45);
+    border-color: rgba(212, 175, 55, 0.55);
+  }
+}
+
+
 /* Scroll reveal classes */
 [data-reveal] {
   opacity: 0;
