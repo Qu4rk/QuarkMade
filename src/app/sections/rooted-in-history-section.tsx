@@ -1,30 +1,30 @@
 import Button from "../components/Button";
 
-/** Featured Project 1: Chronotomi Case Study with actual website snapshot and official logo mark. */
+/** Featured Project 1: QuieTide Case Study with actual website snapshot and official logo mark. */
 export default function RootedInHistorySection() {
   return (
     <section className="block bg-background" id="works">
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
           <p className="block">
-            Chronotomi:
+            QuieTide:
             <br className="inline" />
-            Precision in every frame
+            The art of stillness
           </p>
         </div>
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block whitespace-nowrap text-[#4442DB] font-medium tracking-wider">
-            FEATURED PROJECT 01 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP
+            FEATURED PROJECT 01 / MEDITERRANEAN DIGITAL SANCTUARY
           </p>
         </div>
         <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground">
-            {/* Real Snapshot of Chronotomi */}
+            {/* Real Snapshot of QuieTide */}
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
               <img
                 className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
-                alt="Chronotomi Luxury Horology Showcase"
-                src="/assets/portfolio/chronotomi_timepieces_hero.png"
+                alt="QuieTide Mediterranean Digital Sanctuary Showcase"
+                src="/assets/portfolio/quietide_hero.png"
               />
             </div>
             {/* Subtle Contrast Gradient */}
@@ -38,24 +38,24 @@ export default function RootedInHistorySection() {
             <div className="h-full flex absolute top-0 inset-x-0 z-3 py-22 px-9 justify-center items-center max-md:py-16">
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-6 text-center text-white">
                 <div className="flex flex-col items-center gap-3">
-                  {/* Official Chronotomi Logo Emblem */}
+                  {/* Official QuieTide Logo Emblem */}
                   <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center">
                     <img
-                      src="/assets/portfolio/logos/chronotomi-logo.png"
-                      alt="Chronotomi Logo"
+                      src="/assets/portfolio/logos/quietide-logo.png"
+                      alt="QuieTide Logo"
                       className="w-full h-full object-contain"
                     />
                   </div>
                   <span className="[font-family:'Saans_Mono',_monospace] text-2xl font-bold tracking-[0.3em] uppercase text-white drop-shadow-md">
-                    CHRONOTOMI
+                    QUIETIDE
                   </span>
                   <span className="[font-family:'Saans_Mono',_monospace] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">
-                    WWW.CHRONOTOMI.COM
+                    QUIETIDE-WEBSITE
                   </span>
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <Button href="http://www.chronotomi.com/" variant="gold">
-                    Visit Live Site (Chronotomi.com)
+                  <Button href="https://qu4rk.github.io/quietide-website/" variant="gold">
+                    Visit Live Site (QuieTide)
                   </Button>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default function RootedInHistorySection() {
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
           <div className="block [font-family:Denim,_serif] text-lg font-medium leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
             <p className="block">
-              An immersive web flagship designed for haute horlogerie collectors, featuring bespoke kinetic typography, interactive timepiece showcases, and editorial storytelling.
+              A curated digital experience capturing Mediterranean light and rhythmic coastal serenity through WebGL shaders, smooth motion, and contemplative pacing.
             </p>
           </div>
         </div>

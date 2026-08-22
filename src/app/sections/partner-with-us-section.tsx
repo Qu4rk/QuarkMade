@@ -1,12 +1,12 @@
 import Button from "../components/Button";
 import { NoiseBackground } from "../components/ui/noise-background";
 
-/** Featured Project 3: QuieTide Case Study with actual website snapshot, official logo mark, parallax depth, and animated NoiseBackground pill. */
+/** Featured Project 3: Chronotomi Case Study with actual website snapshot, official logo mark, parallax depth, and animated NoiseBackground pill. */
 export default function PartnerWithUsSection() {
   return (
-    <section className="block bg-foreground overflow-hidden" id="quietide-showcase">
+    <section className="block bg-foreground overflow-hidden" id="chronotomi-showcase">
       <div className="h-200 min-h-160 block relative z-1 max-h-224 overflow-hidden w-full max-md:h-[43.3625rem] max-lg:min-h-0 max-lg:max-h-none md:max-lg:h-240 2xl:h-270 2xl:min-h-240 2xl:max-h-336">
-        {/* Parallax Background Layer with Actual QuieTide Snapshot */}
+        {/* Parallax Background Layer with Actual Chronotomi Snapshot */}
         <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
           <div
             data-parallax
@@ -16,8 +16,8 @@ export default function PartnerWithUsSection() {
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
               <img
                 className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105"
-                alt="QuieTide Mediterranean Digital Sanctuary Showcase"
-                src="/assets/portfolio/quietide_hero.png"
+                alt="Chronotomi Haute Horlogerie Showcase"
+                src="/assets/portfolio/chronotomi_timepieces_hero.png"
               />
             </div>
           </div>
@@ -59,31 +59,31 @@ export default function PartnerWithUsSection() {
                     >
                       <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
-                    <span className="text-white/90">FEATURED PROJECT 03 / DIGITAL SANCTUARY</span>
+                    <span className="text-white/90">FEATURED PROJECT 03 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP</span>
                   </div>
                 </NoiseBackground>
               </div>
 
-              {/* Official QuieTide Logo Emblem */}
+              {/* Official Chronotomi Logo Emblem */}
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 hover:scale-110 flex items-center justify-center">
                 <img
-                  src="/assets/portfolio/logos/quietide-logo.png"
-                  alt="QuieTide Logo"
+                  src="/assets/portfolio/logos/chronotomi-logo.png"
+                  alt="Chronotomi Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
 
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
-                  QuieTide: The <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">art</span> of stillness
+                  Chronotomi: Precision in every <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">frame</span>
                 </p>
               </div>
               <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/85 max-w-xl">
-                A curated digital experience capturing Mediterranean light and rhythmic coastal serenity through WebGL shaders, smooth motion, and contemplative pacing.
+                An immersive web flagship designed for haute horlogerie collectors, featuring bespoke kinetic typography, interactive timepiece showcases, and editorial storytelling.
               </p>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4 mt-2">
-                <Button href="https://qu4rk.github.io/quietide-website/" variant="gold">
-                  Visit Live Site (QuieTide)
+                <Button href="http://www.chronotomi.com/" variant="gold">
+                  Visit Live Site (Chronotomi.com)
                 </Button>
               </div>
             </div>

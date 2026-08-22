@@ -26,13 +26,13 @@ export const tileData = [
 
 export const cards = [
   {
-    variant: "chronotomi",
-    title: "Chronotomi — Haute Horlogerie & Timepiece Showcase",
+    variant: "quietide",
+    title: "QuieTide — Mediterranean Digital Sanctuary",
     summary:
-      "A bespoke luxury horology flagship featuring precision kinetic typography, interactive timepiece showcases, and editorial storytelling for collectors.",
-    tags: ["HOROLOGY", "LUXURY", "INTERACTIVE"],
-    image: "/assets/portfolio/chronotomi_collection.png",
-    link: "http://www.chronotomi.com/",
+      "A curated digital experience capturing Mediterranean light and rhythmic coastal stillness through WebGL shaders, smooth motion, and contemplative pacing.",
+    tags: ["MEDITERRANEAN", "WEBGL", "WELLNESS"],
+    image: "/assets/portfolio/quietide_capture_space.png",
+    link: "https://qu4rk.github.io/quietide-website/",
   },
   {
     variant: "lumina-living",
@@ -44,13 +44,13 @@ export const cards = [
     link: "http://www.lumina-living.net/",
   },
   {
-    variant: "quietide",
-    title: "QuieTide — Mediterranean Digital Sanctuary",
+    variant: "chronotomi",
+    title: "Chronotomi — Haute Horlogerie & Timepiece Showcase",
     summary:
-      "A curated digital experience capturing Mediterranean light and rhythmic coastal stillness through WebGL shaders, smooth motion, and contemplative pacing.",
-    tags: ["MEDITERRANEAN", "WEBGL", "WELLNESS"],
-    image: "/assets/portfolio/quietide_capture_space.png",
-    link: "https://qu4rk.github.io/quietide-website/",
+      "A bespoke luxury horology flagship featuring precision kinetic typography, interactive timepiece showcases, and editorial storytelling for collectors.",
+    tags: ["HOROLOGY", "LUXURY", "INTERACTIVE"],
+    image: "/assets/portfolio/chronotomi_collection.png",
+    link: "http://www.chronotomi.com/",
   },
   {
     variant: "craft-philosophy",
@@ -83,10 +83,10 @@ export const capabilities = [
 
 export const logos = [
   {
-    name: "Chronotomi",
-    label: "CHRONOTOMI",
-    logo: "/assets/portfolio/logos/chronotomi-logo.png",
-    href: "http://www.chronotomi.com/",
+    name: "QuieTide",
+    label: "QUIETIDE",
+    logo: "/assets/portfolio/logos/quietide-logo.png",
+    href: "https://qu4rk.github.io/quietide-website/",
   },
   {
     name: "Lumina Living",
@@ -95,10 +95,10 @@ export const logos = [
     href: "http://www.lumina-living.net/",
   },
   {
-    name: "QuieTide",
-    label: "QUIETIDE",
-    logo: "/assets/portfolio/logos/quietide-logo.png",
-    href: "https://qu4rk.github.io/quietide-website/",
+    name: "Chronotomi",
+    label: "CHRONOTOMI",
+    logo: "/assets/portfolio/logos/chronotomi-logo.png",
+    href: "http://www.chronotomi.com/",
   },
   {
     name: "WebGL",
