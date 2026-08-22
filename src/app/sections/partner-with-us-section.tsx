@@ -40,7 +40,7 @@ export default function PartnerWithUsSection() {
               </div>
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
-                  QuieTide: The <em className="inline italic text-[#F3E5AB]">art</em> of stillness
+                  QuieTide: The <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">art</span> of stillness
                 </p>
               </div>
               <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/85 max-w-xl">

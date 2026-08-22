@@ -47,7 +47,7 @@ export default function WhereVisionAndSection() {
               </div>
               <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
-                  Where <em className="inline italic text-[#F3E5AB]">vision</em>, <em className="inline italic text-[#F3E5AB]">engineering</em>, and <em className="inline italic text-[#F3E5AB]">elegance</em> come together
+                  Where <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">vision</span>, <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">engineering</span>, and <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">elegance</span> come together
                 </p>
               </div>
               <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 max-w-xl">
