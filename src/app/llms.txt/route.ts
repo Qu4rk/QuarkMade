@@ -1,0 +1,7 @@
+export const dynamic = "force-static";
+
+export function GET() {
+  return new Response("# Base31 | A New Community for Culture, Living, and Discovery\n\nExplore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.\n\nThis is a generated ditto.site clone. It preserves captured page content, metadata, route structure, and static assets where available.\n\n## Routes\n\n- [Base31 | A New Community for Culture, Living, and Discovery](https://www.base31.ca/) - Explore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.\n\n## Captured Content\n\n### Base31 | A New Community for Culture, Living, and Discovery\nBASE31 B31 DISTRICT Base Living Today Wed, Dec 31 7:00 PM About On Base Blog Search Contact us A new chapter for a storied site A place worth belonging to. From the cultural energy of B31 District to the connected streets of Base Living, Base31 is where history, design, and community grow together. Place, Community, and Culture Where vision and v alues come together What we're building together History of The Base Rooted in history, alive with culture The heartbeat of The County Explore B31 District The District at Base31 is home to galleries, performances, and creative spaces that bring the neighbourhood to life. Building a place to call home A new kind of homecoming Explore Base Living Tho\n", {
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
+}
