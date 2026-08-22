@@ -1,59 +1,109 @@
-/** Stay In The section with reveal animations and Base31 form button styling. */
+"use client";
+
+import { useState } from "react";
+import Button from "../components/Button";
+
+/** Project Inquiry and Client Commission Section. */
 export default function StayInTheSection() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.name && formData.email) {
+      setSubmitted(true);
+    }
+  };
+
   return (
-    <section className="block bg-primary">
-      <div className="flex py-16 px-6 flex-col items-center gap-16 mx-auto w-full max-w-screen max-md:py-10 max-md:px-4 max-md:gap-12">
-        <div data-reveal className="block [font-family:Denim,_serif] text-4xl font-semibold leading-[2.6875rem] tracking-[0.18px] text-center max-md:text-[1.75rem] max-md:leading-[2.125rem]" data-component="heading">
-          <p className="block">
-            {"Stay "}
-            <br className="inline" />
-            in the loop
+    <section className="block bg-[#0B0A12] text-white py-24 md:py-32 px-6 max-md:py-16 max-md:px-4 relative overflow-hidden" id="inquire">
+      {/* Ambient Cosmic Purple & Gold Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#4442DB]/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="flex flex-col items-center gap-12 mx-auto w-full max-w-4xl relative z-10">
+        <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/40 [font-family:'Saans_Mono',_monospace] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
+            <span>✦</span>
+            <span>COMMISSIONS & INQUIRIES</span>
+          </div>
+          <h2 className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white" data-component="heading">
+            Start a project with <span className="text-[#F3E5AB]">QuarkMade</span>
+          </h2>
+          <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 leading-relaxed">
+            Have a project in mind? We partner with ambitious founders, luxury brands, and visionary teams to engineer digital flagships that set new benchmarks.
           </p>
         </div>
-        <div data-reveal className="w-full h-[3.0625rem] block relative max-w-150 overflow-hidden align-middle" title="Newsletter signup form">
-          <div className="block text-color-001 [font-family:-apple-system,_'system-ui',_'Segoe_UI',_Roboto,_sans-serif] leading-4.5">
-            <div className="block">
-              <div className="box-content block">
-                <form className="flex max-w-150 pb-px flex-1 bg-clr-0 [background-position:0px_50%] bg-no-repeat" aria-live="polite">
-                  <div className="box-content w-full h-12 min-h-8 flex min-w-0 flex-col justify-center">
-                    <div className="box-content flex relative min-w-0 items-stretch">
-                      <div className="box-content w-[252.7px] flex relative min-w-0 py-2 justify-start grow shrink-0 basis-0 bg-primary max-md:w-[7.7625rem]">
-                        <div className="box-content flex min-w-0 flex-col self-end grow">
-                          <label className="box-content w-px h-px block absolute top-2 left-0 min-w-0 -m-px overflow-hidden [font-family:Denim,_Arial,_'Helvetica_Neue',_Helvetica,_sans-serif] font-bold text-left whitespace-nowrap text-nowrap" htmlFor="f0-first_name_01KCKRFQT54PXHW5XNFEW9DHW6" id="f0-label-first_name_01KCKRFQT54PXHW5XNFEW9DHW6">
-                            First Name
-                          </label>
-                          <input className="w-full h-8 border border-solid border-clr-4 block min-w-0 pl-4 overflow-clip text-foreground [font-family:Denim,_Arial,_'Helvetica_Neue',_Helvetica,_sans-serif] font-medium text-left bg-primary focus:outline-none" data-ditto-id="style-f0-first-name-01kckrfqt54pxhw5xnfew9dhw6" data-component="input" aria-invalid="false" id="f0-first_name_01KCKRFQT54PXHW5XNFEW9DHW6" placeholder="First name" type="text" />
-                          <div className="box-content block relative min-w-0" />
-                        </div>
-                      </div>
-                      <div className="box-content w-[252.7px] flex relative min-w-0 py-2 justify-start grow shrink-0 basis-0 bg-primary max-md:w-[7.7625rem]">
-                        <div className="box-content flex min-w-0 flex-col self-end grow">
-                          <label className="box-content w-px h-px block absolute min-w-0 -m-px overflow-hidden [font-family:Denim,_Arial,_'Helvetica_Neue',_Helvetica,_sans-serif] font-bold text-left whitespace-nowrap text-nowrap" htmlFor="f0-email_01KCKRFQT9JP6XGNJY3FQM6MAJ" id="f0-label-email_01KCKRFQT9JP6XGNJY3FQM6MAJ">
-                            Email
-                          </label>
-                          <input className="w-full h-8 border border-solid border-clr-4 block min-w-0 pl-4 overflow-clip text-foreground [font-family:Denim,_Arial,_'Helvetica_Neue',_Helvetica,_sans-serif] font-medium text-left bg-primary focus:outline-none" data-ditto-id="style-f0-email-01kckrfqt9jp6xgnjy3fqm6maj" data-component="input" aria-invalid="false" aria-required="true" id="f0-email_01KCKRFQT9JP6XGNJY3FQM6MAJ" name="email" placeholder="Email address" type="email" />
-                          <div className="box-content block relative min-w-0" />
-                        </div>
-                      </div>
-                      <div className="box-content flex relative min-w-0 py-2 px-2.5 justify-start bg-primary">
-                        <button className="btn-base btn-primary-dark h-8 px-4" data-component="button" type="button">
-                          SIGN UP
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+
+        {submitted ? (
+          <div data-reveal className="p-8 rounded-lg bg-white/10 border border-[#D4AF37]/50 text-center max-w-md backdrop-blur-md">
+            <div className="text-3xl mb-2 text-[#D4AF37]">✦</div>
+            <h3 className="[font-family:'Saans_Mono',_monospace] text-lg font-bold uppercase tracking-wider text-white mb-2">
+              Inquiry Received
+            </h3>
+            <p className="[font-family:Denim,_serif] text-white/80 text-sm">
+              Thank you for reaching out. We will review your project brief and get back to you within 24 hours.
+            </p>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            data-reveal
+            className="w-full max-w-xl flex flex-col gap-4 p-6 md:p-8 rounded-lg bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-name">
+                  Your Name
+                </label>
+                <input
+                  id="inquiry-name"
+                  type="text"
+                  required
+                  placeholder="Elias Liasides"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-email">
+                  Email Address
+                </label>
+                <input
+                  id="inquiry-email"
+                  type="email"
+                  required
+                  placeholder="elias@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm"
+                />
               </div>
             </div>
-            {" "}
-            <div className="block" id="f0-dynamic-react-root" />
-          </div>
-        </div>
-        <div data-reveal className="block max-w-150 mx-auto [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
-          <p className="block">
-            Follow along as Base31 continues to grow, with event announcements, stories, updates, and opportunities to get involved.
-          </p>
-        </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-message">
+                Project Scope / Timeline
+              </label>
+              <textarea
+                id="inquiry-message"
+                rows={3}
+                placeholder="Tell us about your brand, vision, or desired launch date..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="p-3 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm resize-none"
+              />
+            </div>
+
+            <div className="flex justify-end mt-2">
+              <Button variant="gold" className="w-full md:w-auto">
+                Submit Project Inquiry
+              </Button>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );

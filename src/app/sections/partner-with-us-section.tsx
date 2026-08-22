@@ -1,9 +1,9 @@
 import Button from "../components/Button";
 
-/** Partner With Us section with parallax background and Base31 button styling. */
+/** Featured Project 3: QuieTide Case Study with parallax depth. */
 export default function PartnerWithUsSection() {
   return (
-    <section className="block bg-foreground overflow-hidden">
+    <section className="block bg-foreground overflow-hidden" id="quietide-showcase">
       <div className="h-200 min-h-160 block relative z-1 max-h-224 overflow-hidden w-full max-md:h-[43.3625rem] max-lg:min-h-0 max-lg:max-h-none md:max-lg:h-240 2xl:h-270 2xl:min-h-240 2xl:max-h-336">
         {/* Parallax Background Layer */}
         <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
@@ -12,42 +12,45 @@ export default function PartnerWithUsSection() {
             data-parallax-speed="0.2"
             className="h-300 block absolute -top-50 inset-x-0 max-md:h-[65.0375rem] max-md:-top-32 md:max-lg:h-360 md:max-lg:-top-40 2xl:h-405 2xl:-top-60"
           >
-            <div className="h-full block absolute top-0 inset-x-0 overflow-hidden max-md:hidden">
-              <picture className="inline">
-                <source className="inline" sizes="(max-width: 3024px) 100vw, 3024px" srcSet="/assets/cloned/images/e6d33de22440.png 756w, /assets/cloned/images/cfc7c6bc6957.png 1512w, /assets/cloned/images/b996d8c968b2.png 2268w, /assets/cloned/images/92c8ab103f68.png 3024w" type="image/webp" />
-                <source className="inline" sizes="(max-width: 3024px) 100vw, 3024px" srcSet="/assets/cloned/images/e6d33de22440.png 756w, /assets/cloned/images/cfc7c6bc6957.png 1512w, /assets/cloned/images/b996d8c968b2.png 2268w, /assets/cloned/images/92c8ab103f68.png 3024w" />
-                <img className="w-320 h-300 block absolute overflow-clip object-cover align-middle md:max-lg:w-192 md:max-lg:h-360 2xl:w-480 2xl:h-405" data-component="image" alt="Background image" src="/assets/cloned/images/92c8ab103f68.png" />
-              </picture>
-            </div>
-            <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:w-[23.4375rem] max-md:block">
-              <img className="w-[110%] block absolute top-[-5%] left-[-5%] overflow-clip object-cover align-middle max-md:w-[25.8125rem] max-md:h-[17.1875rem] max-md:-top-[3.25rem] max-md:left-[-18.7px]" alt="" aria-hidden="true" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+            <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
+              <img
+                className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105"
+                alt="QuieTide Mediterranean Sea and Sunset"
+                src="/assets/branding/hero-sunset.jpg"
+              />
             </div>
           </div>
         </div>
 
+        {/* Deep Violet & Black Gradient Overlay */}
+        <div
+          className="h-full block absolute top-0 inset-x-0 z-2"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(11, 10, 18, 0.7) 0%, rgba(42, 24, 84, 0.6) 50%, rgba(11, 10, 18, 0.9) 100%)",
+          }}
+        />
+
         <div className="h-full block absolute top-0 inset-x-0 z-3">
           <div className="flex py-16 px-6 flex-col justify-center items-center mx-auto max-w-screen h-full w-full max-md:py-10 max-md:px-4">
-            <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-12 text-background text-center max-md:gap-10">
-              <div className="block [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]">
-                Building together
+            <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-10 text-white text-center max-md:gap-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#D4AF37]/40 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-[#D4AF37] uppercase max-md:text-xs">
+                <span>✦</span>
+                <span>FEATURED PROJECT 03 / DIGITAL SANCTUARY</span>
               </div>
-              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.625rem] leading-[4.5625rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem] max-md:tracking-[0.2px]" data-component="heading">
+              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
-                  Partner with us to shape what&apos;s next
+                  QuieTide: The <em className="inline italic text-[#F3E5AB]">art</em> of stillness
                 </p>
               </div>
-              <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                <Button href="/partnerships" variant="primary-inverse">
-                  See partnership opportunities
+              <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/85 max-w-xl">
+                A curated digital experience capturing Mediterranean light and rhythmic coastal serenity through WebGL shaders, smooth motion, and contemplative pacing.
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4 mt-2">
+                <Button href="https://qu4rk.github.io/quietide-website/" variant="gold">
+                  Visit Live Site (QuieTide)
                 </Button>
               </div>
-            </div>
-          </div>
-          <div className="h-[8.2rem] flex absolute bottom-0 inset-x-0 pb-16 px-6 mx-auto max-w-screen max-md:h-[8.625rem] max-md:pb-10 max-md:px-4">
-            <div data-reveal className="block max-w-181 mx-auto text-background [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] text-center max-md:text-sm max-md:leading-[1.25rem] max-md:tracking-[0.14px]">
-              <p className="h-full block">
-                Base31 is shaped through collaboration with local businesses, artists, organizations, and institutions. These partnerships help ensure the site grows with intention, creating opportunities that reflect the character, values, and long-term needs of the County.
-              </p>
             </div>
           </div>
         </div>

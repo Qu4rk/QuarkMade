@@ -7,7 +7,7 @@ import Icon7 from "../svgs/svg-icon7";
 import Button from "../components/Button";
 import { cards as cardsContent } from "../content";
 
-/** Base section with interactive carousel slider, smooth transitions, and Base31 buttons. */
+/** Studio Journal and Case Studies section with carousel slider and progress tracking. */
 export default function BaseSection({ cards = cardsContent } = {}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxIndex = Math.max(0, cards.length - 1);
@@ -23,20 +23,20 @@ export default function BaseSection({ cards = cardsContent } = {}) {
   const progressPercent = cards.length > 0 ? ((currentIndex + 1) / cards.length) * 100 : 0;
 
   return (
-    <section className="block bg-background">
-      <div className="flex py-16 px-6 flex-col gap-8 mx-auto w-full max-w-screen max-md:py-10 max-md:px-4 max-md:gap-6">
-        <div data-reveal className="grid pb-8 gap-y-16 gap-x-4 grid-cols-12 max-md:pb-6 max-md:gap-y-12 max-md:gap-x-3">
-          <div className="block col-start-3 col-end-[span_8] [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:col-span-full max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
-            <p className="h-full block">
-              <span className="inline" />
-              ON
-              <br className="inline" />
-              BASE
+    <section className="block bg-background py-20 md:py-28 px-6 max-md:py-16 max-md:px-4" id="journal">
+      <div className="flex flex-col gap-12 mx-auto w-full max-w-screen">
+        <div data-reveal className="flex flex-col items-center gap-4 text-center">
+          <div className="[font-family:'Saans_Mono',_monospace] text-xs font-semibold tracking-[0.25em] text-[#4442DB] uppercase">
+            STUDIO ESSAYS & CASE STUDIES
+          </div>
+          <div className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground" data-component="heading">
+            <p className="block">
+              Studio Journal
             </p>
           </div>
-          <div className="block col-start-4 col-end-[span_6] [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:col-span-full max-md:text-sm max-md:leading-[1.125rem]">
+          <div className="[font-family:'Ivar_Mono',_monospace] text-sm md:text-base text-foreground/70 uppercase tracking-wider">
             <p className="block">
-              Stories, updates, and milestones
+              Insights on design, motion, and digital flagships
             </p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           {/* Interactive Progress Bar */}
           <div className="flex relative my-8 justify-center items-center max-md:my-6">
             <div
-              className="block relative rounded-full overflow-hidden text-center bg-accent backdrop-blur-md h-0.5 w-full"
+              className="block relative rounded-full overflow-hidden text-center bg-[#4442DB]/10 backdrop-blur-md h-1 w-full max-w-md mx-auto"
               data-component="button"
               aria-valuemax={cards.length}
               aria-valuemin={1}
@@ -64,7 +64,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
               role="progressbar"
             >
               <span
-                className="block absolute top-0 left-0 bg-foreground h-full transition-all duration-300 rounded-full"
+                className="block absolute top-0 left-0 bg-[#4442DB] h-full transition-all duration-300 rounded-full"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -74,7 +74,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           <div className="flex justify-center items-center gap-5 mx-auto">
             <button
               onClick={prevSlide}
-              className="flex left-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent transition-colors duration-150"
+              className="flex rounded-full justify-center items-center shrink-0 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium text-foreground bg-foreground/5 hover:bg-[#4442DB] hover:text-white cursor-pointer h-12 w-12 transition-colors duration-150 shadow-sm"
               data-component="button"
               aria-label="Previous slide"
             >
@@ -82,7 +82,7 @@ export default function BaseSection({ cards = cardsContent } = {}) {
             </button>
             <button
               onClick={nextSlide}
-              className="flex right-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent transition-colors duration-150"
+              className="flex rounded-full justify-center items-center shrink-0 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium text-foreground bg-foreground/5 hover:bg-[#4442DB] hover:text-white cursor-pointer h-12 w-12 transition-colors duration-150 shadow-sm"
               data-component="button"
               aria-label="Next slide"
             >
@@ -91,9 +91,9 @@ export default function BaseSection({ cards = cardsContent } = {}) {
           </div>
         </div>
 
-        <div data-reveal className="flex justify-center">
-          <Button href="/on-base-blog" variant="primary-dark">
-            View All
+        <div data-reveal className="flex justify-center mt-4">
+          <Button href="#inquire" variant="primary-purple">
+            Start a Conversation
           </Button>
         </div>
       </div>

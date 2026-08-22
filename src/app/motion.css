@@ -1,4 +1,4 @@
-/* Keyframe animations and motion utilities for Base31 */
+/* Keyframe animations and motion utilities for QuarkMade */
 
 @keyframes marquee {
   0% {
@@ -31,17 +31,26 @@
   }
 }
 
+@keyframes purpleGoldGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(68, 66, 219, 0.3), 0 0 30px rgba(212, 175, 55, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(68, 66, 219, 0.5), 0 0 45px rgba(212, 175, 55, 0.3);
+  }
+}
+
 /* Scroll reveal classes */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 [data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Parallax container */
@@ -65,11 +74,15 @@
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
+.animate-glow {
+  animation: purpleGoldGlow 4s ease-in-out infinite;
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Exact Base31 Button Styles */
+/* Exact QuarkMade Button Styles */
 .btn-base {
   font-family: 'Saans Mono', monospace;
   font-size: 13px;
@@ -87,37 +100,62 @@
   border-radius: 0;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.15s cubic-bezier(0, 0, 0.2, 1), color 0.15s cubic-bezier(0, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.btn-primary-purple {
+  background-color: #4442db;
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.btn-primary-purple:hover {
+  background-color: #5654e4;
+  border-color: #d4af37;
+  box-shadow: 0 0 16px rgba(68, 66, 219, 0.4);
+}
+
+.btn-gold {
+  background-color: #d4af37;
+  color: #0b0a12;
+  font-weight: 600;
+}
+.btn-gold:hover {
+  background-color: #e5c158;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
 }
 
 .btn-primary-inverse {
   background-color: #ffffff;
-  color: #002800;
+  color: #0b0a12;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .btn-primary-inverse:hover {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #4442db;
 }
 
 .btn-secondary-inverse {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.12);
   color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .btn-secondary-inverse:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(212, 175, 55, 0.5);
 }
 
 .btn-primary-dark {
-  background-color: #002800;
+  background-color: #0b0a12;
   color: #ffffff;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(68, 66, 219, 0.3);
 }
 .btn-primary-dark:hover {
-  background-color: rgba(0, 40, 0, 0.85);
+  background-color: #171524;
+  border-color: #4442db;
+  color: #d4af37;
 }
 
 /* Header Scrolled and Subnav Styles */
@@ -130,7 +168,8 @@
 }
 
 #header .tab-active {
-  color: #002800 !important;
+  color: #4442db !important;
+  font-weight: 600;
 }
 
 #header .tab-inactive {
@@ -138,17 +177,19 @@
 }
 
 #header.scrolled {
-  background-color: #ffffff !important;
-  color: #002800 !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  color: #0b0a12 !important;
+  box-shadow: 0 4px 20px -2px rgba(11, 10, 18, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 #header.scrolled .nav-sub-pill {
-  background-color: rgba(0, 40, 0, 0.06) !important;
+  background-color: rgba(11, 10, 18, 0.06) !important;
 }
 
 #header.scrolled .nav-sub-pill-active {
-  background-color: #002800 !important;
+  background-color: #4442db !important;
 }
 
 #header.scrolled .tab-active {
@@ -156,5 +197,5 @@
 }
 
 #header.scrolled .tab-inactive {
-  color: #002800 !important;
+  color: #0b0a12 !important;
 }

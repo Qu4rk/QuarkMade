@@ -1,18 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import Tile from "../components/tile";
+import QuarkLogo from "../components/QuarkLogo";
 import Icon from "../svgs/svg-icon";
 import Icon2 from "../svgs/svg-icon2";
-import Illustration from "../svgs/svg-illustration";
 import Icon3 from "../svgs/svg-icon3";
 import Icon4 from "../svgs/svg-icon4";
-import { Tile_styles } from "../_styles";
-import { tileData as tileDataContent } from "../content";
 
-/** Top navigation bar with authentic Base31 styling, dynamic scroll theme, and interactive panels. */
-export default function Navbar({ tileData = tileDataContent } = {}) {
-  const [activeTab, setActiveTab] = useState<"base31" | "district" | "living">("base31");
+/** Top navigation bar with authentic QuarkMade branding, dynamic scroll theme, and interactive panels. */
+export default function Navbar() {
+  const [activeTab, setActiveTab] = useState<"design" | "craft" | "works">("design");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,12 +20,12 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
     >
       <div className="block overflow-hidden">
         <div className="h-19 block sticky top-0 z-20 max-md:h-[4.675rem]">
-          <div className="flex pt-5 pb-3 px-6 justify-between mx-auto w-full max-w-screen max-md:p-4">
-            {/* Sub-navigation Pill (District Switcher) */}
+          <div className="flex pt-5 pb-3 px-6 justify-between mx-auto w-full max-w-screen max-md:p-4 items-center">
+            {/* Sub-navigation Pill (Studio Capability Switcher) */}
             <nav
               className="nav-sub-pill w-[21.5rem] flex relative p-1 rounded-xs justify-stretch items-center gap-1 bg-white/15 backdrop-blur-md max-md:w-full transition-colors duration-300"
               data-component="nav"
-              aria-label="District switcher"
+              aria-label="Studio capabilities"
             >
               {/* Sliding Active Pill Background */}
               <div
@@ -36,9 +33,9 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
                 style={{
                   width: "calc(33.333% - 4px)",
                   left:
-                    activeTab === "base31"
+                    activeTab === "design"
                       ? "4px"
-                      : activeTab === "district"
+                      : activeTab === "craft"
                       ? "calc(33.333% + 2px)"
                       : "calc(66.666% + 0px)",
                 }}
@@ -46,52 +43,53 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
 
               <button
                 type="button"
-                onClick={() => setActiveTab("base31")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "base31"
-                    ? "tab-active text-[#002800]"
+                onClick={() => setActiveTab("design")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "design"
+                    ? "tab-active text-[#4442DB]"
                     : "tab-inactive hover:opacity-80"
                 }`}
               >
-                BASE31
+                WEB DESIGN
               </button>
 
               <button
                 type="button"
-                onClick={() => setActiveTab("district")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "district"
-                    ? "tab-active text-[#002800]"
+                onClick={() => setActiveTab("craft")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "craft"
+                    ? "tab-active text-[#4442DB]"
                     : "tab-inactive hover:opacity-80"
                 }`}
               >
-                B31 DISTRICT
+                DIGITAL CRAFT
               </button>
 
               <button
                 type="button"
-                onClick={() => setActiveTab("living")}
-                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'FT_Polar',_serif] text-[14px] leading-none tracking-[0.14px] capitalize whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
-                  activeTab === "living"
-                    ? "tab-active text-[#002800]"
+                onClick={() => setActiveTab("works")}
+                className={`relative z-10 flex-1 py-2 px-2 text-center [font-family:'Saans_Mono',_monospace] text-[12px] md:text-[13px] font-medium leading-none tracking-[0.13px] uppercase whitespace-nowrap text-nowrap rounded-xs transition-colors duration-200 cursor-pointer ${
+                  activeTab === "works"
+                    ? "tab-active text-[#4442DB]"
                     : "tab-inactive hover:opacity-80"
                 }`}
               >
-                Base Living
+                SELECTED WORKS
               </button>
             </nav>
 
-            {/* Right Header Status Bar (Date & Time) */}
-            <div className="flex pr-3 items-center gap-7 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-right uppercase whitespace-nowrap text-nowrap max-md:hidden">
-              {tileData.map((d, i) => (
-                <Tile key={i} d={d} styles={Tile_styles[i]} />
-              ))}
+            {/* Right Header Status Bar (Availability / Commission Status) */}
+            <div className="flex pr-3 items-center gap-4 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-right uppercase whitespace-nowrap text-nowrap max-md:hidden">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/40 text-[#D4AF37] backdrop-blur-md text-[11px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-ping inline-block" />
+                OPEN FOR COMMISSIONS 2026
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex relative pt-5 px-6 justify-between mx-auto w-full max-w-screen max-lg:py-3 max-md:px-4">
+      <div className="flex relative pt-5 px-6 justify-between mx-auto w-full max-w-screen max-lg:py-3 max-md:px-4 items-center">
         {/* Mobile Search Overlay */}
         <div
           className={`fixed inset-0 isolate min-w-0 flex-col bg-background h-screen z-50 transition-opacity duration-300 ${
@@ -113,7 +111,7 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
             <div className="border-b border-solid border-b-clr-0 flex min-w-0 py-3 px-1 items-center gap-3 h-12">
               <input
                 className="w-full h-full block min-w-0 flex-1 overflow-clip text-foreground [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
-                placeholder="Search events, dining, stories..."
+                placeholder="Search projects (Chronotomi, Lumina, QuieTide), articles..."
                 type="text"
                 autoFocus={isSearchOpen}
               />
@@ -123,24 +121,28 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
 
         {/* Desktop Left Nav Links */}
         <div className="block basis-2/5 max-lg:hidden">
-          <div className="w-[210.5px] flex items-start gap-3 h-full">
-            <button
-              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:opacity-80 transition-opacity duration-150"
-              data-component="button"
-              aria-controls="megamenu-about"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
-              About
-              <Icon dittoId={"motion-1"} />
-            </button>
+          <div className="flex items-center gap-3 h-full">
             <a
-              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:opacity-80 transition-opacity duration-150"
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
               data-component="link"
-              href="/on-base-blog"
-              target="_self"
+              href="#philosophy"
             >
-              On Base Blog
+              Studio
+              <Icon dittoId={"motion-1"} />
+            </a>
+            <a
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+              data-component="link"
+              href="#works"
+            >
+              Works
+            </a>
+            <a
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+              data-component="link"
+              href="#journal"
+            >
+              Journal
             </a>
           </div>
         </div>
@@ -171,48 +173,46 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
               </div>
               <nav className="flex flex-col gap-6 text-base [font-family:'Saans_Mono',_monospace] tracking-wider uppercase">
                 <a
-                  href="/events"
-                  className="py-3 border-b border-background/20 hover:text-primary transition-colors"
+                  href="#works"
+                  className="py-3 border-b border-background/20 hover:text-[#D4AF37] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Events & Programming
+                  Selected Works
                 </a>
                 <a
-                  href="/venues"
-                  className="py-3 border-b border-background/20 hover:text-primary transition-colors"
+                  href="#philosophy"
+                  className="py-3 border-b border-background/20 hover:text-[#D4AF37] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Explore The Site
+                  Studio Philosophy
                 </a>
                 <a
-                  href="/on-base-blog"
-                  className="py-3 border-b border-background/20 hover:text-primary transition-colors"
+                  href="#journal"
+                  className="py-3 border-b border-background/20 hover:text-[#D4AF37] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  On Base Blog
+                  Journal & Insights
                 </a>
                 <a
-                  href="/contact-us"
-                  className="py-3 border-b border-background/20 hover:text-primary transition-colors"
+                  href="#inquire"
+                  className="py-3 border-b border-background/20 hover:text-[#D4AF37] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Contact Us
+                  Start a Project
                 </a>
               </nav>
             </div>
           </div>
         </div>
 
-        {/* Center Brand Logo */}
+        {/* Center Brand Logo (QuarkMade "Q" Emblem) */}
         <a
-          className="flex pb-5 justify-center items-center basis-1/5 cursor-pointer w-full max-lg:basis-3/5 max-lg:pb-0 group"
+          className="flex justify-center items-center basis-1/5 cursor-pointer w-full max-lg:basis-3/5 group"
           data-component="link"
           href="/"
-          aria-label="Base31 Home"
+          aria-label="QuarkMade Home"
         >
-          <div className="h-full block">
-            <Illustration />
-          </div>
+          <QuarkLogo size={42} showText={true} />
         </a>
 
         {/* Mobile Search Icon Button */}
@@ -230,10 +230,10 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
         </div>
 
         {/* Desktop Right Nav Links */}
-        <div className="flex justify-end items-start basis-2/5 gap-2 max-lg:hidden" data-ditto-id="motion-div">
+        <div className="flex justify-end items-center basis-2/5 gap-3 max-lg:hidden" data-ditto-id="motion-div">
           <button
             onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:opacity-80 transition-opacity duration-150"
+            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
             data-component="button"
             aria-controls="header-search-panel"
             aria-expanded={isSearchOpen}
@@ -242,12 +242,11 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
             Search
           </button>
           <a
-            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:opacity-80 transition-opacity duration-150"
+            className="inline-flex items-center justify-center py-2 px-4 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-semibold leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150"
             data-component="link"
-            href="/contact-us?inquiry=general"
-            target="_self"
+            href="#inquire"
           >
-            Contact us
+            Start a Project
           </a>
         </div>
 
@@ -269,7 +268,7 @@ export default function Navbar({ tileData = tileDataContent } = {}) {
                   className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-foreground [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none"
                   data-ditto-id="style-input-2"
                   data-component="input"
-                  placeholder="Search events, venues, stories..."
+                  placeholder="Search works (Chronotomi, Lumina Living, QuieTide), studio capabilities, journal..."
                   type="text"
                   autoFocus={isSearchOpen}
                 />

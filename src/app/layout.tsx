@@ -5,45 +5,44 @@ import type { ReactNode } from "react";
 import { SITE_ORIGIN } from "../lib/site";
 
 export const metadata = {
-  "metadataBase": new URL(SITE_ORIGIN || "http://localhost:3000"),
-  "title": "Base31 | A New Community for Culture, Living, and Discovery",
-  "description": "Explore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.",
-  "openGraph": {
-    "title": "Base31 | A New Community for Culture, Living, and Discovery",
-    "description": "Explore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.",
-    "type": "website",
-    "siteName": "Base31",
-    "images": [
-      "/assets/cloned/images/og-image.png"
-    ]
+  metadataBase: new URL(SITE_ORIGIN || "http://localhost:3000"),
+  title: "QuarkMade | High-Craft Web Design & Digital Architecture",
+  description:
+    "QuarkMade is a boutique digital craft studio creating bespoke, high-performance web experiences and interactive flagships. Portfolio includes Chronotomi, Lumina Living, and QuieTide.",
+  openGraph: {
+    title: "QuarkMade | High-Craft Web Design & Digital Architecture",
+    description:
+      "QuarkMade designs bespoke, high-performance digital flagships where brand prestige, motion craftsmanship, and technical rigor unite.",
+    type: "website",
+    siteName: "QuarkMade",
+    images: ["/assets/branding/hero-sunset.jpg"],
   },
-  "twitter": {
-    "card": "summary_large_image",
-    "title": "Base31 | A New Community for Culture, Living, and Discovery",
-    "description": "Explore Base31, a growing community in Prince Edward County shaped by culture, creativity, and connection. Discover events, stories, and new ways to live.",
-    "site": "@base31",
-    "images": [
-      "/assets/cloned/images/og-image.png"
-    ]
+  twitter: {
+    card: "summary_large_image",
+    title: "QuarkMade | High-Craft Web Design & Digital Architecture",
+    description:
+      "Bespoke web design and interactive digital flagships by QuarkMade.",
+    site: "@quarkmade",
+    images: ["/assets/branding/hero-sunset.jpg"],
   },
-  "icons": {
-    "icon": [
+  icons: {
+    icon: [
       {
-        "url": "/assets/cloned/svg/a70531c00c8c.svg"
-      }
-    ]
-  }
-};
-export const viewport = {
-  "width": "device-width",
-  "initialScale": 1
+        url: "/assets/branding/quark-logo.png",
+      },
+    ],
+  },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang={"en"}>
-      <body className="min-h-screen block text-foreground [font-family:ui-sans-serif,_system-ui,_sans-serif,_'Apple_Color_Emoji',_'Segoe_UI_Emoji',_'Segoe_UI_Symbol',_'Noto_Color_Emoji'] text-base font-normal not-italic leading-6 tracking-[normal] [word-spacing:0px] text-start normal-case whitespace-normal [word-break:normal] [overflow-wrap:normal] indent-0 [text-shadow:none] [font-variant-caps:normal] [font-feature-settings:normal] list-outside [writing-mode:horizontal-tb] [direction:ltr] bg-background">
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen block text-foreground [font-family:ui-sans-serif,_system-ui,_sans-serif] bg-background antialiased selection:bg-[#4442DB] selection:text-white">
         {children}
       </body>
     </html>

@@ -1,9 +1,9 @@
 import Button from "../components/Button";
 
-/** Where Vision And section with parallax background and reveal animations. */
+/** Where Vision And section highlighting QuarkMade's multidisciplinary craft with parallax depth. */
 export default function WhereVisionAndSection() {
   return (
-    <section className="block bg-foreground overflow-hidden" id="full-width-test">
+    <section className="block bg-foreground overflow-hidden" id="full-width-craft">
       <div className="h-200 min-h-160 block relative z-1 max-h-224 overflow-hidden w-full max-md:h-[43.3625rem] max-lg:min-h-0 max-lg:max-h-none md:max-lg:h-240 2xl:h-270 2xl:min-h-240 2xl:max-h-336">
         {/* Parallax Background Layer */}
         <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
@@ -13,46 +13,56 @@ export default function WhereVisionAndSection() {
             className="h-300 block absolute -top-50 inset-x-0 max-md:h-[65.0375rem] max-md:-top-32 md:max-lg:h-360 md:max-lg:-top-40 2xl:h-405 2xl:-top-60"
           >
             <div className="h-full block absolute top-0 inset-x-0 overflow-hidden max-md:hidden">
-              <picture className="inline">
-                <source className="inline" sizes="(max-width: 1362px) 100vw, 1362px" srcSet="/assets/cloned/images/9ed71f9cf06d.png 340w, /assets/cloned/images/c22181b85f80.png 681w, /assets/cloned/images/b1c54ae41d07.png 1021w, /assets/cloned/images/ee4e9bcc9a0b.png 1362w" type="image/webp" />
-                <source className="inline" sizes="(max-width: 1362px) 100vw, 1362px" srcSet="/assets/cloned/images/9ed71f9cf06d.png 340w, /assets/cloned/images/c22181b85f80.png 681w, /assets/cloned/images/b1c54ae41d07.png 1021w, /assets/cloned/images/ee4e9bcc9a0b.png 1362w" />
-                <img className="w-320 h-300 block absolute overflow-clip object-cover object-[59%_59%] align-middle md:max-lg:w-192 md:max-lg:h-360 2xl:w-480 2xl:h-405" data-component="image" alt="Two children running through the sensory garden of Base 31" src="/assets/cloned/images/ee4e9bcc9a0b.png" title="Base 31 Lifestyle Image" />
-              </picture>
+              <img
+                className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
+                alt="QuarkMade Creative Studio Craft"
+                src="/assets/cloned/images/ee4e9bcc9a0b.png"
+              />
             </div>
-            <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:w-[23.4375rem] max-md:block">
-              <picture className="inline">
-                <source className="inline" sizes="(max-width: 1362px) 100vw, 1362px" srcSet="/assets/cloned/images/9ed71f9cf06d.png 340w, /assets/cloned/images/c22181b85f80.png 681w, /assets/cloned/images/b1c54ae41d07.png 1021w, /assets/cloned/images/ee4e9bcc9a0b.png 1362w" type="image/webp" />
-                <source className="inline" sizes="(max-width: 1362px) 100vw, 1362px" srcSet="/assets/cloned/images/9ed71f9cf06d.png 340w, /assets/cloned/images/c22181b85f80.png 681w, /assets/cloned/images/b1c54ae41d07.png 1021w, /assets/cloned/images/ee4e9bcc9a0b.png 1362w" />
-                <img className="w-full h-full block absolute overflow-clip object-cover object-[59%_59%] align-middle max-md:w-[23.4375rem] max-md:h-[65.0625rem]" alt="Two children running through the sensory garden of Base 31" src="/assets/cloned/images/ee4e9bcc9a0b.png" title="Base 31 Lifestyle Image" />
-              </picture>
+            <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:block">
+              <img
+                className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
+                alt="QuarkMade Creative Studio Craft"
+                src="/assets/cloned/images/ee4e9bcc9a0b.png"
+              />
             </div>
           </div>
         </div>
 
-        <div className="h-full block absolute top-0 inset-x-0 z-2" style={{ backgroundImage: "linear-gradient(0deg, var(--clr-1) 0%, var(--clr-1) 100%)" }} />
+        {/* Deep Violet & Black Gradient Overlay */}
+        <div
+          className="h-full block absolute top-0 inset-x-0 z-2"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(11, 10, 18, 0.75) 0%, rgba(42, 24, 84, 0.65) 50%, rgba(11, 10, 18, 0.85) 100%)",
+          }}
+        />
 
         <div className="h-full block absolute top-0 inset-x-0 z-3">
           <div className="flex py-16 px-6 flex-col justify-center items-center mx-auto max-w-screen h-full w-full max-md:py-10 max-md:px-4">
-            <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-12 text-background text-center max-md:gap-10">
-              <div className="block [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]">
-                Place, Community, and Culture
+            <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-10 text-white text-center max-md:gap-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#D4AF37]/40 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-[#D4AF37] uppercase max-md:text-xs">
+                <span>✦</span>
+                <span>DESIGN, MOTION, & ENGINEERING</span>
               </div>
-              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.625rem] leading-[4.5625rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem] max-md:tracking-[0.2px]" data-component="heading">
+              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
-                  Where <em className="inline italic">vision</em> and <em className="inline italic">values</em> come together
+                  Where <em className="inline italic text-[#F3E5AB]">vision</em>, <em className="inline italic text-[#F3E5AB]">engineering</em>, and <em className="inline italic text-[#F3E5AB]">elegance</em> come together
                 </p>
               </div>
-              <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                <Button href="/our-story" variant="primary-inverse">
-                  What we&apos;re building together
+              <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 max-w-xl">
+                We believe websites shouldn&apos;t just communicate information — they should create memorable sensory impressions that linger in the mind.
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4 mt-2">
+                <Button href="#works" variant="primary-inverse">
+                  Explore Selected Works
                 </Button>
-                <Button href="/history" variant="secondary-inverse">
-                  History of The Base
+                <Button href="#capabilities" variant="secondary-inverse">
+                  Studio Capabilities
                 </Button>
               </div>
             </div>
           </div>
-          <div className="h-16 flex absolute bottom-0 inset-x-0 pb-16 px-6 mx-auto max-w-screen max-md:h-10 max-md:pb-10 max-md:px-4" />
         </div>
       </div>
     </section>
