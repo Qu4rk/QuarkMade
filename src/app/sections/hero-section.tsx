@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 
-/** Hero section showcasing QuarkMade's sunset artwork, sleek single-line Chillax headline, and fluid rotating text. */
+/** Refined Hero section showcasing QuarkMade's sunset artwork, balanced editorial headline, and fluid rotating text. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
@@ -37,19 +37,19 @@ export default function HeroSection() {
         <div className="h-full flex flex-col justify-center items-center pt-24 pb-12 px-6 relative z-3 mx-auto max-w-screen max-md:pt-20 max-md:pb-10 max-md:px-4">
           <div
             data-reveal
-            className="flex flex-col items-center text-center max-w-7xl mx-auto gap-8 text-white w-full"
+            className="flex flex-col items-center text-center max-w-5xl mx-auto gap-6 text-white"
           >
-            {/* Sleek, Non-Wrapping Headline with Chillax Medium Typography */}
+            {/* Balanced & Elegant Main Headline */}
             <motion.h1
               layout
               transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-              className="[font-family:'Chillax',_sans-serif] text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] 2xl:text-[3.65rem] font-medium leading-[1.2] tracking-[-0.02em] flex flex-wrap lg:flex-nowrap items-baseline justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-2 text-center drop-shadow-xl w-full"
+              className="[font-family:'Ivar_Headline',_serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.12] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-xl"
               data-component="heading"
             >
               <motion.span
                 layout
                 transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block font-medium shrink-0"
+                className="inline-block"
               >
                 Crafting
               </motion.span>
@@ -62,7 +62,7 @@ export default function HeroSection() {
                   "bespoke websites",
                   "digital sanctuaries",
                 ]}
-                mainClassName="text-[#F3E5AB] italic font-medium inline-flex shrink-0 [font-family:'Chillax',_sans-serif]"
+                mainClassName="text-[#F3E5AB] italic font-normal inline-flex"
                 staggerFrom="last"
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -77,14 +77,14 @@ export default function HeroSection() {
               <motion.span
                 layout
                 transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block font-medium shrink-0"
+                className="inline-block"
               >
                 that command attention.
               </motion.span>
             </motion.h1>
 
             {/* CTA Action Buttons */}
-            <div className="flex flex-wrap justify-center items-center gap-4 mt-2">
+            <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
               <Button href="#works" variant="gold">
                 Explore Selected Works
               </Button>

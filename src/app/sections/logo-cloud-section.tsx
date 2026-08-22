@@ -11,7 +11,7 @@ export default function LogoCloudSection() {
         {/* Top Footer: Brand Statement & Client Logo Tags */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-white/10">
           <div className="flex flex-col gap-3 max-w-md">
-            <QuarkLogo size={44} showText={true} />
+            <QuarkLogo size={52} showText={true} />
             <p className="[font-family:Denim,_serif] text-sm text-white/70 leading-relaxed mt-2">
               QuarkMade is a boutique digital craft studio designing bespoke, high-performance web experiences and interactive flagships.
             </p>

@@ -6,10 +6,16 @@ interface QuarkLogoProps {
   size?: number;
 }
 
-export default function QuarkLogo({ className = "", showText = true, size = 36 }: QuarkLogoProps) {
+/**
+ * Official QuarkMade Logo Lockup:
+ * - Circular Quark "Q" emblem with purple vortex
+ * - "QUARKMADE" typography in Chillax (Medium stroke / weight 500)
+ * - "DIGITAL CRAFT" studio tag in Saans Mono
+ */
+export default function QuarkLogo({ className = "", showText = true, size = 46 }: QuarkLogoProps) {
   return (
-    <div className={`inline-flex items-center gap-3 select-none ${className}`}>
-      {/* Official Circular Quark "Q" Logo */}
+    <div className={`inline-flex items-center gap-3.5 select-none ${className}`}>
+      {/* Official Circular Quark "Q" Logo Emblem */}
       <div
         className="relative flex items-center justify-center shrink-0 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-105"
         style={{ width: size, height: size }}
@@ -23,13 +29,13 @@ export default function QuarkLogo({ className = "", showText = true, size = 36 }
         />
       </div>
 
-      {/* Brand Title */}
+      {/* Brand Title Lockup */}
       {showText && (
-        <div className="flex flex-col">
-          <span className="[font-family:'Saans_Mono',_monospace] font-bold text-sm leading-tight tracking-[0.18em] uppercase transition-colors">
+        <div className="flex flex-col justify-center text-left">
+          <span className="[font-family:'Chillax',_sans-serif] font-medium text-base sm:text-lg md:text-[1.25rem] leading-none tracking-[0.12em] uppercase transition-colors text-inherit">
             QUARK<span className="text-[#4442DB] dark:text-[#635BFF]">MADE</span>
           </span>
-          <span className="[font-family:'Saans_Mono',_monospace] text-[9px] font-medium tracking-[0.25em] uppercase text-foreground/60 dark:text-white/60">
+          <span className="[font-family:'Saans_Mono',_monospace] text-[9.5px] font-medium leading-none tracking-[0.26em] uppercase opacity-75 mt-1 text-inherit">
             DIGITAL CRAFT
           </span>
         </div>

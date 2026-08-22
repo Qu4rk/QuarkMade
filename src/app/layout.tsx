@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=chillax@200,300,400,500,600,700&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&display=swap"
         />
       </head>
       <body className="min-h-screen block text-foreground [font-family:ui-sans-serif,_system-ui,_sans-serif] bg-background antialiased selection:bg-[#4442DB] selection:text-white">

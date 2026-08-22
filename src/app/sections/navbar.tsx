@@ -140,7 +140,7 @@ export default function Navbar() {
           href="/"
           aria-label="QuarkMade Home"
         >
-          <QuarkLogo size={42} showText={true} />
+          <QuarkLogo size={48} showText={true} />
         </a>
 
         {/* Mobile Search Icon Button */}
