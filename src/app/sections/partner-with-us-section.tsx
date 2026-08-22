@@ -64,18 +64,20 @@ export default function PartnerWithUsSection() {
                 </NoiseBackground>
               </div>
 
-              {/* Official Chronotomi Logo Emblem */}
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 hover:scale-110 flex items-center justify-center">
-                <img
-                  src="/assets/portfolio/logos/chronotomi-logo.png"
-                  alt="Chronotomi Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-
-              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
-                <p className="block">
-                  Chronotomi: Precision in every <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">frame</span>
+              {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
+              <div className="flex flex-col items-center justify-center gap-2 text-center" data-component="heading">
+                <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
+                  <img
+                    src="/assets/portfolio/logos/chronotomi-logo.png"
+                    alt="Chronotomi"
+                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain shrink-0 drop-shadow-md transition-transform duration-300 hover:scale-105"
+                  />
+                  <span className="[font-family:'Chillax',_sans-serif] font-medium text-[2.75rem] sm:text-[3.5rem] md:text-[3.85rem] text-[#F3E5AB] leading-none tracking-tight">
+                    Chronotomi:
+                  </span>
+                </div>
+                <p className="[font-family:'Ivar_Headline',_serif] text-[2.25rem] sm:text-[3rem] md:text-[3.35rem] font-normal leading-[1.12] tracking-[0.25px] text-white">
+                  Precision in every <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">frame</span>
                 </p>
               </div>
               <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/85 max-w-xl">

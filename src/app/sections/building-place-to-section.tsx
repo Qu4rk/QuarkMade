@@ -1,24 +1,33 @@
 import Button from "../components/Button";
 
-/** Featured Project 2: Lumina Living Case Study with actual website snapshot and official logo mark. */
+/** Featured Project 2: Lumina Living Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function BuildingPlaceToSection() {
   return (
     <section className="block bg-background">
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
-        <div data-reveal className="block max-w-242.5 mx-auto [font-family:Denim,_serif] text-[3.625rem] font-semibold leading-[4rem] tracking-[0.31px] text-center max-md:text-4xl max-md:leading-[2.5rem]" data-component="heading">
-          <p className="block whitespace-nowrap">
-            Lumina Living:
-          </p>
-          {" "}
-          <p className="block">
+        {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
+        <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
+          <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
+            <img
+              src="/assets/portfolio/logos/lumina-logo.png"
+              alt="Lumina Living"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
+            />
+            <span className="[font-family:'Chillax',_sans-serif] font-medium text-[2.75rem] sm:text-[3.5rem] md:text-[3.85rem] text-[#D4AF37] leading-none tracking-tight">
+              Lumina Living:
+            </span>
+          </div>
+          <p className="[font-family:Denim,_serif] text-[2.25rem] sm:text-[3rem] md:text-[3.35rem] font-semibold leading-[1.12] tracking-[0.25px] text-foreground">
             Architectural serenity
           </p>
         </div>
+
         <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
           <p className="block text-[#4442DB] font-medium tracking-wider">
             FEATURED PROJECT 02 / MODERN REAL ESTATE & SPATIAL PLATFORM
           </p>
         </div>
+
         <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground">
             {/* Real Snapshot of Lumina Living */}
@@ -64,6 +73,7 @@ export default function BuildingPlaceToSection() {
             </div>
           </div>
         </div>
+
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
           <div className="block [font-family:Denim,_serif] text-lg font-medium leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
             <p className="block">
