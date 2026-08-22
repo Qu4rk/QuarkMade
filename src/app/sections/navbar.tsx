@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="flex relative px-6 justify-between items-center mx-auto w-full max-w-screen max-md:px-4">
         {/* Mobile Search Overlay */}
         <div
-          className={`fixed inset-0 isolate min-w-0 flex-col bg-background h-screen z-50 transition-opacity duration-300 ${
+          className={`fixed inset-0 isolate min-w-0 flex-col bg-background h-screen z-50 lg:hidden transition-opacity duration-300 ${
             isSearchOpen ? "flex opacity-100" : "hidden opacity-0 pointer-events-none"
           }`}
           aria-label="Search"

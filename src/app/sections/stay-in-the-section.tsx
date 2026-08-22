@@ -98,7 +98,7 @@ export default function StayInTheSection() {
             </div>
 
             <div className="flex justify-end mt-2">
-              <Button variant="gold" className="w-full md:w-auto">
+              <Button type="submit" variant="gold" className="w-full md:w-auto">
                 Submit Project Inquiry
               </Button>
             </div>

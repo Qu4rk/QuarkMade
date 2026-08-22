@@ -3,6 +3,7 @@ import Icon5 from "../svgs/svg-icon5";
 
 interface ButtonProps {
   href?: string;
+  type?: "button" | "submit" | "reset";
   variant?: "primary-purple" | "gold" | "primary-inverse" | "secondary-inverse" | "primary-dark";
   children: React.ReactNode;
   className?: string;
@@ -18,6 +19,7 @@ interface ButtonProps {
  */
 export default function Button({
   href,
+  type = "button",
   variant = "primary-purple",
   children,
   className = "",
@@ -49,7 +51,7 @@ export default function Button({
   }
 
   return (
-    <button type="button" className={baseClasses} data-component="button" onClick={onClick}>
+    <button type={type} className={baseClasses} data-component="button" onClick={onClick}>
       {showIcon && <Icon5 />}
       <span>{children}</span>
     </button>
