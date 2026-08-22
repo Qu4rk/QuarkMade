@@ -42,6 +42,12 @@ export const viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=chillax@200,300,400,500,600,700&display=swap"
+        />
+      </head>
       <body className="min-h-screen block text-foreground [font-family:ui-sans-serif,_system-ui,_sans-serif] bg-background antialiased selection:bg-[#4442DB] selection:text-white">
         {children}
       </body>
