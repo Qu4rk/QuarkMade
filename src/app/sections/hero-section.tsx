@@ -1,8 +1,9 @@
 "use client";
 
 import Button from "../components/Button";
+import RotatingText from "../components/RotatingText";
 
-/** Hero section showcasing QuarkMade's sunset artwork, parallax depth, and editorial typography. */
+/** Hero section showcasing QuarkMade's sunset artwork, animated rotating headline, and editorial typography. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
@@ -37,12 +38,31 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-4xl mx-auto gap-6 text-white"
           >
-            {/* Main Headline */}
+            {/* Main Animated Headline with RotatingText */}
             <h1
-              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight"
+              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.14] tracking-tight"
               data-component="heading"
             >
-              Crafting <em className="italic text-[#F3E5AB]">digital flagships</em> that command attention.
+              Crafting{" "}
+              <RotatingText
+                texts={[
+                  "digital flagships",
+                  "interactive worlds",
+                  "luxury experiences",
+                  "bespoke websites",
+                  "digital sanctuaries",
+                ]}
+                mainClassName="text-[#F3E5AB] italic font-normal inline-flex align-baseline"
+                staggerFrom="last"
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-120%", opacity: 0 }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2600}
+              />
+              {" "}that command attention.
             </h1>
 
             {/* Subtext */}
