@@ -47,13 +47,13 @@ export default function WhereVisionAndSection() {
               </div>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
                 <div className="block">
-                  <a className="inline-flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5" data-component="button" href="/our-story">
+                  <a className="inline-flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/our-story">
                     <Icon5 />
                     What we're building together
                   </a>
                 </div>
                 <div className="block">
-                  <a className="inline-flex py-3 px-4 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-surface [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-6" data-component="button" href="/history">
+                  <a className="inline-flex py-3 px-4 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-surface [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-6 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/history">
                     <Icon5 />
                     History of The Base
                   </a>

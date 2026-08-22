@@ -36,7 +36,7 @@ export default function StayInTheSection() {
                         </div>
                       </div>
                       <div className="box-content flex relative min-w-0 py-2 px-2.5 justify-start bg-primary">
-                        <button className="box-content h-8 block min-w-0 px-2.5 self-end text-background [font-family:'Saans_Mono',_Helvetica,_Arial,_sans-serif] text-[0.8125rem] font-medium leading-[0.8125rem] text-center [word-break:break-word] bg-foreground cursor-pointer" data-component="button" type="button">
+                        <button className="box-content h-8 block min-w-0 px-4 self-end text-background [font-family:'Saans_Mono',_Helvetica,_Arial,_sans-serif] text-[0.8125rem] font-medium leading-[0.8125rem] text-center [word-break:break-word] bg-foreground cursor-pointer hover:bg-foreground/90 hover:shadow-md transition-all duration-200 active:scale-95" data-component="button" type="button">
                           SIGN UP
                         </button>
                       </div>

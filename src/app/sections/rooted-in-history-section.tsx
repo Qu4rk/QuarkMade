@@ -37,7 +37,7 @@ export default function RootedInHistorySection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-4 text-center">
                 <img className="w-[8.9375rem] h-20 block max-w-full max-h-[7.1875rem] overflow-clip aspect-[auto_143/80] align-middle text-clr-2" data-component="image" alt="B31 District Logo" height="80" src="/assets/cloned/svg/43be17a0424f.svg" width="143" />
                 <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <a className="basis-full shrink-0 flex py-3 px-4 justify-center items-center gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5" data-component="button" href="/district">
+                  <a className="basis-full shrink-0 flex py-3 px-4 justify-center items-center gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-background [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-5 transition-all duration-300 hover:scale-105 active:scale-95" data-component="button" href="/district">
                     <Icon5 />
                     Explore B31 District
                   </a>

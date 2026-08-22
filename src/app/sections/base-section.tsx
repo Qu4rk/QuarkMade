@@ -1,10 +1,27 @@
+"use client";
+
+import { useState } from "react";
 import CardGridItem from "../components/card-grid-item";
 import Icon6 from "../svgs/svg-icon6";
 import Icon7 from "../svgs/svg-icon7";
 import Icon5 from "../svgs/svg-icon5";
 import { cards as cardsContent } from "../content";
-/** Base section. */
+
+/** Base section with interactive carousel slider and smooth transitions. */
 export default function BaseSection({ cards = cardsContent } = {}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const maxIndex = Math.max(0, cards.length - 1);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
+  };
+
+  const progressPercent = cards.length > 0 ? ((currentIndex + 1) / cards.length) * 100 : 0;
+
   return (
     <section className="block bg-background">
       <div className="flex py-16 px-6 flex-col gap-8 mx-auto w-full max-w-screen max-md:py-10 max-md:px-4 max-md:gap-6">
@@ -23,28 +40,63 @@ export default function BaseSection({ cards = cardsContent } = {}) {
             </p>
           </div>
         </div>
+
         <div className="block relative w-full">
           <div className="block overflow-hidden">
-            <div className="flex -ml-4 max-md:-ml-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {cards.map((d) => <CardGridItem key={d.variant} d={d} />)}
+            <div
+              className="flex -ml-4 max-md:-ml-3 transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentIndex * 30}%)` }}
+            >
+              {cards.map((d) => (
+                <CardGridItem key={d.variant} d={d} />
+              ))}
             </div>
           </div>
+
+          {/* Interactive Progress Bar */}
           <div className="flex relative my-8 justify-center items-center max-md:my-6">
-            <button className="block relative rounded-full overflow-hidden text-center bg-accent [backdrop-filter:blur(12px)] cursor-pointer h-0.5 w-full hover:opacity-80" data-component="button" aria-valuemax="4" aria-valuemin="0" aria-valuenow="0" role="progressbar">
-              <span className="block absolute top-0 right-176 left-0 bg-foreground h-full max-md:right-73.5 md:max-lg:right-[514.3px] 2xl:right-[886.9px]" />
-            </button>
+            <div
+              className="block relative rounded-full overflow-hidden text-center bg-accent backdrop-blur-md h-1 w-full"
+              data-component="button"
+              aria-valuemax={cards.length}
+              aria-valuemin={1}
+              aria-valuenow={currentIndex + 1}
+              role="progressbar"
+            >
+              <span
+                className="block absolute top-0 left-0 bg-foreground h-full transition-all duration-300 rounded-full"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
           </div>
+
+          {/* Carousel Arrows */}
           <div className="flex justify-center items-center gap-5 mx-auto">
-            <button className="flex left-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap [backdrop-filter:blur(12px)] cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent" data-component="button" aria-label="Previous slide">
+            <button
+              onClick={prevSlide}
+              className="flex left-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent hover:scale-110 active:scale-95 transition-all"
+              data-component="button"
+              aria-label="Previous slide"
+            >
               <Icon6 />
             </button>
-            <button className="flex right-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap [backdrop-filter:blur(12px)] cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent" data-component="button" aria-label="Next slide">
+            <button
+              onClick={nextSlide}
+              className="flex right-6 rounded-full justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap backdrop-blur-md cursor-pointer h-12 w-12 max-md:hidden hover:bg-accent hover:scale-110 active:scale-95 transition-all"
+              data-component="button"
+              aria-label="Next slide"
+            >
               <Icon7 />
             </button>
           </div>
         </div>
+
         <div className="flex justify-center">
-          <a className="flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-background [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-foreground [backdrop-filter:blur(12px)] cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-7" data-component="button" href="/on-base-blog">
+          <a
+            className="flex py-3 px-4 justify-center items-center shrink-0 gap-2 text-background [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap bg-foreground backdrop-blur-md cursor-pointer h-9 max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px] hover:bg-clr-7 hover:scale-105 active:scale-95 transition-all duration-200"
+            data-component="button"
+            href="/on-base-blog"
+          >
             <Icon5 />
             View All
           </a>
