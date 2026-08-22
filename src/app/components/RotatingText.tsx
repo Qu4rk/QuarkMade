@@ -1,6 +1,15 @@
 "use client";
 
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { motion, AnimatePresence, TargetAndTransition, Transition } from "motion/react";
 
 import "./RotatingText.css";
@@ -12,11 +21,10 @@ function cn(...classes: (string | undefined | null | false)[]) {
 export interface RotatingTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   texts: string[];
   transition?: Transition;
+  widthTransition?: Transition;
   initial?: TargetAndTransition;
   animate?: TargetAndTransition;
   exit?: TargetAndTransition;
-  animatePresenceMode?: "sync" | "wait" | "popLayout";
-  animatePresenceInitial?: boolean;
   rotationInterval?: number;
   staggerDuration?: number;
   staggerFrom?: "first" | "last" | "center" | "random";
@@ -39,14 +47,13 @@ export interface RotatingTextRef {
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
-    transition = { type: "spring", damping: 30, stiffness: 350 },
+    transition = { type: "spring", damping: 28, stiffness: 280 },
+    widthTransition = { type: "spring", damping: 32, stiffness: 240, mass: 0.8 },
     initial = { y: "100%", opacity: 0 },
     animate = { y: 0, opacity: 1 },
     exit = { y: "-120%", opacity: 0 },
-    animatePresenceMode = "popLayout",
-    animatePresenceInitial = false,
     rotationInterval = 2800,
-    staggerDuration = 0.025,
+    staggerDuration = 0.02,
     staggerFrom = "last",
     loop = true,
     auto = true,
@@ -59,6 +66,32 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   } = props;
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const measureRef = useRef<HTMLSpanElement>(null);
+  const [currentWidth, setCurrentWidth] = useState<number | undefined>(undefined);
+
+  // Measure natural text width for smooth container width interpolation
+  const updateMeasuredWidth = useCallback(() => {
+    if (measureRef.current) {
+      const measured = measureRef.current.getBoundingClientRect().width;
+      if (measured > 0) {
+        setCurrentWidth(Math.ceil(measured));
+      }
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    updateMeasuredWidth();
+  }, [currentTextIndex, texts, updateMeasuredWidth]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMeasuredWidth);
+    // Initial delay to account for webfonts loading
+    const timer = setTimeout(updateMeasuredWidth, 100);
+    return () => {
+      window.removeEventListener("resize", updateMeasuredWidth);
+      clearTimeout(timer);
+    };
+  }, [updateMeasuredWidth]);
 
   const splitIntoCharacters = (text: string) => {
     if (typeof Intl !== "undefined" && (Intl as any).Segmenter) {
@@ -171,22 +204,34 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
 
   return (
     <motion.span
-      className={cn("text-rotate", mainClassName)}
+      className={cn("text-rotate-wrapper", mainClassName)}
       {...(rest as any)}
-      layout
-      transition={transition}
+      animate={currentWidth ? { width: currentWidth } : undefined}
+      transition={widthTransition}
     >
+      {/* Hidden offscreen element to accurately measure full natural text width */}
+      <span
+        ref={measureRef}
+        aria-hidden="true"
+        className="text-rotate-measure"
+      >
+        {texts[currentTextIndex]}
+      </span>
+
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+
+      <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={currentTextIndex}
-          className={cn(splitBy === "lines" ? "text-rotate-lines" : "text-rotate")}
+          className="text-rotate-current"
           layout
           transition={transition}
           aria-hidden="true"
         >
           {elements.map((wordObj, wordIndex, array) => {
-            const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
+            const previousCharsCount = array
+              .slice(0, wordIndex)
+              .reduce((sum, word) => sum + word.characters.length, 0);
             return (
               <span key={wordIndex} className={cn("text-rotate-word", splitLevelClassName)}>
                 {wordObj.characters.map((char, charIndex) => (

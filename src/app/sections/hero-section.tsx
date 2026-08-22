@@ -39,16 +39,16 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-6 text-white"
           >
-            {/* Main Headline with fluid layout animation for adjacent words */}
+            {/* Main Headline with fluid synchronized spring layout motion for all words */}
             <motion.h1
               layout
-              transition={{ type: "spring", damping: 30, stiffness: 350 }}
-              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.18] tracking-tight flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center"
+              transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
+              className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.18] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 text-center"
               data-component="heading"
             >
               <motion.span
                 layout
-                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
                 className="inline-block"
               >
                 Crafting
@@ -67,16 +67,16 @@ export default function HeroSection() {
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-120%", opacity: 0 }}
-                staggerDuration={0.025}
+                staggerDuration={0.02}
                 splitLevelClassName="overflow-hidden pb-0.5"
-                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                transition={{ type: "spring", damping: 28, stiffness: 280 }}
+                widthTransition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
                 rotationInterval={2800}
-                animatePresenceMode="popLayout"
               />
 
               <motion.span
                 layout
-                transition={{ type: "spring", damping: 30, stiffness: 350 }}
+                transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
                 className="inline-block"
               >
                 that command attention.

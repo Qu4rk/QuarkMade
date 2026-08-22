@@ -1,10 +1,21 @@
-.text-rotate {
+.text-rotate-wrapper {
   display: inline-flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
   position: relative;
   vertical-align: baseline;
   align-items: baseline;
+  white-space: nowrap;
+  will-change: width;
+}
+
+.text-rotate-measure {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  z-index: -9999;
 }
 
 .text-rotate-sr-only {
@@ -19,15 +30,16 @@
   border: 0;
 }
 
+.text-rotate-current {
+  display: inline-flex;
+  white-space: nowrap;
+  align-items: baseline;
+}
+
 .text-rotate-word {
   display: inline-flex;
   overflow: hidden;
-}
-
-.text-rotate-lines {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  align-items: baseline;
 }
 
 .text-rotate-element {
