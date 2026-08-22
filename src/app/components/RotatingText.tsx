@@ -20,6 +20,7 @@ function cn(...classes: (string | undefined | null | false)[]) {
 
 export interface RotatingTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   texts: string[];
+  colors?: string[];
   transition?: Transition;
   widthTransition?: Transition;
   initial?: TargetAndTransition;
@@ -47,6 +48,7 @@ export interface RotatingTextRef {
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
+    colors,
     transition = { type: "spring", damping: 28, stiffness: 280 },
     widthTransition = { type: "spring", damping: 32, stiffness: 240, mass: 0.8 },
     initial = { y: "100%", opacity: 0 },
@@ -69,6 +71,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   const measureRef = useRef<HTMLSpanElement>(null);
   const [currentWidth, setCurrentWidth] = useState<number | undefined>(undefined);
 
+  const currentColor = colors && colors.length > 0 ? colors[currentTextIndex % colors.length] : undefined;
+
   // Measure natural text width for smooth container width interpolation
   const updateMeasuredWidth = useCallback(() => {
     if (measureRef.current) {
@@ -85,7 +89,6 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
 
   useEffect(() => {
     window.addEventListener("resize", updateMeasuredWidth);
-    // Initial delay to account for webfonts loading
     const timer = setTimeout(updateMeasuredWidth, 100);
     return () => {
       window.removeEventListener("resize", updateMeasuredWidth);
@@ -208,6 +211,10 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
       {...(rest as any)}
       animate={currentWidth ? { width: currentWidth } : undefined}
       transition={widthTransition}
+      style={{
+        color: currentColor,
+        ...rest.style,
+      }}
     >
       {/* Hidden offscreen element to accurately measure full natural text width */}
       <span
@@ -226,6 +233,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
           className="text-rotate-current"
           layout
           transition={transition}
+          style={{ color: currentColor }}
           aria-hidden="true"
         >
           {elements.map((wordObj, wordIndex, array) => {

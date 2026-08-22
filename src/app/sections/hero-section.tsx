@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 
-/** Refined Hero section showcasing QuarkMade's sunset artwork, balanced editorial headline, and fluid rotating text. */
+/** Refined Hero section showcasing QuarkMade's sunset artwork, balanced editorial headline, and colored Chillax rotating text. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
@@ -39,17 +39,17 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-6 text-white"
           >
-            {/* Balanced & Elegant Main Headline */}
+            {/* Main Headline: Ivar Headline font for outer text, Chillax Medium with unique colors for rotating words */}
             <motion.h1
               layout
               transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-              className="[font-family:'Ivar_Headline',_serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.12] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-xl"
+              className="[font-family:'Ivar_Headline',_serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-xl"
               data-component="heading"
             >
               <motion.span
                 layout
                 transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block"
+                className="inline-block text-white"
               >
                 Crafting
               </motion.span>
@@ -62,7 +62,14 @@ export default function HeroSection() {
                   "bespoke websites",
                   "digital sanctuaries",
                 ]}
-                mainClassName="text-[#F3E5AB] italic font-normal inline-flex"
+                colors={[
+                  "#F3E5AB", // 1. Champagne Gold
+                  "#A594F9", // 2. Electric Iris / Violet
+                  "#FFB38A", // 3. Sunset Amber / Coral
+                  "#80E9DE", // 4. Celestial Aqua / Mint
+                  "#F472B6", // 5. Sunlit Orchid / Rose
+                ]}
+                mainClassName="[font-family:'Chillax',_sans-serif] font-medium tracking-normal inline-flex transition-colors duration-300"
                 staggerFrom="last"
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -77,7 +84,7 @@ export default function HeroSection() {
               <motion.span
                 layout
                 transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block"
+                className="inline-block text-white"
               >
                 that command attention.
               </motion.span>
