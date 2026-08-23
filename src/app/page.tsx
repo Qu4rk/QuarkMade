@@ -16,7 +16,7 @@ export default function Page() {
     <>
       <ScrollObserver />
       <Navbar />
-      <main className="min-h-screen block flex-1" id="content">
+      <main className="min-h-screen block flex-1 bg-[#0B0A12] text-white" id="content">
         <HeroSection />
         <PlaceWorthBelongingSection />
         <WhereVisionAndSection />

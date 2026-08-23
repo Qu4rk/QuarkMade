@@ -14,13 +14,13 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 text-background transition-all duration-300 py-4 md:py-5"
+      className="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300 py-4 md:py-5 bg-[#0B0A12]/80 backdrop-blur-md border-b border-white/10"
       id="header"
     >
       <div className="flex relative px-6 justify-between items-center mx-auto w-full max-w-screen max-md:px-4">
         {/* Mobile Search Overlay */}
         <div
-          className={`fixed inset-0 isolate min-w-0 flex-col bg-background h-screen z-50 lg:hidden transition-opacity duration-300 ${
+          className={`fixed inset-0 isolate min-w-0 flex-col bg-[#0B0A12] text-white h-screen z-50 lg:hidden transition-opacity duration-300 ${
             isSearchOpen ? "flex opacity-100" : "hidden opacity-0 pointer-events-none"
           }`}
           aria-label="Search"
@@ -30,15 +30,15 @@ export default function Navbar() {
           <div className="flex pt-6 px-4 justify-end">
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="p-3 text-foreground uppercase text-xs [font-family:'Satoshi',_sans-serif] font-normal tracking-wider cursor-pointer"
+              className="p-3 text-white/80 hover:text-white uppercase text-xs [font-family:'Satoshi',_sans-serif] font-normal tracking-wider cursor-pointer"
             >
               Close ✕
             </button>
           </div>
           <div className="flex pt-12 pb-10 px-6 flex-col flex-1 gap-10 overflow-auto">
-            <div className="border-b border-solid border-b-clr-0 flex min-w-0 py-3 px-1 items-center gap-3 h-12">
+            <div className="border-b border-solid border-white/20 flex min-w-0 py-3 px-1 items-center gap-3 h-12">
               <input
-                className="w-full h-full block min-w-0 flex-1 overflow-clip text-foreground [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
+                className="w-full h-full block min-w-0 flex-1 overflow-clip text-white placeholder:text-white/40 [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
                 placeholder="Search projects (Chronotomi, Lumina, QuieTide), articles..."
                 type="text"
                 autoFocus={isSearchOpen}
@@ -180,7 +180,7 @@ export default function Navbar() {
 
         {/* Desktop Search Panel */}
         <div
-          className={`h-30 block absolute top-20 left-1/2 -translate-x-1/2 z-30 min-w-0 overflow-auto bg-background rounded-xs shadow-2xl max-h-[calc(95vh-120px)] w-[90vw] max-w-4xl max-lg:hidden transition-all duration-300 ${
+          className={`h-30 block absolute top-20 left-1/2 -translate-x-1/2 z-30 min-w-0 overflow-auto bg-[#0B0A12] border border-white/15 rounded-2xl shadow-2xl max-h-[calc(95vh-120px)] w-[90vw] max-w-4xl max-lg:hidden transition-all duration-300 ${
             isSearchOpen
               ? "opacity-100 pointer-events-auto translate-y-0"
               : "opacity-0 pointer-events-none -translate-y-4"
@@ -191,9 +191,9 @@ export default function Navbar() {
         >
           <div className="flex pt-6 pb-12 px-6 flex-col gap-12">
             <div className="flex items-center gap-6">
-              <div className="border-b border-solid border-b-clr-0 flex py-3 px-1 items-center flex-1 gap-3 h-12">
+              <div className="border-b border-solid border-b-white/20 flex py-3 px-1 items-center flex-1 gap-3 h-12">
                 <input
-                  className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-foreground [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none"
+                  className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-white placeholder:text-white/40 [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none bg-transparent"
                   data-ditto-id="style-input-2"
                   data-component="input"
                   placeholder="Search works (Chronotomi, Lumina Living, QuieTide), studio capabilities, journal..."
@@ -203,7 +203,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="flex rounded-full justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-9 w-9 hover:bg-accent transition-colors"
+                className="flex rounded-full justify-center items-center shrink-0 gap-2 text-white/80 hover:text-white [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-9 w-9 hover:bg-white/10 transition-colors"
                 data-ditto-id="motion-close"
                 data-component="button"
                 aria-label="Close"

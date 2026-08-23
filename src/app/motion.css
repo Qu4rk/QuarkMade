@@ -198,15 +198,16 @@
 }
 
 #header.scrolled {
-  background-color: rgba(255, 255, 255, 0.96) !important;
-  color: #0b0a12 !important;
-  box-shadow: 0 4px 20px -2px rgba(11, 10, 18, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(11, 10, 18, 0.88) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 30px -2px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 #header.scrolled .nav-sub-pill {
-  background-color: rgba(11, 10, 18, 0.06) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 #header.scrolled .nav-sub-pill-active {
@@ -218,5 +219,5 @@
 }
 
 #header.scrolled .tab-inactive {
-  color: #0b0a12 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
 }
