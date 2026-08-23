@@ -3,6 +3,7 @@ import "./ditto.css";
 import "./motion.css";
 import type { ReactNode } from "react";
 import { SITE_ORIGIN } from "../lib/site";
+import SmoothScroll from "./components/SmoothScroll";
 
 export const metadata = {
   metadataBase: new URL(SITE_ORIGIN || "http://localhost:3000"),
@@ -49,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="min-h-screen block text-foreground [font-family:'Satoshi',_sans-serif] font-normal bg-background antialiased selection:bg-[#4442DB] selection:text-white">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
