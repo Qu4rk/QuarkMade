@@ -13,17 +13,19 @@ export default function BuildingPlaceToSection() {
     offset: ["start end", "end start"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
-  const imageY = useTransform(smoothProgress, [0, 1], ["-6%", "6%"]);
-  const cardScale = useTransform(smoothProgress, [0, 0.5, 1], [0.96, 1, 0.98]);
-  const glowOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.08, 0.35, 0.08]);
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 80 });
+  const cardRotateX = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [18, 0, 0, -14]);
+  const cardScale = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [0.86, 1, 1, 0.9]);
+  const cardY = useTransform(smoothProgress, [0, 0.45, 1], [80, 0, -50]);
+  const imageY = useTransform(smoothProgress, [0, 1], ["-14%", "14%"]);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.45, 1], [0.1, 0.55, 0.1]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]">
       {/* Background Amber Light Flare Drifting with Scroll */}
       <motion.div
         style={{ opacity: glowOpacity }}
-        className="absolute right-1/4 top-1/4 w-[50vw] h-[450px] rounded-full bg-[#D4AF37]/20 blur-[110px] pointer-events-none"
+        className="absolute right-1/4 top-1/4 w-[60vw] h-[450px] rounded-full bg-[#D4AF37]/25 blur-[120px] pointer-events-none"
       />
 
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
@@ -47,58 +49,65 @@ export default function BuildingPlaceToSection() {
         <ProjectBadge label="FEATURED PROJECT 02 / MODERN REAL ESTATE & SPATIAL PLATFORM" />
 
         {/* 3D Parallax Card Frame */}
-        <motion.div
-          style={{ scale: cardScale }}
-          data-reveal
-          className="block relative z-1 max-w-242.5 mx-auto rounded-2xl aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group border border-foreground/10"
-        >
-          <div className="h-full block absolute top-0 inset-x-0 rounded-2xl overflow-hidden bg-foreground">
-            {/* Real Snapshot of Lumina Living with Parallax Scrub */}
-            <motion.div
-              style={{ y: imageY }}
-              className="h-[114%] w-full block absolute -top-[7%] inset-x-0 overflow-hidden"
-            >
-              <img
-                className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
-                alt="Lumina Living Architectural Showcase"
-                src="/assets/portfolio/lumina_hero.png"
+        <div className="w-full flex justify-center [perspective:1200px]">
+          <motion.div
+            style={{
+              scale: cardScale,
+              rotateX: cardRotateX,
+              y: cardY,
+              transformOrigin: "center center",
+            }}
+            data-reveal
+            className="block relative z-1 max-w-242.5 mx-auto rounded-2xl aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.25)] group border border-foreground/10"
+          >
+            <div className="h-full block absolute top-0 inset-x-0 rounded-2xl overflow-hidden bg-foreground">
+              {/* Real Snapshot of Lumina Living with Parallax Scrub */}
+              <motion.div
+                style={{ y: imageY }}
+                className="h-[128%] w-full block absolute -top-[14%] inset-x-0 overflow-hidden"
+              >
+                <img
+                  className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
+                  alt="Lumina Living Architectural Showcase"
+                  src="/assets/portfolio/lumina_hero.png"
+                />
+              </motion.div>
+              {/* Subtle Contrast Gradient */}
+              <div
+                className="h-full block absolute top-0 inset-x-0 z-2 transition-opacity duration-500 group-hover:opacity-85"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(11, 10, 18, 0.45) 0%, rgba(42, 24, 84, 0.5) 50%, rgba(11, 10, 18, 0.85) 100%)",
+                }}
               />
-            </motion.div>
-            {/* Subtle Contrast Gradient */}
-            <div
-              className="h-full block absolute top-0 inset-x-0 z-2 transition-opacity duration-500 group-hover:opacity-85"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(11, 10, 18, 0.45) 0%, rgba(42, 24, 84, 0.5) 50%, rgba(11, 10, 18, 0.85) 100%)",
-              }}
-            />
-            <div className="h-full flex absolute top-0 inset-x-0 z-3 py-22 px-9 justify-center items-center max-md:py-16">
-              <div className="flex max-w-119.5 flex-col justify-between items-center gap-6 text-center text-white">
-                <div className="flex flex-col items-center gap-3">
-                  {/* Official Lumina Living Logo */}
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
-                    <img
-                      src="/assets/portfolio/logos/lumina-logo.png"
-                      alt="Lumina Living Logo"
-                      className="w-full h-full object-contain"
-                    />
+              <div className="h-full flex absolute top-0 inset-x-0 z-3 py-22 px-9 justify-center items-center max-md:py-16">
+                <div className="flex max-w-119.5 flex-col justify-between items-center gap-6 text-center text-white">
+                  <div className="flex flex-col items-center gap-3">
+                    {/* Official Lumina Living Logo */}
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
+                      <img
+                        src="/assets/portfolio/logos/lumina-logo.png"
+                        alt="Lumina Living Logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="[font-family:'Satoshi',_sans-serif] text-3xl font-medium tracking-wider capitalize text-white drop-shadow-md">
+                      Lumina Living
+                    </span>
+                    <span className="[font-family:'Satoshi',_sans-serif] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">
+                      WWW.LUMINA-LIVING.NET
+                    </span>
                   </div>
-                  <span className="[font-family:'Satoshi',_sans-serif] text-3xl font-medium tracking-wider capitalize text-white drop-shadow-md">
-                    Lumina Living
-                  </span>
-                  <span className="[font-family:'Satoshi',_sans-serif] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">
-                    WWW.LUMINA-LIVING.NET
-                  </span>
-                </div>
-                <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                  <Button href="http://www.lumina-living.net/" variant="gold">
-                    Visit Live Site (Lumina-Living.net)
-                  </Button>
+                  <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
+                    <Button href="http://www.lumina-living.net/" variant="gold">
+                      Visit Live Site (Lumina-Living.net)
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
           <div className="block [font-family:'Satoshi',_sans-serif] text-lg font-normal leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">

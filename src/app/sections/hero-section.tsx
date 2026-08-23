@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 import SeamlessVideo from "../components/SeamlessVideo";
@@ -10,13 +10,26 @@ import TextLoop from "../components/ui/TextLoop";
 /**
  * Immersive, multi-layered Hero Section featuring:
  * - Seamless dual-stream twilight sunset video
- * - Interactive cursor-reactive 3D parallax depth
+ * - 3D Cinema container scroll exit with perspective tilt
+ * - Interactive cursor-reactive parallax depth
  * - Organic drifting light leak & celestial starburst glow
- * - Editorial studio tagline badge & brand ethos
- * - Staggered typography entrance & animated scroll indicator
+ * - React Bits TextLoop cloud-weaving header
  */
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll-linked 3D Cinema exit transform
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const smoothScroll = useSpring(scrollYProgress, { damping: 25, stiffness: 90 });
+  const heroScale = useTransform(smoothScroll, [0, 1], [1, 0.85]);
+  const heroRotateX = useTransform(smoothScroll, [0, 1], [0, 12]);
+  const heroY = useTransform(smoothScroll, [0, 1], [0, 70]);
+  const heroOpacity = useTransform(smoothScroll, [0, 0.75, 1], [1, 0.95, 0.4]);
 
   // Cursor-reactive parallax values
   const mouseX = useMotionValue(0);
@@ -49,10 +62,20 @@ export default function HeroSection() {
 
   return (
     <section
-      className="block relative bg-foreground overflow-hidden select-none"
+      ref={heroRef}
+      className="block relative bg-background overflow-hidden select-none [perspective:1400px]"
       id="hero"
     >
-      <div className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145">
+      <motion.div
+        style={{
+          scale: heroScale,
+          rotateX: heroRotateX,
+          y: heroY,
+          opacity: heroOpacity,
+          transformOrigin: "center bottom",
+        }}
+        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] shadow-2xl bg-foreground"
+      >
         {/* Layer 1: Parallax Video Background with Mouse Reactivity */}
         <motion.div
           style={{ x: mounted ? videoX : 0, y: mounted ? videoY : 0 }}
@@ -277,7 +300,7 @@ export default function HeroSection() {
             />
           </div>
         </motion.a>
-      </div>
+      </motion.div>
     </section>
   );
 }

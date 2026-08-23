@@ -13,17 +13,19 @@ export default function RootedInHistorySection() {
     offset: ["start end", "end start"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
-  const imageY = useTransform(smoothProgress, [0, 1], ["-6%", "6%"]);
-  const cardScale = useTransform(smoothProgress, [0, 0.5, 1], [0.96, 1, 0.98]);
-  const glowY = useTransform(smoothProgress, [0, 1], [40, -40]);
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 80 });
+  const cardRotateX = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [18, 0, 0, -14]);
+  const cardScale = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [0.86, 1, 1, 0.9]);
+  const cardY = useTransform(smoothProgress, [0, 0.45, 1], [80, 0, -50]);
+  const imageY = useTransform(smoothProgress, [0, 1], ["-14%", "14%"]);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.45, 1], [0.15, 0.55, 0.15]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden" id="works">
+    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="works">
       {/* Background Ambient Glow Drifting with Scroll */}
       <motion.div
-        style={{ y: glowY }}
-        className="absolute left-1/2 -translate-x-1/2 top-1/3 w-[60vw] h-[400px] rounded-full bg-[#4442DB]/10 blur-[100px] pointer-events-none"
+        style={{ opacity: glowOpacity }}
+        className="absolute left-1/2 -translate-x-1/2 top-1/3 w-[65vw] h-[450px] rounded-full bg-[#4442DB]/15 blur-[120px] pointer-events-none"
       />
 
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
@@ -47,17 +49,23 @@ export default function RootedInHistorySection() {
         <ProjectBadge label="FEATURED PROJECT 01 / MEDITERRANEAN DIGITAL SANCTUARY" />
 
         {/* 3D Parallax Card Frame */}
-        <motion.div
-          style={{ scale: cardScale }}
-          data-reveal
-          className="block relative z-1 max-w-242.5 mx-auto rounded-2xl aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group border border-foreground/10"
-        >
-          <div className="h-full block absolute top-0 inset-x-0 rounded-2xl overflow-hidden bg-foreground">
-            {/* Real Snapshot of QuieTide with Differential Parallax Scrub */}
-            <motion.div
-              style={{ y: imageY }}
-              className="h-[114%] w-full block absolute -top-[7%] inset-x-0 overflow-hidden"
-            >
+        <div className="w-full flex justify-center [perspective:1200px]">
+          <motion.div
+            style={{
+              scale: cardScale,
+              rotateX: cardRotateX,
+              y: cardY,
+              transformOrigin: "center center",
+            }}
+            data-reveal
+            className="block relative z-1 max-w-242.5 mx-auto rounded-2xl aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.25)] group border border-foreground/10"
+          >
+            <div className="h-full block absolute top-0 inset-x-0 rounded-2xl overflow-hidden bg-foreground">
+              {/* Real Snapshot of QuieTide with Differential Parallax Scrub */}
+              <motion.div
+                style={{ y: imageY }}
+                className="h-[128%] w-full block absolute -top-[14%] inset-x-0 overflow-hidden"
+              >
               <img
                 className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                 alt="QuieTide Mediterranean Digital Sanctuary Showcase"
@@ -99,6 +107,7 @@ export default function RootedInHistorySection() {
             </div>
           </div>
         </motion.div>
+      </div>
 
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
           <div className="block [font-family:'Satoshi',_sans-serif] text-lg font-normal leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
