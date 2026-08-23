@@ -19,17 +19,16 @@ export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
-  // Scroll-linked 3D Cinema exit transform
+  // Scroll-linked 3D Cinema exit transform (Directly mapped to Lenis inertial scroll for 120fps zero-lag performance)
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const smoothScroll = useSpring(scrollYProgress, { damping: 25, stiffness: 90 });
-  const heroScale = useTransform(smoothScroll, [0, 1], [1, 0.85]);
-  const heroRotateX = useTransform(smoothScroll, [0, 1], [0, 12]);
-  const heroY = useTransform(smoothScroll, [0, 1], [0, 70]);
-  const heroOpacity = useTransform(smoothScroll, [0, 0.75, 1], [1, 0.95, 0.4]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
+  const heroRotateX = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.96, 0.4]);
 
   // Cursor-reactive parallax values
   const mouseX = useMotionValue(0);
@@ -40,10 +39,10 @@ export default function HeroSection() {
   const smoothY = useSpring(mouseY, springConfig);
 
   // Layer translations based on mouse position
-  const videoX = useTransform(smoothX, [-0.5, 0.5], [12, -12]);
-  const videoY = useTransform(smoothY, [-0.5, 0.5], [8, -8]);
-  const flareX = useTransform(smoothX, [-0.5, 0.5], [-24, 24]);
-  const flareY = useTransform(smoothY, [-0.5, 0.5], [-16, 16]);
+  const videoX = useTransform(smoothX, [-0.5, 0.5], [10, -10]);
+  const videoY = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
+  const flareX = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
+  const flareY = useTransform(smoothY, [-0.5, 0.5], [-12, 12]);
 
   useEffect(() => {
     setMounted(true);
@@ -74,16 +73,16 @@ export default function HeroSection() {
           opacity: heroOpacity,
           transformOrigin: "center bottom",
         }}
-        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] shadow-2xl bg-foreground"
+        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] shadow-2xl bg-foreground will-change-transform transform-gpu [backface-visibility:hidden]"
       >
         {/* Layer 1: Parallax Video Background with Mouse Reactivity */}
         <motion.div
           style={{ x: mounted ? videoX : 0, y: mounted ? videoY : 0 }}
-          className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none scale-105"
+          className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none scale-105 will-change-transform transform-gpu"
         >
           <div
             data-parallax
-            data-parallax-speed="0.25"
+            data-parallax-speed="0.2"
             className="h-[125%] w-full block absolute -top-[12%] inset-x-0"
           >
             <SeamlessVideo
@@ -98,7 +97,7 @@ export default function HeroSection() {
         {/* Layer 2: Organic Light Leak & Ambient Twilight Bloom */}
         <motion.div
           style={{ x: mounted ? flareX : 0, y: mounted ? flareY : 0 }}
-          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden"
+          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden will-change-transform transform-gpu"
         >
           {/* Drifting warm amber-violet light leak */}
           <div
@@ -129,11 +128,12 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Layer 4: Tactile Film Grain Texture */}
+        {/* Layer 4: Tactile Film Grain Texture (High-Performance GPU WebP) */}
         <div
-          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none opacity-[0.04] mix-blend-overlay"
+          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none opacity-15 mix-blend-overlay"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("https://assets.aceternity.com/noise.webp")`,
+            backgroundRepeat: "repeat",
           }}
         />
 
@@ -204,19 +204,13 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Main Headline: Satoshi Regular + Chillax Rotating Text */}
-            <motion.h1
-              layout
-              transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
+            <h1
               className="[font-family:'Satoshi',_sans-serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-2xl"
               data-component="heading"
             >
-              <motion.span
-                layout
-                transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block text-white"
-              >
+              <span className="inline-block text-white">
                 Crafting
-              </motion.span>
+              </span>
 
               <RotatingText
                 texts={[
@@ -245,14 +239,10 @@ export default function HeroSection() {
                 rotationInterval={2800}
               />
 
-              <motion.span
-                layout
-                transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                className="inline-block text-white"
-              >
+              <span className="inline-block text-white">
                 that command attention.
-              </motion.span>
-            </motion.h1>
+              </span>
+            </h1>
 
             {/* Editorial Sub-Ethos Descriptor */}
             <motion.p
