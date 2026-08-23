@@ -170,9 +170,8 @@ export const NoiseBackground = ({
     <div
       ref={containerRef}
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-neutral-200 p-2 backdrop-blur-sm dark:bg-neutral-800",
-        "shadow-[0px_0.5px_1px_0px_var(--color-neutral-400)_inset,0px_1px_0px_0px_var(--color-neutral-100)]",
-        "dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]",
+        "group relative overflow-hidden rounded-full bg-[#0B0A12] p-[2px] backdrop-blur-sm",
+        "shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)] border border-[#D4AF37]/30",
         glimmer && "animate-[pillGlowGlimmer_3s_ease-in-out_infinite]",
         backdropBlur &&
           "after:absolute after:inset-0 after:h-full after:w-full after:backdrop-blur-lg after:content-['']",

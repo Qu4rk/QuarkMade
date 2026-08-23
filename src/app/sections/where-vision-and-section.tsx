@@ -17,14 +17,14 @@ export default function WhereVisionAndSection() {
               <img
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
-                src="/assets/portfolio/lumina_atmosphere.png"
+                src="/assets/portfolio/craft_harbor_atmosphere.jpg"
               />
             </div>
             <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:block">
               <img
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
-                src="/assets/portfolio/lumina_atmosphere.png"
+                src="/assets/portfolio/craft_harbor_atmosphere.jpg"
               />
             </div>
           </div>
@@ -42,31 +42,23 @@ export default function WhereVisionAndSection() {
         <div className="h-full block absolute top-0 inset-x-0 z-3">
           <div className="flex py-16 px-6 flex-col justify-center items-center mx-auto max-w-screen h-full w-full max-md:py-10 max-md:px-4">
             <div data-reveal className="w-full max-w-162 flex flex-col items-center gap-10 text-white text-center max-md:gap-8">
-              {/* Aceternity Noise Background Badge (Non-interactive Pill without arrow) */}
+              {/* Aceternity Noise Background Badge */}
               <div className="flex justify-center">
                 <NoiseBackground
-                  containerClassName="w-fit p-1 rounded-full mx-auto bg-black/40 border border-white/10 shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)]"
+                  containerClassName="w-fit max-w-full p-[2px] rounded-full mx-auto bg-[#0B0A12] border border-[#D4AF37]/35 shadow-[0px_0px_25px_rgba(68,66,219,0.35)]"
                   gradientColors={[
                     "rgb(68, 66, 219)", // Electric Purple
                     "rgb(212, 175, 55)", // Imperial Gold
                     "rgb(165, 148, 249)", // Soft Lavender
                   ]}
-                  noiseIntensity={0.25}
+                  noiseIntensity={0.3}
                   speed={0.12}
                 >
-                  <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-black/90 via-neutral-950/90 to-black/90 px-4 py-1.5 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.12)_inset,0px_1px_2px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.15em] uppercase flex items-center justify-center gap-2 max-md:text-xs max-md:px-3.5 max-md:py-1.25">
-                    <svg
-                      className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg>
-                    <span className="text-white/90">DESIGN, MOTION, & ENGINEERING</span>
+                  <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-[#0B0A12] via-[#12111A] to-[#0B0A12] px-5 py-2 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.15)_inset,0px_2px_4px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.18em] uppercase flex items-center justify-center gap-2.5 max-md:text-[0.7rem] max-md:px-3.5 max-md:py-1.5 text-center">
+                    <span className="text-[#D4AF37] font-semibold text-sm leading-none shrink-0 transition-transform duration-300 group-hover:translate-x-0.5">
+                      →
+                    </span>
+                    <span className="text-white/95">DESIGN, MOTION, & ENGINEERING</span>
                   </div>
                 </NoiseBackground>
               </div>

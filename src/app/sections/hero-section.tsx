@@ -3,23 +3,25 @@
 import { motion } from "motion/react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
+import SeamlessVideo from "../components/SeamlessVideo";
 
 /** Refined Hero section showcasing QuarkMade's sunset artwork, balanced editorial headline, and colored Chillax rotating text. */
 export default function HeroSection() {
   return (
     <section className="block relative bg-foreground overflow-hidden" id="hero">
       <div className="h-screen min-h-160 max-h-240 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-140">
-        {/* Parallax Background Layer with User's Sunset Artwork */}
+        {/* Parallax Background Layer with Dual-Layer Seamless Video Looper */}
         <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
           <div
             data-parallax
             data-parallax-speed="0.25"
             className="h-[125%] w-full block absolute -top-[12%] inset-x-0"
           >
-            <img
-              src="/assets/branding/hero-sunset.jpg"
-              alt="QuarkMade Cosmic Sunset Waves"
-              className="w-full h-full object-cover object-center align-middle scale-105"
+            <SeamlessVideo
+              src="/assets/branding/hero_vid.mp4"
+              poster="/assets/branding/hero-sunset.jpg"
+              fadeDuration={1.3}
+              className="object-center align-middle scale-105"
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import ProjectBadge from "../components/ProjectBadge";
 
 /** Featured Project 1: QuieTide Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function RootedInHistorySection() {
@@ -11,7 +12,7 @@ export default function RootedInHistorySection() {
             <img
               src="/assets/portfolio/logos/quietide-logo.png"
               alt="QuieTide"
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
             />
             <span className="[font-family:'Chillax',_sans-serif] font-medium text-[2.75rem] sm:text-[3.5rem] md:text-[3.85rem] text-[#D4AF37] leading-none tracking-tight">
               QuieTide:
@@ -22,11 +23,7 @@ export default function RootedInHistorySection() {
           </p>
         </div>
 
-        <div data-reveal className="block max-w-242.5 mx-auto [font-family:'Ivar_Mono',_monospace] leading-[1.3125rem] text-center uppercase max-md:text-sm max-md:leading-[1.125rem]" data-component="heading">
-          <p className="block whitespace-nowrap text-[#4442DB] font-medium tracking-wider">
-            FEATURED PROJECT 01 / MEDITERRANEAN DIGITAL SANCTUARY
-          </p>
-        </div>
+        <ProjectBadge label="FEATURED PROJECT 01 / MEDITERRANEAN DIGITAL SANCTUARY" />
 
         <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group">
           <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground">

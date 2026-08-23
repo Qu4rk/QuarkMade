@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Button from "../components/Button";
-import { NoiseBackground } from "../components/ui/noise-background";
+import ProjectBadge from "../components/ProjectBadge";
+import Topography from "../components/ui/Topography";
 
-/** Project Inquiry and Client Commission Section. */
+/** Project Inquiry and Client Commission Section with WebGL Topography Background. */
 export default function StayInTheSection() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -18,40 +19,49 @@ export default function StayInTheSection() {
 
   return (
     <section className="block bg-[#0B0A12] text-white py-24 md:py-32 px-6 max-md:py-16 max-md:px-4 relative overflow-hidden" id="inquire">
+      {/* Interactive React Bits WebGL Topography Background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-auto opacity-75 z-0">
+        <Topography
+          lowColor="#4442DB"
+          midColor="#D4AF37"
+          highColor="#F3E5AB"
+          speed={0.3}
+          morphAmount={2.8}
+          morphSpeed={0.04}
+          bands={2.5}
+          thickness={0.015}
+          scale={1.0}
+          glow={0.6}
+          colorMode="elevation"
+          contrast={2.8}
+          brightness={1.05}
+          fillBands={false}
+          opacity={0.85}
+          grain={true}
+          grainIntensity={0.05}
+          mouseInteraction={true}
+          mouseRadius={0.35}
+          mouseStrength={0.45}
+        />
+      </div>
+
+      {/* Radial Obsidian Vignette Overlay for Crisp Readability */}
+      <div
+        className="absolute inset-0 z-1 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(11, 10, 18, 0.35) 0%, rgba(11, 10, 18, 0.75) 60%, rgba(11, 10, 18, 0.96) 100%)",
+        }}
+      />
+
       {/* Ambient Cosmic Purple & Gold Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#4442DB]/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#4442DB]/15 rounded-full blur-[140px] pointer-events-none z-1" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-[100px] pointer-events-none z-1" />
 
       <div className="flex flex-col items-center gap-12 mx-auto w-full max-w-4xl relative z-10">
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
-          <div className="flex justify-center">
-            <NoiseBackground
-              containerClassName="w-fit p-1 rounded-full mx-auto bg-black/40 border border-white/10 shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)]"
-              gradientColors={[
-                "rgb(68, 66, 219)", // Electric Purple
-                "rgb(212, 175, 55)", // Imperial Gold
-                "rgb(165, 148, 249)", // Soft Lavender
-              ]}
-              noiseIntensity={0.25}
-              speed={0.12}
-            >
-              <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-black/90 via-neutral-950/90 to-black/90 px-4 py-1.5 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.12)_inset,0px_1px_2px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.15em] uppercase flex items-center justify-center gap-2 max-md:text-xs max-md:px-3.5 max-md:py-1.25">
-                <svg
-                  className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-                <span className="text-white/90">COMMISSIONS & INQUIRIES</span>
-              </div>
-            </NoiseBackground>
-          </div>
-          <h2 className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white" data-component="heading">
+          <ProjectBadge label="COMMISSIONS & INQUIRIES" />
+          <h2 className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white mt-2" data-component="heading">
             Start a project with <span className="text-[#F3E5AB]">QuarkMade</span>
           </h2>
           <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 leading-relaxed">
