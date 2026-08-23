@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 /**
- * Nabil Issa-inspired Luxury Studio Preloader for QuarkMade:
- * 1. Dead-center kinetic stroke formation of the Quark emblem
- * 2. Elegant spring shift as the gold hairline divider and brand typography expand
- * 3. Smooth counter acceleration from 00% to 100%
- * 4. Theatrical curtain exit with custom cubic-bezier easing [0.83, 0, 0.17, 1]
+ * Luxury Studio Preloader for QuarkMade:
+ * - Color Palette: Pure White (#FFFFFF) & Official Brand Electric Purple (#4442DB) on Obsidian (#0B0A12)
+ * - Exact vector geometry matching official Quark "Q" emblem
+ * - Vertical hairline divider & typographic expansion
+ * - Smooth counter 00% -> 100%
+ * - Theatrical curtain shutter exit [0.83, 0, 0.17, 1]
  */
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
@@ -84,12 +85,12 @@ export default function Preloader() {
             className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0B0A12] z-0 border-t border-white/[0.03]"
           />
 
-          {/* Ambient Purple/Gold Halo Flare */}
+          {/* Ambient Brand Electric Purple Halo Flare */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: [0.2, 0.5, 0.3], scale: [0.85, 1.15, 1] }}
+            animate={{ opacity: [0.25, 0.55, 0.35], scale: [0.9, 1.15, 1] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-[#4442DB]/25 via-[#D4AF37]/15 to-transparent blur-[100px] pointer-events-none z-10"
+            className="absolute w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-[#4442DB]/35 via-[#635BFF]/20 to-transparent blur-[100px] pointer-events-none z-10"
           />
 
           {/* Central Animated Logo & Typography Lockup */}
@@ -109,7 +110,7 @@ export default function Preloader() {
               transition={{ duration: 0.75, ease: [0.83, 0, 0.17, 1] }}
               className="flex items-center justify-center gap-5 sm:gap-6"
             >
-              {/* Minimalist Kinetic Circular Stroke Emblem */}
+              {/* Exact Official Quark "Q" Vector Emblem */}
               <motion.div
                 layout
                 className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shrink-0"
@@ -120,13 +121,13 @@ export default function Preloader() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Outer Ring Arc */}
+                  {/* Outer White Orbital Ring */}
                   <motion.circle
                     cx="50"
                     cy="50"
                     r="40"
                     stroke="#FFFFFF"
-                    strokeWidth="3.5"
+                    strokeWidth="5"
                     strokeLinecap="round"
                     initial={{ pathLength: 0, rotate: -90 }}
                     animate={{ pathLength: 1, rotate: 270 }}
@@ -136,13 +137,13 @@ export default function Preloader() {
                     }}
                   />
 
-                  {/* Inner Vortex Arc (Electric Purple #4442DB) */}
+                  {/* Inner Electric Purple Ring */}
                   <motion.circle
                     cx="50"
                     cy="50"
-                    r="28"
+                    r="27"
                     stroke="#4442DB"
-                    strokeWidth="3.5"
+                    strokeWidth="5.5"
                     strokeLinecap="round"
                     initial={{ pathLength: 0, rotate: 90 }}
                     animate={{ pathLength: 1, rotate: -270 }}
@@ -153,11 +154,11 @@ export default function Preloader() {
                     }}
                   />
 
-                  {/* Gold 'Q' Tail */}
+                  {/* Outer Diagonal Leg (#FFFFFF) */}
                   <motion.path
-                    d="M58 58 L78 78"
-                    stroke="#D4AF37"
-                    strokeWidth="4.5"
+                    d="M52 52 L86 86"
+                    stroke="#FFFFFF"
+                    strokeWidth="6"
                     strokeLinecap="round"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={{
@@ -167,6 +168,24 @@ export default function Preloader() {
                     transition={{
                       duration: 0.5,
                       ease: [0.83, 0, 0.17, 1],
+                    }}
+                  />
+
+                  {/* Inner Parallel Diagonal Leg (Electric Purple #4442DB) */}
+                  <motion.path
+                    d="M46 58 L72 84"
+                    stroke="#4442DB"
+                    strokeWidth="5.5"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{
+                      pathLength: phase !== "drawing" ? 1 : 0,
+                      opacity: phase !== "drawing" ? 1 : 0,
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.83, 0, 0.17, 1],
+                      delay: 0.05,
                     }}
                   />
                 </svg>
@@ -182,12 +201,12 @@ export default function Preloader() {
                     transition={{ duration: 0.65, ease: [0.83, 0, 0.17, 1] }}
                     className="flex items-center gap-5 sm:gap-6 overflow-visible origin-left"
                   >
-                    {/* Vertical Hairline Divider */}
+                    {/* Vertical Hairline Divider (White to Electric Purple) */}
                     <motion.div
                       initial={{ scaleY: 0 }}
                       animate={{ scaleY: 1 }}
                       transition={{ duration: 0.6, ease: [0.83, 0, 0.17, 1] }}
-                      className="w-[1.5px] h-10 sm:h-12 bg-gradient-to-b from-[#D4AF37] via-white/80 to-[#4442DB] origin-top shrink-0"
+                      className="w-[1.5px] h-10 sm:h-12 bg-gradient-to-b from-white/90 via-white/40 to-[#4442DB] origin-top shrink-0"
                     />
 
                     {/* Brand Typography */}
@@ -216,11 +235,11 @@ export default function Preloader() {
               </span>
               <div className="w-20 h-[1.5px] bg-white/10 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-[#4442DB] to-[#D4AF37]"
+                  className="h-full bg-gradient-to-r from-white/60 to-[#4442DB]"
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <span className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#D4AF37] tabular-nums tracking-wider min-w-[2.5rem] text-right">
+              <span className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#4442DB] tabular-nums tracking-wider min-w-[2.5rem] text-right">
                 {progress < 10 ? `0${progress}` : progress}%
               </span>
             </div>
