@@ -1,11 +1,32 @@
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
 
 /** Featured Project 2: Lumina Living Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function BuildingPlaceToSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
+  const imageY = useTransform(smoothProgress, [0, 1], ["-6%", "6%"]);
+  const cardScale = useTransform(smoothProgress, [0, 0.5, 1], [0.96, 1, 0.98]);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.08, 0.35, 0.08]);
+
   return (
-    <section className="block bg-background">
-      <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10">
+    <section ref={sectionRef} className="block bg-background relative overflow-hidden">
+      {/* Background Amber Light Flare Drifting with Scroll */}
+      <motion.div
+        style={{ opacity: glowOpacity }}
+        className="absolute right-1/4 top-1/4 w-[50vw] h-[450px] rounded-full bg-[#D4AF37]/20 blur-[110px] pointer-events-none"
+      />
+
+      <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
         {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
         <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
           <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
@@ -25,16 +46,24 @@ export default function BuildingPlaceToSection() {
 
         <ProjectBadge label="FEATURED PROJECT 02 / MODERN REAL ESTATE & SPATIAL PLATFORM" />
 
-        <div data-reveal className="block relative z-1 max-w-242.5 mx-auto rounded-lg aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group">
-          <div className="h-full block absolute top-0 inset-x-0 rounded-lg overflow-hidden bg-foreground">
-            {/* Real Snapshot of Lumina Living */}
-            <div className="h-full block absolute top-0 inset-x-0 overflow-hidden">
+        {/* 3D Parallax Card Frame */}
+        <motion.div
+          style={{ scale: cardScale }}
+          data-reveal
+          className="block relative z-1 max-w-242.5 mx-auto rounded-2xl aspect-[231/130] w-full max-md:aspect-[343/428] overflow-hidden shadow-2xl group border border-foreground/10"
+        >
+          <div className="h-full block absolute top-0 inset-x-0 rounded-2xl overflow-hidden bg-foreground">
+            {/* Real Snapshot of Lumina Living with Parallax Scrub */}
+            <motion.div
+              style={{ y: imageY }}
+              className="h-[114%] w-full block absolute -top-[7%] inset-x-0 overflow-hidden"
+            >
               <img
                 className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                 alt="Lumina Living Architectural Showcase"
                 src="/assets/portfolio/lumina_hero.png"
               />
-            </div>
+            </motion.div>
             {/* Subtle Contrast Gradient */}
             <div
               className="h-full block absolute top-0 inset-x-0 z-2 transition-opacity duration-500 group-hover:opacity-85"
@@ -47,7 +76,7 @@ export default function BuildingPlaceToSection() {
               <div className="flex max-w-119.5 flex-col justify-between items-center gap-6 text-center text-white">
                 <div className="flex flex-col items-center gap-3">
                   {/* Official Lumina Living Logo */}
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
                     <img
                       src="/assets/portfolio/logos/lumina-logo.png"
                       alt="Lumina Living Logo"
@@ -69,7 +98,7 @@ export default function BuildingPlaceToSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
           <div className="block [font-family:'Satoshi',_sans-serif] text-lg font-normal leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
