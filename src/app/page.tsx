@@ -12,13 +12,38 @@ import LogoCloudSection from "./sections/logo-cloud-section";
 import ScrollObserver from "./components/ScrollObserver";
 import Preloader from "./components/ui/Preloader";
 
+import Ferrofluid from "./components/ui/Ferrofluid";
+
 export default function Page() {
   return (
     <>
       <Preloader />
       <ScrollObserver />
       <Navbar />
-      <main className="min-h-screen block flex-1 bg-[#0B0A12] text-white" id="content">
+
+      {/* Global Interactive Ferrofluid WebGL Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-70">
+        <Ferrofluid
+          colors={["#4442DB", "#7C3AED", "#D4AF37", "#F3E5AB"]}
+          speed={0.45}
+          scale={1.4}
+          turbulence={0.9}
+          fluidity={0.12}
+          rimWidth={0.22}
+          sharpness={3}
+          shimmer={1.2}
+          glow={2.2}
+          flowDirection="down"
+          opacity={0.85}
+          mouseInteraction={true}
+          mouseStrength={1.2}
+          mouseRadius={0.35}
+          mouseDampening={0.12}
+          mixBlendMode="screen"
+        />
+      </div>
+
+      <main className="min-h-screen block flex-1 bg-transparent text-white relative z-1" id="content">
         <HeroSection />
         <PlaceWorthBelongingSection />
         <WhereVisionAndSection />

@@ -22,7 +22,7 @@ export default function PartnerWithUsSection() {
   const imageY = useTransform(smoothProgress, [0, 1], ["-14%", "14%"]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="works">
+    <section ref={sectionRef} className="block bg-transparent relative overflow-hidden [perspective:1400px]" id="works">
       {/* Background Kinetic Horological Dial Vectors Rotating with Scroll */}
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[950px] h-[950px] pointer-events-none opacity-[0.16] select-none">
         <motion.svg

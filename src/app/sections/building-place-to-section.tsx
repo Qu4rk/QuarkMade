@@ -21,7 +21,7 @@ export default function BuildingPlaceToSection() {
   const glowOpacity = useTransform(smoothProgress, [0, 0.45, 1], [0.1, 0.55, 0.1]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]">
+    <section ref={sectionRef} className="block bg-transparent relative overflow-hidden [perspective:1400px]">
       {/* Background Amber Light Flare Drifting with Scroll */}
       <motion.div
         style={{ opacity: glowOpacity }}

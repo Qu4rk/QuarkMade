@@ -6,7 +6,7 @@ import { textLinkData } from "../content";
 /** Footer Section for QuarkMade. */
 export default function LogoCloudSection() {
   return (
-    <footer className="block bg-[#0B0A12] text-white pt-20 pb-12 px-6 border-t border-white/10" id="footer">
+    <footer className="block bg-transparent text-white pt-20 pb-12 px-6 border-t border-white/10 relative z-1" id="footer">
       <div className="flex flex-col gap-14 mx-auto w-full max-w-screen">
         {/* Top Footer: Brand Statement & Client Logo Tags */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-white/10">

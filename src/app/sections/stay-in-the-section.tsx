@@ -19,32 +19,8 @@ export default function StayInTheSection() {
   };
 
   return (
-    <section className="block bg-[#0B0A12] text-white py-24 md:py-32 px-6 max-md:py-16 max-md:px-4 relative overflow-hidden" id="inquire">
-      {/* Interactive React Bits WebGL Topography Background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-auto opacity-75 z-0">
-        <Topography
-          lowColor="#4442DB"
-          midColor="#D4AF37"
-          highColor="#F3E5AB"
-          speed={0.3}
-          morphAmount={2.8}
-          morphSpeed={0.04}
-          bands={2.5}
-          thickness={0.015}
-          scale={1.0}
-          glow={0.6}
-          colorMode="elevation"
-          contrast={2.8}
-          brightness={1.05}
-          fillBands={false}
-          opacity={0.85}
-          grain={true}
-          grainIntensity={0.05}
-          mouseInteraction={true}
-          mouseRadius={0.35}
-          mouseStrength={0.45}
-        />
-      </div>
+    <section className="block bg-transparent text-white py-24 md:py-32 px-6 max-md:py-16 max-md:px-4 relative overflow-hidden" id="inquire">
+
 
       {/* Radial Obsidian Vignette Overlay for Crisp Readability */}
       <div

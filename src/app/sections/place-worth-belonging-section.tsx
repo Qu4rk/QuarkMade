@@ -2,37 +2,14 @@
 
 import React from "react";
 import ScrollWordReveal from "../components/ui/ScrollWordReveal";
-import Ferrofluid from "../components/ui/Ferrofluid";
 
-/** Manifesto section presenting QuarkMade's core design philosophy and studio mission with interactive Ferrofluid background. */
+/** Manifesto section presenting QuarkMade's core design philosophy and studio mission. */
 export default function PlaceWorthBelongingSection() {
   return (
-    <section className="block bg-background py-28 md:py-44 px-6 max-md:py-20 max-md:px-4 relative overflow-hidden" id="philosophy">
-      {/* Interactive Ferrofluid WebGL Background Canvas */}
-      <div className="absolute inset-0 z-0 pointer-events-auto opacity-75">
-        <Ferrofluid
-          colors={["#4442DB", "#7C3AED", "#D4AF37", "#F3E5AB"]}
-          speed={0.45}
-          scale={1.4}
-          turbulence={0.9}
-          fluidity={0.12}
-          rimWidth={0.22}
-          sharpness={3}
-          shimmer={1.2}
-          glow={2.2}
-          flowDirection="down"
-          opacity={0.85}
-          mouseInteraction={true}
-          mouseStrength={1.2}
-          mouseRadius={0.35}
-          mouseDampening={0.12}
-          mixBlendMode="screen"
-        />
-      </div>
-
+    <section className="block bg-transparent py-28 md:py-44 px-6 max-md:py-20 max-md:px-4 relative overflow-hidden" id="philosophy">
       {/* Atmospheric radial vignette to keep typography legible */}
       <div
-        className="absolute inset-0 z-1 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(11, 10, 18, 0.4) 0%, rgba(11, 10, 18, 0.85) 75%, rgba(11, 10, 18, 0.98) 100%)",

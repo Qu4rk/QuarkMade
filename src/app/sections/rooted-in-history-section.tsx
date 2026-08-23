@@ -21,7 +21,7 @@ export default function RootedInHistorySection() {
   const glowOpacity = useTransform(smoothProgress, [0, 0.45, 1], [0.15, 0.55, 0.15]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="quietide-showcase">
+    <section ref={sectionRef} className="block bg-transparent relative overflow-hidden [perspective:1400px]" id="quietide-showcase">
       {/* Background Ambient Glow Drifting with Scroll */}
       <motion.div
         style={{ opacity: glowOpacity }}

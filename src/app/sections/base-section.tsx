@@ -249,7 +249,7 @@ export default function BaseSection() {
   ));
 
   return (
-    <section ref={sectionRef} className="block bg-background py-20 md:py-28 px-4 sm:px-6 max-md:py-16 overflow-hidden [perspective:1400px]" id="journal">
+    <section ref={sectionRef} className="block bg-transparent py-20 md:py-28 px-4 sm:px-6 max-md:py-16 overflow-hidden [perspective:1400px]" id="journal">
       <div className="flex flex-col gap-10 mx-auto w-full max-w-screen">
         {/* Header with ProjectBadge and Studio Journal Heading */}
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
