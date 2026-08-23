@@ -4,12 +4,9 @@ import { useState } from "react";
 import QuarkLogo from "../components/QuarkLogo";
 import Icon from "../svgs/svg-icon";
 import Icon2 from "../svgs/svg-icon2";
-import Icon3 from "../svgs/svg-icon3";
-import Icon4 from "../svgs/svg-icon4";
 
-/** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and interactive panels. */
+/** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and streamlined actions. */
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -18,35 +15,6 @@ export default function Navbar() {
       id="header"
     >
       <div className="flex relative px-6 justify-between items-center mx-auto w-full max-w-screen max-md:px-4">
-        {/* Mobile Search Overlay */}
-        <div
-          className={`fixed inset-0 isolate min-w-0 flex-col bg-[#0B0A12] text-white h-screen z-50 lg:hidden transition-opacity duration-300 ${
-            isSearchOpen ? "flex opacity-100" : "hidden opacity-0 pointer-events-none"
-          }`}
-          aria-label="Search"
-          id="mobile-search-overlay"
-          role="search"
-        >
-          <div className="flex pt-6 px-4 justify-end">
-            <button
-              onClick={() => setIsSearchOpen(false)}
-              className="p-3 text-white/80 hover:text-white uppercase text-xs [font-family:'Satoshi',_sans-serif] font-normal tracking-wider cursor-pointer"
-            >
-              Close ✕
-            </button>
-          </div>
-          <div className="flex pt-12 pb-10 px-6 flex-col flex-1 gap-10 overflow-auto">
-            <div className="border-b border-solid border-white/20 flex min-w-0 py-3 px-1 items-center gap-3 h-12">
-              <input
-                className="w-full h-full block min-w-0 flex-1 overflow-clip text-white placeholder:text-white/40 [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
-                placeholder="Search projects (Chronotomi, Lumina, QuieTide), articles..."
-                type="text"
-                autoFocus={isSearchOpen}
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Desktop Left Nav Links */}
         <div className="block basis-2/5 max-lg:hidden">
           <div className="flex items-center gap-3 h-full">
@@ -143,78 +111,28 @@ export default function Navbar() {
           <QuarkLogo size={48} showText={true} />
         </a>
 
-        {/* Mobile Search Icon Button */}
+        {/* Mobile Right CTA */}
         <div className="hidden min-w-0 justify-end items-center basis-1/5 max-lg:flex">
-          <button
-            onClick={() => setIsSearchOpen(true)}
-            className="flex z-10 justify-center items-center text-center cursor-pointer h-8 w-8 hover:opacity-80 transition-opacity"
-            aria-controls="mobile-search-overlay"
-            aria-expanded={isSearchOpen}
-            aria-label="Search"
-            type="button"
+          <a
+            href="#inquire"
+            className="inline-flex items-center justify-center py-1.5 px-3.5 [font-family:'Satoshi',_sans-serif] text-[0.75rem] font-semibold tracking-wider uppercase whitespace-nowrap bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] transition-all duration-150 shadow-[0_0_10px_rgba(68,66,219,0.3)]"
           >
-            <Icon3 />
-          </button>
+            Inquire
+          </a>
         </div>
 
         {/* Desktop Right Nav Links */}
         <div className="flex justify-end items-center basis-2/5 gap-3 max-lg:hidden" data-ditto-id="motion-div">
-          <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
-            data-component="button"
-            aria-controls="header-search-panel"
-            aria-expanded={isSearchOpen}
-            type="button"
-          >
-            Search
-          </button>
           <a
-            className="inline-flex items-center justify-center py-2 px-4 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-semibold leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150"
+            className="inline-flex items-center justify-center py-2 px-5 [font-family:'Satoshi',_sans-serif] font-semibold text-[0.8125rem] leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150"
             data-component="link"
             href="#inquire"
           >
             Start a Project
           </a>
         </div>
-
-        {/* Desktop Search Panel */}
-        <div
-          className={`h-30 block absolute top-20 left-1/2 -translate-x-1/2 z-30 min-w-0 overflow-auto bg-[#0B0A12] border border-white/15 rounded-2xl shadow-2xl max-h-[calc(95vh-120px)] w-[90vw] max-w-4xl max-lg:hidden transition-all duration-300 ${
-            isSearchOpen
-              ? "opacity-100 pointer-events-auto translate-y-0"
-              : "opacity-0 pointer-events-none -translate-y-4"
-          }`}
-          aria-label="Search"
-          id="header-search-panel"
-          role="search"
-        >
-          <div className="flex pt-6 pb-12 px-6 flex-col gap-12">
-            <div className="flex items-center gap-6">
-              <div className="border-b border-solid border-b-white/20 flex py-3 px-1 items-center flex-1 gap-3 h-12">
-                <input
-                  className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-white placeholder:text-white/40 [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none bg-transparent"
-                  data-ditto-id="style-input-2"
-                  data-component="input"
-                  placeholder="Search works (Chronotomi, Lumina Living, QuieTide), studio capabilities, journal..."
-                  type="text"
-                  autoFocus={isSearchOpen}
-                />
-              </div>
-              <button
-                onClick={() => setIsSearchOpen(false)}
-                className="flex rounded-full justify-center items-center shrink-0 gap-2 text-white/80 hover:text-white [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-9 w-9 hover:bg-white/10 transition-colors"
-                data-ditto-id="motion-close"
-                data-component="button"
-                aria-label="Close"
-                type="button"
-              >
-                <Icon4 />
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </header>
   );
 }
+
