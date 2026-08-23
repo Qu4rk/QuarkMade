@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
 import Topography from "../components/ui/Topography";
+import BorderBeam from "../components/ui/BorderBeam";
 
 /** Project Inquiry and Client Commission Section with WebGL Topography Background. */
 export default function StayInTheSection() {
@@ -70,7 +71,8 @@ export default function StayInTheSection() {
         </div>
 
         {submitted ? (
-          <div data-reveal className="p-8 rounded-lg bg-white/10 border border-[#D4AF37]/50 text-center max-w-md backdrop-blur-md">
+          <div data-reveal className="p-8 rounded-2xl bg-white/10 border border-[#D4AF37]/50 text-center max-w-md backdrop-blur-md relative overflow-hidden">
+            <BorderBeam size={220} duration={8} colorFrom="#D4AF37" colorTo="#F3E5AB" />
             <div className="text-3xl mb-2 text-[#D4AF37]">✦</div>
             <h3 className="[font-family:'Satoshi',_sans-serif] text-lg font-bold uppercase tracking-wider text-white mb-2">
               Inquiry Received
@@ -83,9 +85,12 @@ export default function StayInTheSection() {
           <form
             onSubmit={handleSubmit}
             data-reveal
-            className="w-full max-w-xl flex flex-col gap-4 p-6 md:p-8 rounded-lg bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl"
+            className="w-full max-w-xl flex flex-col gap-4 p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Luminous Animated Border Beam Tracing along perimeter */}
+            <BorderBeam size={300} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-1">
               <div className="flex flex-col gap-2">
                 <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-name">
                   Your Name
@@ -117,7 +122,7 @@ export default function StayInTheSection() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative z-1">
               <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-message">
                 Project Scope / Timeline
               </label>
@@ -131,7 +136,7 @@ export default function StayInTheSection() {
               />
             </div>
 
-            <div className="flex justify-end mt-2">
+            <div className="flex justify-end mt-2 relative z-1">
               <Button type="submit" variant="gold" className="w-full md:w-auto">
                 Submit Project Inquiry
               </Button>

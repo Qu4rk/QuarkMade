@@ -40,3 +40,14 @@
   animation: hero-flare-pulse 4s ease-in-out infinite;
   will-change: transform, opacity;
 }
+
+/* Luminous Border Beam Effect */
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam var(--duration, 10s) infinite linear;
+}
