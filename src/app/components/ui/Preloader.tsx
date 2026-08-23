@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
  * 100% GPU-Composited Studio Preloader for QuarkMade:
  * - Pure hardware-accelerated CSS animations (zero JS timer drift or layout snapping)
  * - Exact official logo colors: Pure White (#FFFFFF) & Electric Purple (#4442DB)
- * - Coordinated Lenis scroll locking & smooth curtain exit
+ * - Coordinated Lenis scroll locking & clean curtain exit with zero residual artifacts
  */
 export default function Preloader() {
   const [active, setActive] = useState(true);
@@ -24,7 +24,7 @@ export default function Preloader() {
 
     // Smooth counter
     const start = performance.now();
-    const duration = 1800;
+    const duration = 1600;
     let rafId: number;
 
     const updateCounter = (now: number) => {
@@ -39,7 +39,7 @@ export default function Preloader() {
 
     rafId = requestAnimationFrame(updateCounter);
 
-    // Release scroll at exit start (1.85s)
+    // Release scroll at exit start (1.8s)
     const scrollTimer = setTimeout(() => {
       if (typeof window !== "undefined") {
         document.documentElement.style.overflow = "";
@@ -47,7 +47,7 @@ export default function Preloader() {
         const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
         if (lenis) lenis.start();
       }
-    }, 1850);
+    }, 1800);
 
     // Unmount after curtain completely clears (2.6s)
     const removeTimer = setTimeout(() => {
@@ -104,33 +104,21 @@ export default function Preloader() {
           0% { transform: translateY(0%); }
           100% { transform: translateY(100%); }
         }
-        @keyframes q-glow-pulse {
-          0%, 100% { opacity: 0.3; transform: scale(0.95); }
-          50% { opacity: 0.6; transform: scale(1.1); }
-        }
       `}</style>
 
       {/* Top Shutter Curtain Panel */}
       <div
-        className="absolute inset-x-0 top-0 h-1/2 bg-[#0B0A12] z-0 will-change-transform"
+        className="absolute inset-x-0 top-0 h-1/2 bg-[#0B0A12] z-10 will-change-transform border-b border-white/[0.02]"
         style={{
-          animation: "q-shutter-top 0.8s cubic-bezier(0.83, 0, 0.17, 1) 1.85s forwards",
+          animation: "q-shutter-top 0.75s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards",
         }}
       />
 
       {/* Bottom Shutter Curtain Panel */}
       <div
-        className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0B0A12] z-0 will-change-transform"
+        className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0B0A12] z-10 will-change-transform border-t border-white/[0.02]"
         style={{
-          animation: "q-shutter-bottom 0.8s cubic-bezier(0.83, 0, 0.17, 1) 1.85s forwards",
-        }}
-      />
-
-      {/* Ambient Electric Purple Halo */}
-      <div
-        className="absolute w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-[#4442DB]/35 via-[#635BFF]/15 to-transparent blur-[110px] pointer-events-none z-10"
-        style={{
-          animation: "q-glow-pulse 2.2s ease-in-out infinite, q-center-exit 0.4s ease-out 1.75s forwards",
+          animation: "q-shutter-bottom 0.75s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards",
         }}
       />
 
@@ -138,7 +126,7 @@ export default function Preloader() {
       <div
         className="relative z-20 flex flex-col items-center justify-center gap-8 px-6 text-center will-change-transform"
         style={{
-          animation: "q-center-exit 0.45s ease-out 1.75s forwards",
+          animation: "q-center-exit 0.35s ease-out 1.55s forwards",
         }}
       >
         {/* Row: Emblem + Divider + Typography */}
@@ -162,7 +150,7 @@ export default function Preloader() {
                 strokeDasharray="251.32"
                 style={{
                   transformOrigin: "center",
-                  animation: "q-draw-outer 1.1s cubic-bezier(0.83, 0, 0.17, 1) forwards",
+                  animation: "q-draw-outer 1.0s cubic-bezier(0.83, 0, 0.17, 1) forwards",
                 }}
               />
 
@@ -177,7 +165,7 @@ export default function Preloader() {
                 strokeDasharray="169.64"
                 style={{
                   transformOrigin: "center",
-                  animation: "q-draw-inner 1.25s cubic-bezier(0.83, 0, 0.17, 1) 0.05s forwards",
+                  animation: "q-draw-inner 1.15s cubic-bezier(0.83, 0, 0.17, 1) 0.05s forwards",
                 }}
               />
 
@@ -189,7 +177,7 @@ export default function Preloader() {
                 strokeLinecap="round"
                 strokeDasharray="48"
                 style={{
-                  animation: "q-draw-tail 0.5s cubic-bezier(0.83, 0, 0.17, 1) 0.75s forwards",
+                  animation: "q-draw-tail 0.45s cubic-bezier(0.83, 0, 0.17, 1) 0.7s forwards",
                   strokeDashoffset: 50,
                   opacity: 0,
                 }}
@@ -203,7 +191,7 @@ export default function Preloader() {
                 strokeLinecap="round"
                 strokeDasharray="36"
                 style={{
-                  animation: "q-draw-tail 0.5s cubic-bezier(0.83, 0, 0.17, 1) 0.8s forwards",
+                  animation: "q-draw-tail 0.45s cubic-bezier(0.83, 0, 0.17, 1) 0.75s forwards",
                   strokeDashoffset: 40,
                   opacity: 0,
                 }}
@@ -215,7 +203,7 @@ export default function Preloader() {
           <div
             className="w-[1.5px] h-10 sm:h-12 bg-gradient-to-b from-white/90 via-white/40 to-[#4442DB] origin-top shrink-0"
             style={{
-              animation: "q-divider-expand 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0.8s forwards",
+              animation: "q-divider-expand 0.55s cubic-bezier(0.83, 0, 0.17, 1) 0.75s forwards",
               transform: "scaleY(0)",
               opacity: 0,
             }}
@@ -225,7 +213,7 @@ export default function Preloader() {
           <div
             className="flex flex-col items-start justify-center text-left whitespace-nowrap min-w-[170px] sm:min-w-[210px]"
             style={{
-              animation: "q-typography-reveal 0.65s cubic-bezier(0.83, 0, 0.17, 1) 0.85s forwards",
+              animation: "q-typography-reveal 0.6s cubic-bezier(0.83, 0, 0.17, 1) 0.8s forwards",
               opacity: 0,
             }}
           >
