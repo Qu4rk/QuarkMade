@@ -70,6 +70,8 @@ export interface TextLoopProps {
   ribbon?: boolean;
   ribbonColor?: string;
   ribbonWidth?: number;
+  ribbonBorder?: boolean;
+  ribbonBorderColor?: string;
   pauseOnHover?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -92,6 +94,8 @@ export default function TextLoop({
   ribbon = true,
   ribbonColor = "#5227FF",
   ribbonWidth = 86,
+  ribbonBorder = false,
+  ribbonBorderColor = "rgba(255, 255, 255, 0.22)",
   pauseOnHover = true,
   className = "",
   style = {},
@@ -215,6 +219,19 @@ export default function TextLoop({
         role="img"
         aria-label={text}
       >
+        {/* Optional Glass Border Edge */}
+        {ribbon && ribbonBorder && (
+          <path
+            d={d}
+            fill="none"
+            stroke={ribbonBorderColor}
+            strokeWidth={ribbonWidth + 1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity={0.7}
+          />
+        )}
+
         <path
           ref={pathRef}
           id={pathId}

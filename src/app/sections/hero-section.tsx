@@ -122,14 +122,14 @@ export default function HeroSection() {
           >
             {/* React Bits TextLoop: Weaving through the sunset clouds from behind left cloud into right cloud */}
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.96 }}
+              initial={{ opacity: 0, y: -16, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-5xl relative -mb-3 sm:-mb-4 md:-mb-5 select-none pointer-events-auto"
+              className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto"
             >
               {/* Foreground Cloud Occlusion & Atmospheric Dissolve Mask */}
               <div
-                className="w-full relative overflow-hidden"
+                className="w-full relative overflow-hidden backdrop-blur-[2px]"
                 style={{
                   maskImage:
                     "linear-gradient(to right, transparent 0%, transparent 5%, black 18%, black 82%, transparent 95%, transparent 100%)",
@@ -140,20 +140,22 @@ export default function HeroSection() {
                 <TextLoop
                   text="HIGH-CRAFT DIGITAL ARCHITECTURE # BESPOKE WEB EXPERIENCES # EST. MMXXIV # DIGITAL SANCTUARIES"
                   separator="#"
-                  path="M -140 105 Q 600 12 1340 105"
-                  viewBox="0 0 1200 120"
-                  speed={75}
+                  path="M -140 92 Q 600 6 1340 92"
+                  viewBox="0 0 1200 105"
+                  speed={70}
                   direction="forward"
-                  fontSize={14}
+                  fontSize={13.5}
                   fontWeight={500}
-                  letterSpacing={3}
+                  letterSpacing={2.8}
                   uppercase={true}
-                  color="#F3E5AB"
+                  color="#FFFFFF"
                   ribbon={true}
-                  ribbonColor="rgba(15, 11, 28, 0.75)"
-                  ribbonWidth={44}
+                  ribbonColor="rgba(255, 255, 255, 0.08)"
+                  ribbonBorder={true}
+                  ribbonBorderColor="rgba(255, 255, 255, 0.18)"
+                  ribbonWidth={40}
                   pauseOnHover={true}
-                  className="w-full drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
+                  className="w-full drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
                 />
               </div>
 
@@ -162,7 +164,7 @@ export default function HeroSection() {
                 className="absolute -left-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 20% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.4) 45%, transparent 70%)",
+                    "radial-gradient(ellipse at 20% 50%, rgba(56, 32, 78, 0.75) 0%, rgba(42, 24, 84, 0.45) 45%, transparent 70%)",
                   filter: "blur(24px)",
                 }}
               />
@@ -172,7 +174,7 @@ export default function HeroSection() {
                 className="absolute -right-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.4) 45%, transparent 70%)",
+                    "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.75) 0%, rgba(42, 24, 84, 0.45) 45%, transparent 70%)",
                   filter: "blur(24px)",
                 }}
               />
