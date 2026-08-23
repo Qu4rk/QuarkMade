@@ -21,7 +21,7 @@ export default function QuarkLogo({ className = "", showText = true, size = 46 }
         style={{ width: size, height: size }}
       >
         <img
-          src="/assets/branding/quark-logo.png"
+          src="/assets/branding/quark-logo.webp"
           alt="QuarkMade Logo"
           width={size}
           height={size}

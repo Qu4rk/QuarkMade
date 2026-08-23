@@ -10,7 +10,7 @@ const galleryData = [
   {
     category: "CHRONOTOMI / HAUTE HORLOGERIE",
     title: "Precision Timepiece Showcase & Dial Inspection",
-    src: "/assets/portfolio/chronotomi_collection.png",
+    src: "/assets/portfolio/chronotomi_collection.webp",
     link: "http://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
@@ -47,7 +47,7 @@ const galleryData = [
   {
     category: "LUMINA LIVING / SPATIAL ARCHITECTURE",
     title: "Curated Interior Identity & Signature Living",
-    src: "/assets/portfolio/lumina_signature_living.png",
+    src: "/assets/portfolio/lumina_signature_living.webp",
     link: "http://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
@@ -84,7 +84,7 @@ const galleryData = [
   {
     category: "QUIETIDE / WEBGL EXPERIENCE",
     title: "Contemplative Pacing & WebGL Shaders",
-    src: "/assets/portfolio/quietide_capture_space.png",
+    src: "/assets/portfolio/quietide_capture_space.webp",
     link: "https://qu4rk.github.io/quietide-website/",
     projectName: "QuieTide",
     content: (
@@ -121,7 +121,7 @@ const galleryData = [
   {
     category: "CHRONOTOMI / THE STANDARD",
     title: "The Standard of Precision & Advisory",
-    src: "/assets/portfolio/chronotomi_standard.png",
+    src: "/assets/portfolio/chronotomi_standard.webp",
     link: "http://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
@@ -158,7 +158,7 @@ const galleryData = [
   {
     category: "LUMINA LIVING / RESIDENTIAL SANCTUARY",
     title: "Atmospheric Lighting & Spatial Harmony",
-    src: "/assets/portfolio/lumina_atmosphere.png",
+    src: "/assets/portfolio/lumina_atmosphere.webp",
     link: "http://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
@@ -195,7 +195,7 @@ const galleryData = [
   {
     category: "QUIETIDE / COASTAL STILLNESS",
     title: "Quiet Seas, Clear Mind Experience",
-    src: "/assets/portfolio/quietide_hero.png",
+    src: "/assets/portfolio/quietide_hero.webp",
     link: "https://qu4rk.github.io/quietide-website/",
     projectName: "QuieTide",
     content: (

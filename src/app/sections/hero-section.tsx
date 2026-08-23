@@ -87,7 +87,7 @@ export default function HeroSection() {
           >
             <SeamlessVideo
               src="/assets/branding/hero_vid.mp4"
-              poster="/assets/branding/hero-sunset.jpg"
+              poster="/assets/branding/hero-sunset.webp"
               fadeDuration={1.3}
               className="object-center align-middle scale-105"
             />
@@ -128,16 +128,7 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Layer 4: Tactile Film Grain Texture (High-Performance GPU WebP) */}
-        <div
-          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none opacity-15 mix-blend-overlay"
-          style={{
-            backgroundImage: `url("https://assets.aceternity.com/noise.webp")`,
-            backgroundRepeat: "repeat",
-          }}
-        />
-
-        {/* Layer 5: Vertically Centered Editorial Hero Content */}
+        {/* Layer 4: Vertically Centered Editorial Hero Content */}
         <div className="h-full flex flex-col justify-center items-center pt-24 pb-16 px-6 relative z-3 mx-auto max-w-screen max-md:pt-20 max-md:pb-12 max-md:px-4">
           <div
             data-reveal

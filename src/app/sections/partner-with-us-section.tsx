@@ -63,7 +63,7 @@ export default function PartnerWithUsSection() {
         <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
           <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
             <img
-              src="/assets/portfolio/logos/chronotomi-logo.png"
+              src="/assets/portfolio/logos/chronotomi-logo.webp"
               alt="Chronotomi"
               className="h-10 sm:h-12 md:h-14 w-auto object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
             />
@@ -99,7 +99,7 @@ export default function PartnerWithUsSection() {
                 <img
                   className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                   alt="Chronotomi Haute Horlogerie Showcase"
-                  src="/assets/portfolio/chronotomi_timepieces_hero.png"
+                  src="/assets/portfolio/chronotomi_timepieces_hero.webp"
                 />
               </motion.div>
               {/* Subtle Contrast Gradient */}
@@ -116,7 +116,7 @@ export default function PartnerWithUsSection() {
                     {/* Official Chronotomi Logo */}
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
                       <img
-                        src="/assets/portfolio/logos/chronotomi-logo.png"
+                        src="/assets/portfolio/logos/chronotomi-logo.webp"
                         alt="Chronotomi Logo"
                         className="w-full h-full object-contain"
                       />

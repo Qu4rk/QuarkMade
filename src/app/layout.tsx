@@ -16,7 +16,7 @@ export const metadata = {
       "QuarkMade designs bespoke, high-performance digital flagships where brand prestige, motion craftsmanship, and technical rigor unite.",
     type: "website",
     siteName: "QuarkMade",
-    images: ["/assets/branding/hero-sunset.jpg"],
+    images: ["/assets/branding/hero-sunset.webp"],
   },
   twitter: {
     card: "summary_large_image",
@@ -24,12 +24,12 @@ export const metadata = {
     description:
       "Bespoke web design and interactive digital flagships by QuarkMade.",
     site: "@quarkmade",
-    images: ["/assets/branding/hero-sunset.jpg"],
+    images: ["/assets/branding/hero-sunset.webp"],
   },
   icons: {
     icon: [
       {
-        url: "/assets/branding/quark-logo.png",
+        url: "/assets/branding/quark-logo.webp",
       },
     ],
   },

@@ -17,14 +17,14 @@ export default function WhereVisionAndSection() {
               <img
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
-                src="/assets/portfolio/craft_harbor_atmosphere.jpg"
+                src="/assets/portfolio/craft_harbor_atmosphere.webp"
               />
             </div>
             <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:block">
               <img
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
-                src="/assets/portfolio/craft_harbor_atmosphere.jpg"
+                src="/assets/portfolio/craft_harbor_atmosphere.webp"
               />
             </div>
           </div>
