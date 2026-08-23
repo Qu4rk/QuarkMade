@@ -279,7 +279,7 @@ export default function BaseSection() {
             data-reveal
             className="w-full"
           >
-            <Carousel items={cards} />
+            <Carousel items={cards} cardsData={galleryData} />
           </motion.div>
         </div>
 
