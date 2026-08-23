@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 import SeamlessVideo from "../components/SeamlessVideo";
+import TextLoop from "../components/ui/TextLoop";
 
 /**
  * Immersive, multi-layered Hero Section featuring:
@@ -119,20 +120,62 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-5 md:gap-6 text-white"
           >
-            {/* Studio Editorial Tagline Badge */}
+            {/* React Bits TextLoop: Weaving through the sunset clouds from behind left cloud into right cloud */}
             <motion.div
-              initial={{ opacity: 0, y: -16, scale: 0.95 }}
+              initial={{ opacity: 0, y: -10, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-5xl relative -mb-3 sm:-mb-4 md:-mb-5 select-none pointer-events-auto"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]" />
-              </span>
-              <span className="[font-family:'Satoshi',_sans-serif] text-[10px] sm:text-xs tracking-[0.25em] uppercase text-white/90 font-normal">
-                HIGH-CRAFT DIGITAL ARCHITECTURE · EST. MMXXIV
-              </span>
+              {/* Foreground Cloud Occlusion & Atmospheric Dissolve Mask */}
+              <div
+                className="w-full relative overflow-hidden"
+                style={{
+                  maskImage:
+                    "linear-gradient(to right, transparent 0%, transparent 5%, black 18%, black 82%, transparent 95%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to right, transparent 0%, transparent 5%, black 18%, black 82%, transparent 95%, transparent 100%)",
+                }}
+              >
+                <TextLoop
+                  text="HIGH-CRAFT DIGITAL ARCHITECTURE # BESPOKE WEB EXPERIENCES # EST. MMXXIV # DIGITAL SANCTUARIES"
+                  separator="#"
+                  path="M -140 105 Q 600 12 1340 105"
+                  viewBox="0 0 1200 120"
+                  speed={75}
+                  direction="forward"
+                  fontSize={14}
+                  fontWeight={500}
+                  letterSpacing={3}
+                  uppercase={true}
+                  color="#F3E5AB"
+                  ribbon={true}
+                  ribbonColor="rgba(15, 11, 28, 0.75)"
+                  ribbonWidth={44}
+                  pauseOnHover={true}
+                  className="w-full drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
+                />
+              </div>
+
+              {/* Left Cloud Bank Depth Occlusion Layer */}
+              <div
+                className="absolute -left-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 20% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.4) 45%, transparent 70%)",
+                  filter: "blur(24px)",
+                }}
+              />
+
+              {/* Right Cloud Bank Depth Occlusion Layer */}
+              <div
+                className="absolute -right-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.4) 45%, transparent 70%)",
+                  filter: "blur(24px)",
+                }}
+              />
             </motion.div>
 
             {/* Main Headline: Satoshi Regular + Chillax Rotating Text */}
