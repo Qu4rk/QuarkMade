@@ -17,47 +17,10 @@ export default function PartnerWithUsSection() {
   const cardRotateX = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [18, 0, 0, -14]);
   const cardScale = useTransform(smoothProgress, [0, 0.45, 0.85, 1], [0.86, 1, 1, 0.9]);
   const cardY = useTransform(smoothProgress, [0, 0.45, 1], [80, 0, -50]);
-  const dialRotation = useTransform(smoothProgress, [0, 1], [0, 540]);
-  const counterRotation = useTransform(smoothProgress, [0, 1], [0, -360]);
   const imageY = useTransform(smoothProgress, [0, 1], ["-14%", "14%"]);
 
   return (
     <section ref={sectionRef} className="block bg-transparent relative overflow-hidden [perspective:1400px]" id="works">
-      {/* Background Kinetic Horological Dial Vectors Rotating with Scroll */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[950px] h-[950px] pointer-events-none opacity-[0.16] select-none">
-        <motion.svg
-          style={{ rotate: dialRotation }}
-          className="w-full h-full text-foreground fill-none stroke-current"
-          viewBox="0 0 400 400"
-        >
-          <circle cx="200" cy="200" r="190" strokeWidth="1.2" strokeDasharray="4 8" />
-          <circle cx="200" cy="200" r="160" strokeWidth="1" strokeDasharray="1 5" />
-          <circle cx="200" cy="200" r="130" strokeWidth="1.8" />
-          <circle cx="200" cy="200" r="90" strokeWidth="1.2" strokeDasharray="6 6" />
-          {/* Tick marks */}
-          {Array.from({ length: 24 }).map((_, i) => (
-            <line
-              key={i}
-              x1="200"
-              y1="10"
-              x2="200"
-              y2="22"
-              strokeWidth="1.8"
-              transform={`rotate(${i * 15} 200 200)`}
-            />
-          ))}
-        </motion.svg>
-        <motion.svg
-          style={{ rotate: counterRotation }}
-          className="absolute inset-0 w-full h-full text-[#D4AF37] fill-none stroke-current opacity-70"
-          viewBox="0 0 400 400"
-        >
-          <circle cx="200" cy="200" r="75" strokeWidth="1.5" strokeDasharray="3 6" />
-          <line x1="200" y1="125" x2="200" y2="275" strokeWidth="1" />
-          <line x1="125" y1="200" x2="275" y2="200" strokeWidth="1" />
-        </motion.svg>
-      </div>
-
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
         {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
         <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">

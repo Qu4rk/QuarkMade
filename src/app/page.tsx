@@ -25,14 +25,15 @@ export default function Page() {
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-70">
         <Ferrofluid
           colors={["#4442DB", "#7C3AED", "#D4AF37", "#F3E5AB"]}
-          speed={0.45}
-          scale={1.4}
-          turbulence={0.9}
+          speed={0.4}
+          scale={1.5}
+          turbulence={0.85}
           fluidity={0.12}
           rimWidth={0.22}
-          sharpness={3}
-          shimmer={1.2}
-          glow={2.2}
+          sharpness={2.8}
+          shimmer={1.0}
+          glow={2.0}
+          dpr={0.65}
           flowDirection="down"
           opacity={0.85}
           mouseInteraction={true}

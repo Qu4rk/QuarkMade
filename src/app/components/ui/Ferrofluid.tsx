@@ -215,23 +215,23 @@ export interface FerrofluidProps {
 
 export default function Ferrofluid({
   className,
-  dpr,
+  dpr = 0.65,
   paused = false,
   colors = ["#4442DB", "#7C3AED", "#D4AF37"],
-  speed = 0.5,
-  scale = 1.6,
-  turbulence = 1,
-  fluidity = 0.1,
-  rimWidth = 0.2,
-  sharpness = 2.5,
-  shimmer = 1.5,
-  glow = 2,
+  speed = 0.4,
+  scale = 1.5,
+  turbulence = 0.85,
+  fluidity = 0.12,
+  rimWidth = 0.22,
+  sharpness = 2.8,
+  shimmer = 1.0,
+  glow = 2.0,
   flowDirection = "down",
   opacity = 1,
   mouseInteraction = true,
-  mouseStrength = 1,
+  mouseStrength = 1.2,
   mouseRadius = 0.35,
-  mouseDampening = 0.15,
+  mouseDampening = 0.12,
   mixBlendMode,
   style,
 }: FerrofluidProps) {
@@ -243,15 +243,20 @@ export default function Ferrofluid({
   const rendererRef = useRef<any>(null);
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef<number>(0);
+  const isVisibleRef = useRef<boolean>(true);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    // Use optimized DPR (0.6 - 0.75) for 5x lower GPU fill rate
+    const effectiveDpr = dpr ?? (typeof window !== "undefined" ? Math.min(window.devicePixelRatio * 0.6, 1.0) : 0.75);
+
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1),
+      dpr: effectiveDpr,
       alpha: true,
-      antialias: true,
+      antialias: false,
+      powerPreference: "high-performance",
     });
     rendererRef.current = renderer;
     const gl = renderer.gl;
@@ -260,6 +265,7 @@ export default function Ferrofluid({
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.display = "block";
+    canvas.style.transform = "translateZ(0)";
     container.appendChild(canvas);
 
     const { arr, count, avg } = prepColors(colors);
@@ -327,8 +333,15 @@ export default function Ferrofluid({
       window.addEventListener("pointermove", onPointerMove, { passive: true });
     }
 
+    const onVisibilityChange = () => {
+      isVisibleRef.current = !document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     const loop = (t: number) => {
       rafRef.current = requestAnimationFrame(loop);
+      if (!isVisibleRef.current || paused) return;
+
       uniforms.iTime.value = t * 0.001;
       if (mouseDampening > 0) {
         if (!lastTimeRef.current) lastTimeRef.current = t;
@@ -344,7 +357,8 @@ export default function Ferrofluid({
       } else {
         lastTimeRef.current = t;
       }
-      if (!paused && programRef.current && meshRef.current) {
+
+      if (programRef.current && meshRef.current) {
         try {
           renderer.render({ scene: meshRef.current });
         } catch (e) {
@@ -357,6 +371,7 @@ export default function Ferrofluid({
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (mouseInteraction) window.removeEventListener("pointermove", onPointerMove);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       ro.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
