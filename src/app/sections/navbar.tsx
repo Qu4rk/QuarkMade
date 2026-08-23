@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300 py-4 md:py-5 bg-[#0B0A12]/80 backdrop-blur-md border-b border-white/10"
+      className="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300 py-4 md:py-5 bg-transparent"
       id="header"
     >
       <div className="flex relative px-6 justify-between items-center mx-auto w-full max-w-screen max-md:px-4">

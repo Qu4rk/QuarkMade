@@ -181,7 +181,9 @@
 
 /* Header Scrolled and Subnav Styles */
 #header {
-  transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1), color 0.3s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0, 0, 0.2, 1);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1), border-color 0.3s cubic-bezier(0, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
 #header .nav-sub-pill-active {
