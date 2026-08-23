@@ -113,7 +113,7 @@ export const logos = [
 export const textLinkData = [
   { text: "Privacy Policy", href: "/privacy" },
   { text: "Terms of Service", href: "/terms" },
-  { text: "Contact", href: "mailto:hello@quarkmade.com" },
+  { text: "Contact", href: "mailto:liasides.elias@gmail.com" },
 ];
 
 

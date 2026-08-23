@@ -42,7 +42,7 @@ export default function LogoCloudSection() {
 
             {/* Email Envelope Icon */}
             <a
-              href="mailto:hello@quarkmade.com"
+              href="mailto:liasides.elias@gmail.com"
               aria-label="Send an Email"
               className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110 p-1 flex items-center justify-center"
             >

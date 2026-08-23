@@ -109,8 +109,8 @@ export default function PrivacyPage() {
             </p>
             <div className="p-5 rounded-xl bg-white/5 border border-white/10 w-fit">
               <p className="text-white font-medium">QuarkMade Studio Inquiries</p>
-              <a href="mailto:hello@quarkmade.com" className="text-[#D4AF37] hover:underline">
-                hello@quarkmade.com
+              <a href="mailto:liasides.elias@gmail.com" className="text-[#D4AF37] hover:underline">
+                liasides.elias@gmail.com
               </a>
             </div>
           </section>
