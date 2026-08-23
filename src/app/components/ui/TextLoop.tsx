@@ -84,7 +84,7 @@ export default function TextLoop({
   viewBox,
   speed = 90,
   direction = "forward",
-  separator = "#",
+  separator = "·",
   curviness = 90,
   fontSize = 46,
   fontWeight = 800,

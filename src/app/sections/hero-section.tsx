@@ -108,8 +108,8 @@ export default function HeroSection() {
                 }}
               >
                 <TextLoop
-                  text="HIGH-CRAFT DIGITAL ARCHITECTURE # BESPOKE WEB EXPERIENCES # EST. MMXXIV # DIGITAL SANCTUARIES"
-                  separator="#"
+                  text="HIGH-CRAFT DIGITAL ARCHITECTURE · BESPOKE WEB EXPERIENCES · EST. MMXXIV · DIGITAL SANCTUARIES"
+                  separator="·"
                   path="M -140 92 Q 600 6 1340 92"
                   viewBox="0 0 1200 105"
                   speed={70}
