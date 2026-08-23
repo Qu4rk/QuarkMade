@@ -63,7 +63,7 @@ export default function StayInTheSection() {
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
           <ProjectBadge label="COMMISSIONS & INQUIRIES" />
           <h2 className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white mt-2" data-component="heading">
-            Start a project with <span className="text-[#F3E5AB]">QuarkMade</span>
+            Start a project with <span className="[font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">QuarkMade</span>
           </h2>
           <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 leading-relaxed">
             Have a project in mind? We partner with ambitious founders, luxury brands, and visionary teams to engineer digital flagships that set new benchmarks.
