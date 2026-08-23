@@ -18,46 +18,38 @@ import TextLoop from "../components/ui/TextLoop";
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
 
-  // Scroll-linked 3D Cinema exit transform (Directly mapped to Lenis inertial scroll for 120fps zero-lag performance)
+  // Scroll-linked cinema exit transform (Directly hardware-composited for 120fps zero-lag performance)
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
-  const heroRotateX = useTransform(scrollYProgress, [0, 1], [0, 10]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.96, 0.4]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 0.95, 0.4]);
 
   return (
     <section
       ref={heroRef}
-      className="block relative bg-background overflow-hidden select-none [perspective:1400px]"
+      className="block relative bg-background overflow-hidden select-none"
       id="hero"
     >
       <motion.div
         style={{
           scale: heroScale,
-          rotateX: heroRotateX,
           y: heroY,
           opacity: heroOpacity,
           transformOrigin: "center bottom",
         }}
-        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] shadow-2xl bg-foreground will-change-transform transform-gpu [backface-visibility:hidden]"
+        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] border-b border-white/10 bg-foreground will-change-transform transform-gpu [contain:paint]"
       >
         {/* Layer 1: Hardware-Accelerated Video Background with Zero-Overhead Looping */}
-        <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none will-change-transform transform-gpu [contain:paint]">
-          <div
-            data-parallax
-            data-parallax-speed="0.2"
-            className="h-[125%] w-full block absolute -top-[12%] inset-x-0"
-          >
-            <SeamlessVideo
-              src="/assets/branding/hero_vid.mp4"
-              poster="/assets/branding/hero-sunset.webp"
-              className="object-center align-middle scale-105"
-            />
-          </div>
+        <div className="h-full w-full block absolute inset-0 overflow-hidden pointer-events-none will-change-transform transform-gpu [contain:paint]">
+          <SeamlessVideo
+            src="/assets/branding/hero_vid.mp4"
+            poster="/assets/branding/hero-sunset.webp"
+            className="object-center align-middle scale-105"
+          />
         </div>
 
         {/* Layer 2: Ambient Twilight Horizon Bloom */}

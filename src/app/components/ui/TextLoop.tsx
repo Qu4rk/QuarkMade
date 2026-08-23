@@ -103,10 +103,9 @@ export default function TextLoop({
   const rootRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const measureRef = useRef<SVGTextElement>(null);
-  const headRef = useRef<SVGTextPathElement>(null);
-  const tailRef = useRef<SVGTextPathElement>(null);
+  const textPathRef = useRef<SVGTextPathElement>(null);
 
-  const [metrics, setMetrics] = useState({ length: 0, reps: 1 });
+  const [metrics, setMetrics] = useState({ pathLength: 0, unitWidth: 0, reps: 4 });
 
   const rawId = useId();
   const pathId = `text-loop-${rawId.replace(/:/g, "")}`;
@@ -118,7 +117,7 @@ export default function TextLoop({
 
   const unit = useMemo(() => {
     const base = uppercase ? String(text).toUpperCase() : String(text);
-    const gap = separator ? `\u00A0${separator}\u00A0` : "\u00A0\u00A0\u00A0";
+    const gap = separator ? `\u00A0\u00A0${separator}\u00A0\u00A0` : "\u00A0\u00A0\u00A0";
     return `${base}${gap}`;
   }, [text, separator, uppercase]);
 
@@ -138,18 +137,22 @@ export default function TextLoop({
 
     const measure = () => {
       if (cancelled) return;
-      let length = 0;
+      let pathLength = 0;
       let unitWidth = 0;
       try {
-        length = pathEl.getTotalLength();
+        pathLength = pathEl.getTotalLength();
         unitWidth = measureEl.getComputedTextLength();
       } catch {
         return;
       }
-      if (!length) return;
+      if (!pathLength || !unitWidth) return;
 
-      const reps = unitWidth > 0 ? Math.max(1, Math.round(length / unitWidth)) : 1;
-      setMetrics((prev) => (prev.length === length && prev.reps === reps ? prev : { length, reps }));
+      const reps = Math.max(3, Math.ceil((pathLength + 2 * unitWidth) / unitWidth) + 2);
+      setMetrics((prev) =>
+        prev.pathLength === pathLength && prev.unitWidth === unitWidth && prev.reps === reps
+          ? prev
+          : { pathLength, unitWidth, reps }
+      );
     };
 
     measure();
@@ -163,30 +166,30 @@ export default function TextLoop({
   }, [d, unit, fontSize, fontWeight, letterSpacing]);
 
   useEffect(() => {
-    const { length } = metrics;
-    const head = headRef.current;
-    const tail = tailRef.current;
-    if (!head || !tail || !length) return undefined;
-
-    const apply = (offset: number) => {
-      const partner = offset >= 0 ? offset - length : offset + length;
-      head.setAttribute("startOffset", String(offset));
-      tail.setAttribute("startOffset", String(partner));
-    };
-
-    apply(0);
+    const { unitWidth } = metrics;
+    const textPath = textPathRef.current;
+    if (!textPath || !unitWidth) return undefined;
 
     const prefersReduced =
       typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced || speed <= 0) return undefined;
 
-    const state = { offset: 0 };
+    // Zero-pop seamless wrap: startOffset moves exactly one unitWidth distance
+    const isForward = direction === "forward";
+    const startVal = isForward ? -unitWidth : 0;
+    const endVal = isForward ? 0 : -unitWidth;
+
+    const state = { offset: startVal };
+    textPath.setAttribute("startOffset", `${startVal}px`);
+
     const tween = gsap.to(state, {
-      offset: direction === "reverse" ? -length : length,
-      duration: length / speed,
+      offset: endVal,
+      duration: unitWidth / speed,
       ease: "none",
       repeat: -1,
-      onUpdate: () => apply(state.offset),
+      onUpdate: () => {
+        textPath.setAttribute("startOffset", `${state.offset}px`);
+      },
     });
 
     const root = rootRef.current;
@@ -195,7 +198,7 @@ export default function TextLoop({
     const slowDown = () => {
       timeScaleTween?.kill();
       timeScaleTween = gsap.to(tween, {
-        timeScale: 0.2, // Smoothly decelerates to 20% speed
+        timeScale: 0.2,
         duration: 0.9,
         ease: "power2.out",
       });
@@ -204,7 +207,7 @@ export default function TextLoop({
     const speedUp = () => {
       timeScaleTween?.kill();
       timeScaleTween = gsap.to(tween, {
-        timeScale: 1, // Smoothly accelerates back to 100% normal speed
+        timeScale: 1,
         duration: 0.9,
         ease: "power2.out",
       });
@@ -225,8 +228,7 @@ export default function TextLoop({
     };
   }, [metrics, speed, direction, pauseOnHover]);
 
-  const loopText = unit.repeat(metrics.reps);
-  const fitLength = metrics.length || undefined;
+  const loopText = useMemo(() => unit.repeat(metrics.reps), [unit, metrics.reps]);
 
   return (
     <div ref={rootRef} className={`text-loop ${className}`.trim()} style={style}>
@@ -265,14 +267,14 @@ export default function TextLoop({
           {unit}
         </text>
 
-        <text className="text-loop-text [font-family:'Satoshi',_sans-serif]" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={headRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
-            {loopText}
-          </textPath>
-        </text>
-
-        <text className="text-loop-text [font-family:'Satoshi',_sans-serif]" style={textStyle} fill={color} dominantBaseline="central" aria-hidden="true">
-          <textPath ref={tailRef} href={`#${pathId}`} startOffset={0} textLength={fitLength} lengthAdjust="spacing">
+        <text
+          className="text-loop-text [font-family:'Satoshi',_sans-serif]"
+          style={textStyle}
+          fill={color}
+          dominantBaseline="central"
+          aria-hidden="true"
+        >
+          <textPath ref={textPathRef} href={`#${pathId}`} startOffset={0}>
             {loopText}
           </textPath>
         </text>
