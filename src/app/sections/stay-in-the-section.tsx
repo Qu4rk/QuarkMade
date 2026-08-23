@@ -74,7 +74,7 @@ export default function StayInTheSection() {
                   id="inquiry-name"
                   type="text"
                   required
-                  placeholder="Elias Liasides"
+                  placeholder="Elena Vance"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
@@ -89,7 +89,7 @@ export default function StayInTheSection() {
                   id="inquiry-email"
                   type="email"
                   required
-                  placeholder="elias@example.com"
+                  placeholder="elena@brand.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
