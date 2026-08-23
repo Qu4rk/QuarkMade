@@ -21,11 +21,11 @@ export default function Page() {
         <PlaceWorthBelongingSection />
         <WhereVisionAndSection />
         <div className="block w-full" aria-hidden="true" />
-        <RootedInHistorySection />
+        <PartnerWithUsSection />
         <div className="block w-full" aria-hidden="true" />
         <BuildingPlaceToSection />
         <div className="block w-full" aria-hidden="true" />
-        <PartnerWithUsSection />
+        <RootedInHistorySection />
         <BaseSection />
         <StayInTheSection />
       </main>

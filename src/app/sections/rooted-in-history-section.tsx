@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
 
-/** Featured Project 1: QuieTide Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
+/** Featured Project 3: QuieTide Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function RootedInHistorySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -21,7 +21,7 @@ export default function RootedInHistorySection() {
   const glowOpacity = useTransform(smoothProgress, [0, 0.45, 1], [0.15, 0.55, 0.15]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="works">
+    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="quietide-showcase">
       {/* Background Ambient Glow Drifting with Scroll */}
       <motion.div
         style={{ opacity: glowOpacity }}
@@ -46,7 +46,7 @@ export default function RootedInHistorySection() {
           </p>
         </div>
 
-        <ProjectBadge label="FEATURED PROJECT 01 / MEDITERRANEAN DIGITAL SANCTUARY" />
+        <ProjectBadge label="FEATURED PROJECT 03 / MEDITERRANEAN DIGITAL SANCTUARY" />
 
         {/* 3D Parallax Card Frame */}
         <div className="w-full flex justify-center [perspective:1200px]">

@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
 
-/** Featured Project 3: Chronotomi Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
+/** Featured Project 1: Chronotomi Flagship Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function PartnerWithUsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -22,7 +22,7 @@ export default function PartnerWithUsSection() {
   const imageY = useTransform(smoothProgress, [0, 1], ["-14%", "14%"]);
 
   return (
-    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="chronotomi-showcase">
+    <section ref={sectionRef} className="block bg-background relative overflow-hidden [perspective:1400px]" id="works">
       {/* Background Kinetic Horological Dial Vectors Rotating with Scroll */}
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[950px] h-[950px] pointer-events-none opacity-[0.16] select-none">
         <motion.svg
@@ -76,7 +76,7 @@ export default function PartnerWithUsSection() {
           </p>
         </div>
 
-        <ProjectBadge label="FEATURED PROJECT 03 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP" />
+        <ProjectBadge label="FEATURED PROJECT 01 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP" />
 
         {/* 3D Parallax Card Frame */}
         <div className="w-full flex justify-center [perspective:1200px]">

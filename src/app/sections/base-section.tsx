@@ -8,37 +8,37 @@ import Button from "../components/Button";
 
 const galleryData = [
   {
-    category: "QUIETIDE / WEBGL EXPERIENCE",
-    title: "Contemplative Pacing & WebGL Shaders",
-    src: "/assets/portfolio/quietide_capture_space.png",
-    link: "https://qu4rk.github.io/quietide-website/",
-    projectName: "QuieTide",
+    category: "CHRONOTOMI / HAUTE HORLOGERIE",
+    title: "Precision Timepiece Showcase & Dial Inspection",
+    src: "/assets/portfolio/chronotomi_collection.png",
+    link: "http://www.chronotomi.com/",
+    projectName: "Chronotomi",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
         <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif]">
-          The QuieTide capture space was engineered to eliminate digital cognitive friction. Using real-time GLSL fragment shaders, we generated ambient water caustics that subtly shift with daylight.
+          Crafted for high-end timepiece collectors, Chronotomi combines macro horological photography with kinetic typography and precision micro-animations.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              01 / Visual Architecture
+              01 / Horological Mastery
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Warm terracotta and sea-mist color palettes paired with smooth cubic-bezier micro-interactions.
+              Curated showcases for Submariner Date, Patek Philippe Nautilus, and Audemars Piguet Royal Oak.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              02 / Shader Performance
+              02 / Kinetic Movement
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              60 FPS GPU-accelerated canvas with adaptive resolution scaling for seamless mobile responsiveness.
+              Dynamic scroll choreography and spring physics that mimic the mechanical escapement of fine timepieces.
             </p>
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="https://qu4rk.github.io/quietide-website/" variant="gold">
-            Visit Live Site (QuieTide)
+          <Button href="http://www.chronotomi.com/" variant="gold">
+            Visit Live Site (Chronotomi)
           </Button>
         </div>
       </div>
@@ -82,68 +82,31 @@ const galleryData = [
     ),
   },
   {
-    category: "CHRONOTOMI / HAUTE HORLOGERIE",
-    title: "Precision Timepiece Showcase & Dial Inspection",
-    src: "/assets/portfolio/chronotomi_collection.png",
-    link: "http://www.chronotomi.com/",
-    projectName: "Chronotomi",
-    content: (
-      <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif]">
-          Crafted for high-end timepiece collectors, Chronotomi combines macro horological photography with kinetic typography and precision micro-animations.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              01 / Horological Mastery
-            </span>
-            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Curated showcases for Submariner Date, Patek Philippe Nautilus, and Audemars Piguet Royal Oak.
-            </p>
-          </div>
-          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              02 / Kinetic Movement
-            </span>
-            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Dynamic scroll choreography and spring physics that mimic the mechanical escapement of fine timepieces.
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="http://www.chronotomi.com/" variant="gold">
-            Visit Live Site (Chronotomi)
-          </Button>
-        </div>
-      </div>
-    ),
-  },
-  {
-    category: "QUIETIDE / COASTAL STILLNESS",
-    title: "Quiet Seas, Clear Mind Experience",
-    src: "/assets/portfolio/quietide_hero.png",
+    category: "QUIETIDE / WEBGL EXPERIENCE",
+    title: "Contemplative Pacing & WebGL Shaders",
+    src: "/assets/portfolio/quietide_capture_space.png",
     link: "https://qu4rk.github.io/quietide-website/",
     projectName: "QuieTide",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
         <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif]">
-          The flagship experience of QuieTide immerses the visitor in a meditative sunset atmosphere with dynamic particle clouds and tranquil soundscape integration.
+          The QuieTide capture space was engineered to eliminate digital cognitive friction. Using real-time GLSL fragment shaders, we generated ambient water caustics that subtly shift with daylight.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              01 / Fluid Shaders
+              01 / Visual Architecture
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Subtle wave oscillations and horizon reflection mapping built with Three.js and custom GLSL code.
+              Warm terracotta and sea-mist color palettes paired with smooth cubic-bezier micro-interactions.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              02 / Aesthetic Restraint
+              02 / Shader Performance
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Generous whitespace and serene layout balance designed to induce calm and focus.
+              60 FPS GPU-accelerated canvas with adaptive resolution scaling for seamless mobile responsiveness.
             </p>
           </div>
         </div>
@@ -224,6 +187,43 @@ const galleryData = [
         <div className="flex flex-wrap gap-4 pt-4">
           <Button href="http://www.lumina-living.net/" variant="gold">
             Visit Live Site (Lumina Living)
+          </Button>
+        </div>
+      </div>
+    ),
+  },
+  {
+    category: "QUIETIDE / COASTAL STILLNESS",
+    title: "Quiet Seas, Clear Mind Experience",
+    src: "/assets/portfolio/quietide_hero.png",
+    link: "https://qu4rk.github.io/quietide-website/",
+    projectName: "QuieTide",
+    content: (
+      <div className="space-y-6 text-white/90 leading-relaxed">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif]">
+          The flagship experience of QuieTide immerses the visitor in a meditative sunset atmosphere with dynamic particle clouds and tranquil soundscape integration.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
+              01 / Fluid Shaders
+            </span>
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
+              Subtle wave oscillations and horizon reflection mapping built with Three.js and custom GLSL code.
+            </p>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
+              02 / Aesthetic Restraint
+            </span>
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
+              Generous whitespace and serene layout balance designed to induce calm and focus.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-4 pt-4">
+          <Button href="https://qu4rk.github.io/quietide-website/" variant="gold">
+            Visit Live Site (QuieTide)
           </Button>
         </div>
       </div>
