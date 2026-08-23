@@ -311,12 +311,9 @@ export const Card = ({
           }}
         />
 
-        {/* Top Tag & Arrow */}
-        <div className="relative z-20 flex w-full items-center justify-between">
-          <span className="[font-family:'Satoshi',_sans-serif] font-normal text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#F3E5AB] uppercase bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
-            {card.category}
-          </span>
-          <div className="h-8 w-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 group-hover:bg-[#4442DB] group-hover:text-white transition-colors duration-300">
+        {/* Top Expand Indicator */}
+        <div className="relative z-20 flex w-full items-center justify-end">
+          <div className="h-8 w-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 group-hover:bg-[#4442DB] group-hover:text-white transition-colors duration-300 shadow-md">
             <svg
               className="h-4 w-4 transition-transform duration-300 group-hover:scale-110"
               fill="none"
