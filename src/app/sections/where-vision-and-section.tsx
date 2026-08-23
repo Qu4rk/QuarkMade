@@ -75,8 +75,8 @@ export default function WhereVisionAndSection() {
                 <Button href="#works" variant="primary-inverse">
                   Explore Selected Works
                 </Button>
-                <Button href="#capabilities" variant="secondary-inverse">
-                  Studio Capabilities
+                <Button href="#inquire" variant="secondary-inverse">
+                  Start a Project
                 </Button>
               </div>
             </div>

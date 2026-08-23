@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
-import Topography from "../components/ui/Topography";
 import BorderBeam from "../components/ui/BorderBeam";
 
 /** Project Inquiry and Client Commission Section with WebGL Topography Background. */

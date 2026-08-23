@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import QuarkLogo from "../components/QuarkLogo";
-import Icon from "../svgs/svg-icon";
 import Icon2 from "../svgs/svg-icon2";
 
 /** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and streamlined actions. */
@@ -24,7 +23,6 @@ export default function Navbar() {
               href="#philosophy"
             >
               Studio
-              <Icon dittoId={"motion-1"} />
             </a>
             <a
               className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"

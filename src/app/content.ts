@@ -112,9 +112,9 @@ export const logos = [
 
 export const textLinkData = [
   { text: "Selected Works", href: "#works" },
-  { text: "Capabilities", href: "#capabilities" },
-  { text: "Journal", href: "#journal" },
-  { text: "Privacy Policy", href: "#" },
-  { text: "Terms of Service", href: "#" },
-  { text: "Contact Studio", href: "mailto:hello@quarkmade.com" },
+  { text: "Studio Philosophy", href: "#philosophy" },
+  { text: "Snapshot Archive", href: "#journal" },
+  { text: "Start a Project", href: "#inquire" },
+  { text: "Contact", href: "mailto:hello@quarkmade.com" },
 ];
+
