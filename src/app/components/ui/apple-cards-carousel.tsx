@@ -276,7 +276,8 @@ export const Carousel = ({
               {openIndex !== null && activeCard && (
                 <div
                   key="snapshot-modal-overlay"
-                  className="fixed inset-0 h-screen w-screen z-[99999] overflow-y-auto overflow-x-hidden py-6 sm:py-10 px-3 sm:px-6 flex justify-center items-start overscroll-contain"
+                  data-lenis-prevent
+                  className="fixed inset-0 h-screen w-screen z-[99999] overflow-y-auto overflow-x-hidden pt-6 pb-20 sm:py-12 md:py-16 px-3 sm:px-6 flex justify-center items-start overscroll-contain select-text"
                   style={{
                     backgroundColor: "rgba(11, 10, 18, 0.92)",
                     backdropFilter: "blur(24px)",
@@ -365,13 +366,13 @@ export const Carousel = ({
                     }}
                     ref={modalContentRef}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative w-full max-w-4xl bg-[#0F0E1A] border border-white/15 rounded-3xl text-white z-20 my-auto shadow-[0_20px_80px_rgba(0,0,0,0.95),0_0_40px_rgba(68,66,219,0.18)] overflow-hidden"
+                    className="relative w-full max-w-4xl bg-[#0F0E1A] border border-white/15 rounded-3xl text-white z-20 my-auto shadow-[0_20px_80px_rgba(0,0,0,0.95),0_0_40px_rgba(68,66,219,0.18)] overflow-hidden shrink-0"
                   >
                     {/* Top Glow Accent Bar */}
                     <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#4442DB] to-transparent opacity-80" />
 
                     {/* Modal Sticky Header Bar */}
-                    <div className="flex items-center justify-between gap-4 p-5 sm:p-7 md:p-8 border-b border-white/10 bg-[#0F0E1A]/90 backdrop-blur-xl">
+                    <div className="sticky top-0 z-30 flex items-center justify-between gap-4 p-5 sm:p-6 md:p-7 border-b border-white/10 bg-[#0F0E1A]/95 backdrop-blur-xl">
                       {/* Left: Category & Index Badge */}
                       <div className="flex flex-wrap items-center gap-2.5">
                         <span className="[font-family:'Satoshi',_sans-serif] text-[11px] sm:text-xs font-bold text-[#D4AF37] tracking-[0.2em] uppercase bg-white/5 border border-white/10 px-3 py-1 rounded-full">
@@ -479,8 +480,8 @@ export const Carousel = ({
                       </div>
                     </div>
 
-                    {/* Modal Content Scroll Area */}
-                    <div className="p-5 sm:p-7 md:p-8 space-y-6 max-h-[calc(90vh-90px)] overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.2)_transparent]">
+                    {/* Modal Content Body */}
+                    <div className="p-5 sm:p-7 md:p-9 space-y-6">
                       {/* Title Heading */}
                       <div>
                         <h2 className="[font-family:'Chillax',_sans-serif] text-2xl sm:text-3xl md:text-4xl font-medium text-white tracking-tight leading-tight">
@@ -493,7 +494,7 @@ export const Carousel = ({
                         <img
                           src={activeCard.src}
                           alt={activeCard.title}
-                          className="w-full h-auto object-cover max-h-[60vh] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                          className="w-full h-auto object-cover max-h-[48vh] sm:max-h-[52vh] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         />
                         {/* Subtle corner badge on media */}
                         <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-medium text-white/80 tracking-widest uppercase">
@@ -502,7 +503,7 @@ export const Carousel = ({
                       </div>
 
                       {/* Editorial Content Breakdown */}
-                      <div className="pt-2">{activeCard.content}</div>
+                      <div className="pt-2 pb-4">{activeCard.content}</div>
                     </div>
                   </motion.div>
                 </div>
