@@ -16,7 +16,6 @@ import TextLoop from "../components/ui/TextLoop";
  * - React Bits TextLoop cloud-weaving header
  */
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   // Scroll-linked 3D Cinema exit transform (Directly mapped to Lenis inertial scroll for 120fps zero-lag performance)
@@ -29,35 +28,6 @@ export default function HeroSection() {
   const heroRotateX = useTransform(scrollYProgress, [0, 1], [0, 10]);
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.96, 0.4]);
-
-  // Cursor-reactive parallax values
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 30, stiffness: 60, mass: 0.8 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  // Layer translations based on mouse position
-  const videoX = useTransform(smoothX, [-0.5, 0.5], [10, -10]);
-  const videoY = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
-  const flareX = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
-  const flareY = useTransform(smoothY, [-0.5, 0.5], [-12, 12]);
-
-  useEffect(() => {
-    setMounted(true);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const xNorm = e.clientX / innerWidth - 0.5;
-      const yNorm = e.clientY / innerHeight - 0.5;
-      mouseX.set(xNorm);
-      mouseY.set(yNorm);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
 
   return (
     <section
@@ -75,11 +45,8 @@ export default function HeroSection() {
         }}
         className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] shadow-2xl bg-foreground will-change-transform transform-gpu [backface-visibility:hidden]"
       >
-        {/* Layer 1: Parallax Video Background with Mouse Reactivity */}
-        <motion.div
-          style={{ x: mounted ? videoX : 0, y: mounted ? videoY : 0 }}
-          className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none scale-105 will-change-transform transform-gpu"
-        >
+        {/* Layer 1: Hardware-Accelerated Video Background with Zero-Overhead Looping */}
+        <div className="h-full block absolute top-0 inset-x-0 overflow-hidden pointer-events-none will-change-transform transform-gpu [contain:paint]">
           <div
             data-parallax
             data-parallax-speed="0.2"
@@ -88,43 +55,38 @@ export default function HeroSection() {
             <SeamlessVideo
               src="/assets/branding/hero_vid.mp4"
               poster="/assets/branding/hero-sunset.webp"
-              fadeDuration={1.3}
               className="object-center align-middle scale-105"
             />
           </div>
-        </motion.div>
+        </div>
 
-        {/* Layer 2: Organic Light Leak & Ambient Twilight Bloom */}
-        <motion.div
-          style={{ x: mounted ? flareX : 0, y: mounted ? flareY : 0 }}
-          className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden will-change-transform transform-gpu"
-        >
-          {/* Drifting warm amber-violet light leak */}
+        {/* Layer 2: Ambient Twilight Horizon Bloom */}
+        <div className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden will-change-transform transform-gpu [contain:paint]">
+          {/* Warm amber-violet celestial glow */}
           <div
-            className="hero-light-leak absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full"
+            className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full opacity-60 pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, rgba(255, 179, 138, 0.28) 0%, rgba(165, 148, 249, 0.22) 40%, rgba(212, 175, 55, 0.15) 70%, transparent 100%)",
+                "radial-gradient(circle, rgba(255, 179, 138, 0.22) 0%, rgba(165, 148, 249, 0.16) 40%, rgba(212, 175, 55, 0.08) 70%, transparent 100%)",
             }}
           />
 
-          {/* Twilight Horizon Celestial Glow */}
+          {/* Twilight Horizon Celestial Flare */}
           <div
-            className="hero-star-flare absolute top-[48%] left-[25%] -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full pointer-events-none"
+            className="absolute top-[48%] left-[25%] -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full pointer-events-none opacity-70"
             style={{
               background:
-                "radial-gradient(circle, rgba(255, 245, 214, 0.45) 0%, rgba(212, 175, 55, 0.2) 45%, transparent 70%)",
-              filter: "blur(20px)",
+                "radial-gradient(circle, rgba(255, 245, 214, 0.35) 0%, rgba(212, 175, 55, 0.15) 50%, transparent 75%)",
             }}
           />
-        </motion.div>
+        </div>
 
         {/* Layer 3: Atmospheric Gradient & Dark Vignette */}
         <div
           className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, rgba(11, 10, 18, 0.5) 0%, rgba(42, 24, 84, 0.28) 45%, rgba(11, 10, 18, 0.88) 100%)",
+              "linear-gradient(180deg, rgba(11, 10, 18, 0.45) 0%, rgba(42, 24, 84, 0.22) 45%, rgba(11, 10, 18, 0.88) 100%)",
           }}
         />
 
@@ -134,21 +96,15 @@ export default function HeroSection() {
             data-reveal
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-5 md:gap-6 text-white"
           >
-            {/* React Bits TextLoop: Weaving through the sunset clouds from behind left cloud into right cloud */}
-            <motion.div
-              initial={{ opacity: 0, y: -16, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto"
-            >
-              {/* Foreground Cloud Occlusion & Atmospheric Dissolve Mask */}
+            {/* React Bits TextLoop: Weaving through the sunset clouds */}
+            <div className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto">
               <div
-                className="w-full relative overflow-hidden backdrop-blur-[2px]"
+                className="w-full relative overflow-hidden"
                 style={{
                   maskImage:
-                    "linear-gradient(to right, transparent 0%, transparent 5%, black 18%, black 82%, transparent 95%, transparent 100%)",
+                    "linear-gradient(to right, transparent 0%, transparent 4%, black 16%, black 84%, transparent 96%, transparent 100%)",
                   WebkitMaskImage:
-                    "linear-gradient(to right, transparent 0%, transparent 5%, black 18%, black 82%, transparent 95%, transparent 100%)",
+                    "linear-gradient(to right, transparent 0%, transparent 4%, black 16%, black 84%, transparent 96%, transparent 100%)",
                 }}
               >
                 <TextLoop
@@ -175,24 +131,22 @@ export default function HeroSection() {
 
               {/* Left Cloud Bank Depth Occlusion Layer */}
               <div
-                className="absolute -left-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
+                className="absolute -left-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full opacity-60"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 20% 50%, rgba(56, 32, 78, 0.75) 0%, rgba(42, 24, 84, 0.45) 45%, transparent 70%)",
-                  filter: "blur(24px)",
+                    "radial-gradient(ellipse at 20% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.3) 50%, transparent 75%)",
                 }}
               />
 
               {/* Right Cloud Bank Depth Occlusion Layer */}
               <div
-                className="absolute -right-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full"
+                className="absolute -right-16 top-1/2 -translate-y-1/2 w-56 h-36 pointer-events-none rounded-full opacity-60"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.75) 0%, rgba(42, 24, 84, 0.45) 45%, transparent 70%)",
-                  filter: "blur(24px)",
+                    "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.3) 50%, transparent 75%)",
                 }}
               />
-            </motion.div>
+            </div>
 
             {/* Main Headline: Satoshi Regular + Chillax Rotating Text */}
             <h1
