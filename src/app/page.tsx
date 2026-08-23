@@ -10,10 +10,12 @@ import BaseSection from "./sections/base-section";
 import StayInTheSection from "./sections/stay-in-the-section";
 import LogoCloudSection from "./sections/logo-cloud-section";
 import ScrollObserver from "./components/ScrollObserver";
+import Preloader from "./components/ui/Preloader";
 
 export default function Page() {
   return (
     <>
+      <Preloader />
       <ScrollObserver />
       <Navbar />
       <main className="min-h-screen block flex-1 bg-[#0B0A12] text-white" id="content">
