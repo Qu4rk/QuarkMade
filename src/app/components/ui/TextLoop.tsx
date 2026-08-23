@@ -190,19 +190,37 @@ export default function TextLoop({
     });
 
     const root = rootRef.current;
-    const pause = () => tween.pause();
-    const resume = () => tween.resume();
+    let timeScaleTween: gsap.core.Tween | null = null;
+
+    const slowDown = () => {
+      timeScaleTween?.kill();
+      timeScaleTween = gsap.to(tween, {
+        timeScale: 0.2, // Smoothly decelerates to 20% speed
+        duration: 0.9,
+        ease: "power2.out",
+      });
+    };
+
+    const speedUp = () => {
+      timeScaleTween?.kill();
+      timeScaleTween = gsap.to(tween, {
+        timeScale: 1, // Smoothly accelerates back to 100% normal speed
+        duration: 0.9,
+        ease: "power2.out",
+      });
+    };
 
     if (pauseOnHover && root) {
-      root.addEventListener("pointerenter", pause);
-      root.addEventListener("pointerleave", resume);
+      root.addEventListener("pointerenter", slowDown);
+      root.addEventListener("pointerleave", speedUp);
     }
 
     return () => {
+      timeScaleTween?.kill();
       tween.kill();
       if (pauseOnHover && root) {
-        root.removeEventListener("pointerenter", pause);
-        root.removeEventListener("pointerleave", resume);
+        root.removeEventListener("pointerenter", slowDown);
+        root.removeEventListener("pointerleave", speedUp);
       }
     };
   }, [metrics, speed, direction, pauseOnHover]);
