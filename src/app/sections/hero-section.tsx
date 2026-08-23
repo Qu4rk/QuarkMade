@@ -130,16 +130,16 @@ export default function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]" />
               </span>
-              <span className="[font-family:'Saans_Mono',_monospace] text-[10px] sm:text-xs tracking-[0.25em] uppercase text-white/90 font-semibold">
+              <span className="[font-family:'Satoshi',_sans-serif] text-[10px] sm:text-xs tracking-[0.25em] uppercase text-white/90 font-normal">
                 HIGH-CRAFT DIGITAL ARCHITECTURE · EST. MMXXIV
               </span>
             </motion.div>
 
-            {/* Main Headline: Ivar Headline + Chillax Rotating Text */}
+            {/* Main Headline: Satoshi Regular + Chillax Rotating Text */}
             <motion.h1
               layout
               transition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-              className="[font-family:'Ivar_Headline',_serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-2xl"
+              className="[font-family:'Satoshi',_sans-serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-2xl"
               data-component="heading"
             >
               <motion.span
@@ -191,7 +191,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="[font-family:Denim,_serif] text-base sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-md px-2"
+              className="[font-family:'Satoshi',_sans-serif] text-base sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-md px-2"
             >
               We architect bespoke digital flagships, interactive worlds, and luxury spaces engineered to elevate modern brands.
             </motion.p>
@@ -221,7 +221,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
         >
-          <span className="[font-family:'Saans_Mono',_monospace] text-[10px] tracking-[0.3em] uppercase font-medium">
+          <span className="[font-family:'Satoshi',_sans-serif] text-[10px] tracking-[0.3em] uppercase font-normal">
             SCROLL
           </span>
           <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1 group-hover:border-[#D4AF37]/60 transition-colors shadow-[0_0_12px_rgba(0,0,0,0.4)]">

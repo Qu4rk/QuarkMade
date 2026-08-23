@@ -39,7 +39,7 @@ export default function Button({
     variantClasses = "bg-[#0b0a12] text-white hover:bg-[#171524] border border-[#4442db]/30 hover:border-[#4442db] hover:text-[#d4af37]";
   }
 
-  const baseClasses = `inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Saans_Mono',_monospace] text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase h-9 px-4 py-3 rounded-none transition-all duration-200 ease-out outline-none select-none ${variantClasses} ${className}`;
+  const baseClasses = `inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] font-normal text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase h-9 px-4 py-3 rounded-none transition-all duration-200 ease-out outline-none select-none ${variantClasses} ${className}`;
 
   if (href) {
     return (

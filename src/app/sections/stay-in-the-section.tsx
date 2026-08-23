@@ -61,10 +61,10 @@ export default function StayInTheSection() {
       <div className="flex flex-col items-center gap-12 mx-auto w-full max-w-4xl relative z-10">
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
           <ProjectBadge label="COMMISSIONS & INQUIRIES" />
-          <h2 className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white mt-2" data-component="heading">
+          <h2 className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white mt-2" data-component="heading">
             Start a project with <span className="text-[#F3E5AB]">QuarkMade</span>
           </h2>
-          <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 leading-relaxed">
+          <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 leading-relaxed">
             Have a project in mind? We partner with ambitious founders, luxury brands, and visionary teams to engineer digital flagships that set new benchmarks.
           </p>
         </div>
@@ -72,10 +72,10 @@ export default function StayInTheSection() {
         {submitted ? (
           <div data-reveal className="p-8 rounded-lg bg-white/10 border border-[#D4AF37]/50 text-center max-w-md backdrop-blur-md">
             <div className="text-3xl mb-2 text-[#D4AF37]">✦</div>
-            <h3 className="[font-family:'Saans_Mono',_monospace] text-lg font-bold uppercase tracking-wider text-white mb-2">
+            <h3 className="[font-family:'Satoshi',_sans-serif] text-lg font-bold uppercase tracking-wider text-white mb-2">
               Inquiry Received
             </h3>
-            <p className="[font-family:Denim,_serif] text-white/80 text-sm">
+            <p className="[font-family:'Satoshi',_sans-serif] text-white/80 text-sm font-normal">
               Thank you for reaching out. We will review your project brief and get back to you within 24 hours.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function StayInTheSection() {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
-                <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-name">
+                <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-name">
                   Your Name
                 </label>
                 <input
@@ -97,12 +97,12 @@ export default function StayInTheSection() {
                   placeholder="Elias Liasides"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm"
+                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-email">
+                <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-email">
                   Email Address
                 </label>
                 <input
@@ -112,13 +112,13 @@ export default function StayInTheSection() {
                   placeholder="elias@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm"
+                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="[font-family:'Saans_Mono',_monospace] text-xs uppercase tracking-wider text-white/70" htmlFor="inquiry-message">
+              <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-message">
                 Project Scope / Timeline
               </label>
               <textarea
@@ -127,7 +127,7 @@ export default function StayInTheSection() {
                 placeholder="Tell us about your brand, vision, or desired launch date..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="p-3 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:Denim,_serif] text-sm resize-none"
+                className="p-3 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm resize-none font-normal"
               />
             </div>
 

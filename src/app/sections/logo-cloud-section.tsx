@@ -12,7 +12,7 @@ export default function LogoCloudSection() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-white/10">
           <div className="flex flex-col gap-3 max-w-md">
             <QuarkLogo size={52} showText={true} />
-            <p className="[font-family:Denim,_serif] text-sm text-white/70 leading-relaxed mt-2">
+            <p className="[font-family:'Satoshi',_sans-serif] text-sm text-white/70 leading-relaxed mt-2 font-normal">
               QuarkMade is a boutique digital craft studio designing bespoke, high-performance web experiences and interactive flagships.
             </p>
           </div>
@@ -58,11 +58,11 @@ export default function LogoCloudSection() {
 
         {/* Bottom Footer: Links & Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-          <p className="[font-family:'Saans_Mono',_monospace] text-xs font-medium text-white/60">
+          <p className="[font-family:'Satoshi',_sans-serif] text-xs font-normal text-white/60">
             © {new Date().getFullYear()} QuarkMade. All Rights Reserved. Crafted with Next.js & Tailwind.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-6 [font-family:'Saans_Mono',_monospace] text-xs font-medium tracking-[0.12px] uppercase">
+          <div className="flex flex-wrap justify-center gap-6 [font-family:'Satoshi',_sans-serif] text-xs font-normal tracking-[0.12px] uppercase">
             {textLinkData.map((d, i) => (
               <a
                 key={i}

@@ -238,7 +238,7 @@ export const Card = ({
                   exit={{ opacity: 0, scale: 0.96, y: 20 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   ref={containerRef}
-                  className="w-full max-w-4xl bg-[#0B0A12] border border-[#D4AF37]/35 text-white h-fit z-10 my-6 p-6 md:p-10 rounded-3xl [font-family:'Denim',_serif] relative shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_25px_rgba(68,66,219,0.25)] overflow-hidden"
+                  className="w-full max-w-4xl bg-[#0B0A12] border border-[#D4AF37]/35 text-white h-fit z-10 my-6 p-6 md:p-10 rounded-3xl [font-family:'Satoshi',_sans-serif] font-normal relative shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_25px_rgba(68,66,219,0.25)] overflow-hidden"
                 >
                   {/* Close Button */}
                   <button
@@ -262,7 +262,7 @@ export const Card = ({
                   </button>
 
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2 [font-family:'Saans_Mono',_monospace] text-xs font-semibold text-[#D4AF37] uppercase tracking-[0.2em]">
+                    <div className="flex items-center gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-xs font-semibold text-[#D4AF37] uppercase tracking-[0.2em]">
                       <span>→</span>
                       <span>{card.category}</span>
                     </div>
@@ -313,7 +313,7 @@ export const Card = ({
 
         {/* Top Tag & Arrow */}
         <div className="relative z-20 flex w-full items-center justify-between">
-          <span className="[font-family:'Saans_Mono',_monospace] text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#F3E5AB] uppercase bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
+          <span className="[font-family:'Satoshi',_sans-serif] font-normal text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#F3E5AB] uppercase bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
             {card.category}
           </span>
           <div className="h-8 w-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/80 group-hover:bg-[#4442DB] group-hover:text-white transition-colors duration-300">
@@ -335,10 +335,10 @@ export const Card = ({
 
         {/* Bottom Title & Inspect Indicator */}
         <div className="relative z-20 flex flex-col gap-2.5 w-full">
-          <h3 className="[font-family:'Ivar_Headline',_serif] text-lg sm:text-2xl md:text-3xl font-normal leading-snug tracking-tight text-white group-hover:text-[#F3E5AB] transition-colors max-w-2xl">
+          <h3 className="[font-family:'Satoshi',_sans-serif] font-normal text-lg sm:text-2xl md:text-3xl leading-snug tracking-tight text-white group-hover:text-[#F3E5AB] transition-colors max-w-2xl">
             {card.title}
           </h3>
-          <div className="flex items-center gap-1.5 [font-family:'Saans_Mono',_monospace] text-[10px] md:text-[11px] text-white/80 tracking-widest uppercase">
+          <div className="flex items-center gap-1.5 [font-family:'Satoshi',_sans-serif] font-normal text-[10px] md:text-[11px] text-white/80 tracking-widest uppercase">
             <span>INSPECT SNAPSHOT</span>
             <span className="text-[#D4AF37] transition-transform duration-300 group-hover:translate-x-1 font-bold">
               →

@@ -18,7 +18,7 @@ export default function RootedInHistorySection() {
               QuieTide:
             </span>
           </div>
-          <p className="[font-family:Denim,_serif] text-[2.25rem] sm:text-[3rem] md:text-[3.35rem] font-semibold leading-[1.12] tracking-[0.25px] text-foreground">
+          <p className="[font-family:'Satoshi',_sans-serif] text-[2.25rem] sm:text-[3rem] md:text-[3.35rem] font-normal leading-[1.12] tracking-[0.25px] text-foreground">
             The art of stillness
           </p>
         </div>
@@ -54,10 +54,10 @@ export default function RootedInHistorySection() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="[font-family:'Saans_Mono',_monospace] text-2xl font-bold tracking-[0.3em] uppercase text-white drop-shadow-md">
+                  <span className="[font-family:'Satoshi',_sans-serif] text-2xl font-bold tracking-[0.3em] uppercase text-white drop-shadow-md">
                     QUIETIDE
                   </span>
-                  <span className="[font-family:'Saans_Mono',_monospace] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">
+                  <span className="[font-family:'Satoshi',_sans-serif] text-xs tracking-[0.2em] uppercase text-[#D4AF37]">
                     QUIETIDE-WEBSITE
                   </span>
                 </div>
@@ -72,7 +72,7 @@ export default function RootedInHistorySection() {
         </div>
 
         <div data-reveal className="grid max-w-181 mx-auto flex-col gap-6 grid-cols-1 text-center">
-          <div className="block [font-family:Denim,_serif] text-lg font-medium leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
+          <div className="block [font-family:'Satoshi',_sans-serif] text-lg font-normal leading-relaxed tracking-[0.16px] max-md:text-base text-foreground/80">
             <p className="block">
               A curated digital experience capturing Mediterranean light and rhythmic coastal serenity through WebGL shaders, smooth motion, and contemplative pacing.
             </p>

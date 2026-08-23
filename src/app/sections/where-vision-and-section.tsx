@@ -54,7 +54,7 @@ export default function WhereVisionAndSection() {
                   noiseIntensity={0.3}
                   speed={0.12}
                 >
-                  <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-[#0B0A12] via-[#12111A] to-[#0B0A12] px-5 py-2 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.15)_inset,0px_2px_4px_0px_rgba(0,0,0,0.8)] [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-none tracking-[0.18em] uppercase flex items-center justify-center gap-2.5 max-md:text-[0.7rem] max-md:px-3.5 max-md:py-1.5 text-center">
+                  <div className="h-full w-full select-none rounded-full bg-gradient-to-r from-[#0B0A12] via-[#12111A] to-[#0B0A12] px-5 py-2 text-white shadow-[0px_1px_0px_0px_rgba(255,255,255,0.15)_inset,0px_2px_4px_0px_rgba(0,0,0,0.8)] [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-none tracking-[0.18em] uppercase flex items-center justify-center gap-2.5 max-md:text-[0.7rem] max-md:px-3.5 max-md:py-1.5 text-center">
                     <span className="text-[#D4AF37] font-semibold text-sm leading-none shrink-0 transition-transform duration-300 group-hover:translate-x-0.5">
                       →
                     </span>
@@ -63,12 +63,12 @@ export default function WhereVisionAndSection() {
                 </NoiseBackground>
               </div>
 
-              <div className="block [font-family:'Ivar_Headline',_serif] text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
+              <div className="block [font-family:'Satoshi',_sans-serif] font-normal text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
                 <p className="block">
                   Where <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">vision</span>, <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">engineering</span>, and <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">elegance</span> come together
                 </p>
               </div>
-              <p className="[font-family:Denim,_serif] text-base md:text-lg text-white/80 max-w-xl">
+              <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 max-w-xl">
                 We believe websites shouldn&apos;t just communicate information — they should create memorable sensory impressions that linger in the mind.
               </p>
               <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4 mt-2">

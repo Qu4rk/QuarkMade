@@ -30,7 +30,7 @@ export default function Navbar() {
           <div className="flex pt-6 px-4 justify-end">
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="p-3 text-foreground uppercase text-xs [font-family:'Saans_Mono',_monospace] tracking-wider cursor-pointer"
+              className="p-3 text-foreground uppercase text-xs [font-family:'Satoshi',_sans-serif] font-normal tracking-wider cursor-pointer"
             >
               Close ✕
             </button>
@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="flex pt-12 pb-10 px-6 flex-col flex-1 gap-10 overflow-auto">
             <div className="border-b border-solid border-b-clr-0 flex min-w-0 py-3 px-1 items-center gap-3 h-12">
               <input
-                className="w-full h-full block min-w-0 flex-1 overflow-clip text-foreground [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
+                className="w-full h-full block min-w-0 flex-1 overflow-clip text-foreground [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text max-lg:h-[1.4375rem] max-md:text-sm focus:outline-none"
                 placeholder="Search projects (Chronotomi, Lumina, QuieTide), articles..."
                 type="text"
                 autoFocus={isSearchOpen}
@@ -51,7 +51,7 @@ export default function Navbar() {
         <div className="block basis-2/5 max-lg:hidden">
           <div className="flex items-center gap-3 h-full">
             <a
-              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
               data-component="link"
               href="#philosophy"
             >
@@ -59,14 +59,14 @@ export default function Navbar() {
               <Icon dittoId={"motion-1"} />
             </a>
             <a
-              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
               data-component="link"
               href="#works"
             >
               Works
             </a>
             <a
-              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+              className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
               data-component="link"
               href="#journal"
             >
@@ -94,12 +94,12 @@ export default function Navbar() {
               <div className="flex justify-end mb-6">
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-background uppercase text-xs [font-family:'Saans_Mono',_monospace] tracking-wider cursor-pointer"
+                  className="p-2 text-background uppercase text-xs [font-family:'Satoshi',_sans-serif] font-normal tracking-wider cursor-pointer"
                 >
                   Close ✕
                 </button>
               </div>
-              <nav className="flex flex-col gap-6 text-base [font-family:'Saans_Mono',_monospace] tracking-wider uppercase">
+              <nav className="flex flex-col gap-6 text-base [font-family:'Satoshi',_sans-serif] font-normal tracking-wider uppercase">
                 <a
                   href="#works"
                   className="py-3 border-b border-background/20 hover:text-[#D4AF37] transition-colors"
@@ -161,7 +161,7 @@ export default function Navbar() {
         <div className="flex justify-end items-center basis-2/5 gap-3 max-lg:hidden" data-ditto-id="motion-div">
           <button
             onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
+            className="flex py-2 px-3 justify-center items-center shrink-0 gap-2 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 hover:text-[#D4AF37] transition-colors duration-150"
             data-component="button"
             aria-controls="header-search-panel"
             aria-expanded={isSearchOpen}
@@ -170,7 +170,7 @@ export default function Navbar() {
             Search
           </button>
           <a
-            className="inline-flex items-center justify-center py-2 px-4 [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-semibold leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150"
+            className="inline-flex items-center justify-center py-2 px-4 [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-semibold leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap text-nowrap cursor-pointer h-8 bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150"
             data-component="link"
             href="#inquire"
           >
@@ -193,7 +193,7 @@ export default function Navbar() {
             <div className="flex items-center gap-6">
               <div className="border-b border-solid border-b-clr-0 flex py-3 px-1 items-center flex-1 gap-3 h-12">
                 <input
-                  className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-foreground [font-family:Denim,_serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none"
+                  className="w-full h-[1.4375rem] block min-w-0 flex-1 overflow-clip text-foreground [font-family:'Satoshi',_sans-serif] font-medium leading-[1.375rem] tracking-[0.16px] cursor-text focus:outline-none"
                   data-ditto-id="style-input-2"
                   data-component="input"
                   placeholder="Search works (Chronotomi, Lumina Living, QuieTide), studio capabilities, journal..."
@@ -203,7 +203,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="flex rounded-full justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-9 w-9 hover:bg-accent transition-colors"
+                className="flex rounded-full justify-center items-center shrink-0 gap-2 text-foreground [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] text-center uppercase whitespace-nowrap text-nowrap cursor-pointer h-9 w-9 hover:bg-accent transition-colors"
                 data-ditto-id="motion-close"
                 data-component="button"
                 aria-label="Close"

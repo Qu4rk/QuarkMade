@@ -34,13 +34,13 @@ export default function CardGridItem({ d }: { d: CardGridItemData }) {
         {/* Card Content & Tags */}
         <div className="flex pr-8 flex-col gap-3 max-md:pr-4">
           <h3
-            className="block [font-family:'Ivar_Headline',_serif] text-xl md:text-2xl leading-snug tracking-tight text-foreground group-hover:text-[#4442DB] transition-colors"
+            className="block [font-family:'Satoshi',_sans-serif] font-normal text-xl md:text-2xl leading-snug tracking-tight text-foreground group-hover:text-[#4442DB] transition-colors"
             data-component="heading"
           >
             {d.title}
           </h3>
 
-          <p className="[font-family:Denim,_serif] text-foreground/75 text-sm md:text-base leading-relaxed line-clamp-3">
+          <p className="[font-family:'Satoshi',_sans-serif] font-normal text-foreground/75 text-sm md:text-base leading-relaxed line-clamp-3">
             {d.summary}
           </p>
 
@@ -50,7 +50,7 @@ export default function CardGridItem({ d }: { d: CardGridItemData }) {
               {d.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-1 [font-family:'Saans_Mono',_monospace] text-[10px] md:text-[11px] font-medium tracking-[0.1em] uppercase rounded-none border border-foreground/20 text-foreground/80 group-hover:border-[#4442DB]/40 group-hover:text-[#4442DB] transition-colors"
+                  className="px-2.5 py-1 [font-family:'Satoshi',_sans-serif] font-normal text-[10px] md:text-[11px] tracking-[0.1em] uppercase rounded-none border border-foreground/20 text-foreground/80 group-hover:border-[#4442DB]/40 group-hover:text-[#4442DB] transition-colors"
                 >
                   {tag}
                 </span>

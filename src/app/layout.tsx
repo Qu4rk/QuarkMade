@@ -45,10 +45,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&f[]=satoshi@400,500,700&display=swap"
         />
       </head>
-      <body className="min-h-screen block text-foreground [font-family:ui-sans-serif,_system-ui,_sans-serif] bg-background antialiased selection:bg-[#4442DB] selection:text-white">
+      <body className="min-h-screen block text-foreground [font-family:'Satoshi',_sans-serif] font-normal bg-background antialiased selection:bg-[#4442DB] selection:text-white">
         {children}
       </body>
     </html>

@@ -14,23 +14,23 @@ const galleryData = [
     projectName: "QuieTide",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           The QuieTide capture space was engineered to eliminate digital cognitive friction. Using real-time GLSL fragment shaders, we generated ambient water caustics that subtly shift with daylight.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Visual Architecture
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Warm terracotta and sea-mist color palettes paired with smooth cubic-bezier micro-interactions.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Shader Performance
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               60 FPS GPU-accelerated canvas with adaptive resolution scaling for seamless mobile responsiveness.
             </p>
           </div>
@@ -51,23 +51,23 @@ const galleryData = [
     projectName: "Lumina Living",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           Lumina Living redefines modern architectural estate platforms through seamless spatial storytelling, immersive editorial layouts, and high-fidelity media viewers.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Materiality & Light
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
-              Editorial typography featuring FT Polar and serif headlines matched with tactile interior photography.
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
+              Editorial typography featuring Satoshi and clean modern hierarchy matched with tactile interior photography.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Spatial Platform
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Interactive floorplan navigation with panoramic viewpoint transitions and seamless inquiry concierge.
             </p>
           </div>
@@ -88,23 +88,23 @@ const galleryData = [
     projectName: "Chronotomi",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           Crafted for high-end timepiece collectors, Chronotomi combines macro horological photography with kinetic typography and precision micro-animations.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Horological Mastery
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Curated showcases for Submariner Date, Patek Philippe Nautilus, and Audemars Piguet Royal Oak.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Kinetic Movement
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Dynamic scroll choreography and spring physics that mimic the mechanical escapement of fine timepieces.
             </p>
           </div>
@@ -125,23 +125,23 @@ const galleryData = [
     projectName: "QuieTide",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           The flagship experience of QuieTide immerses the visitor in a meditative sunset atmosphere with dynamic particle clouds and tranquil soundscape integration.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Fluid Shaders
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Subtle wave oscillations and horizon reflection mapping built with Three.js and custom GLSL code.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Aesthetic Restraint
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Generous whitespace and serene layout balance designed to induce calm and focus.
             </p>
           </div>
@@ -162,23 +162,23 @@ const galleryData = [
     projectName: "Chronotomi",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           An editorial standard for luxury watch curation, combining deep technical specifications with private client advisory and provenance verification.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Editorial Layouts
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Harmonious contrast between high-contrast obsidian backgrounds and warm champagne typography.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Collector Concierge
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Private acquisition inquiries and encrypted concierge communication for rare timepieces.
             </p>
           </div>
@@ -199,23 +199,23 @@ const galleryData = [
     projectName: "Lumina Living",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
-        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Denim',_serif]">
+        <p className="text-lg md:text-xl font-normal text-white/90 [font-family:'Satoshi',_sans-serif] font-normal">
           Capturing the transition between dawn and dusk in luxury residential design, translating physical architectural volumes into the digital realm.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               01 / Panoramic Discovery
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Full-bleed photography integrated with smooth inertia scrolling and subtle parallax depth layers.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-[#D4AF37] [font-family:'Saans_Mono',_monospace] text-xs font-bold uppercase tracking-wider block mb-2">
+            <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] font-normal text-xs font-bold uppercase tracking-wider block mb-2">
               02 / Architectural Purity
             </span>
-            <p className="text-sm text-white/80 [font-family:'Denim',_serif]">
+            <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif] font-normal">
               Uncluttered navigation allowing the spaces and materiality to command full attention.
             </p>
           </div>
@@ -243,12 +243,12 @@ export default function BaseSection() {
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
           <ProjectBadge label="VISUAL ARCHIVE / SNAPSHOT GALLERY & CRAFT ESSAYS" />
           
-          <div className="[font-family:'Ivar_Headline',_serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground mt-2" data-component="heading">
+          <div className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground mt-2" data-component="heading">
             <p className="block">
               Snapshot Gallery
             </p>
           </div>
-          <div className="[font-family:'Denim',_serif] text-base md:text-lg text-foreground/75 leading-relaxed max-w-xl">
+          <div className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-foreground/75 leading-relaxed max-w-xl">
             <p className="block">
               An interactive visual archive of curated digital sanctuaries, spatial architectures, and kinetic flagships. Click any snapshot to inspect details.
             </p>

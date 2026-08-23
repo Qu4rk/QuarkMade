@@ -35,7 +35,7 @@ export default function QuarkLogo({ className = "", showText = true, size = 46 }
           <span className="[font-family:'Chillax',_sans-serif] font-medium text-base sm:text-lg md:text-[1.25rem] leading-none tracking-[0.12em] uppercase transition-colors text-inherit">
             QUARK<span className="text-[#4442DB] dark:text-[#635BFF]">MADE</span>
           </span>
-          <span className="[font-family:'Saans_Mono',_monospace] text-[9.5px] font-medium leading-none tracking-[0.26em] uppercase opacity-75 mt-1 text-inherit">
+          <span className="[font-family:'Satoshi',_sans-serif] font-normal text-[9.5px] leading-none tracking-[0.26em] uppercase opacity-75 mt-1 text-inherit">
             DIGITAL CRAFT
           </span>
         </div>

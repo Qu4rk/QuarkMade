@@ -15,9 +15,9 @@ export type Logo2Styles = {
 };
 
 export const NavLink_styles: NavLinkStyles[] = [
-    { className: "text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[1.25rem] max-md:text-xs max-md:leading-[1.0625rem]" },
-    { className: "[font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[1.25rem] max-md:text-xs max-md:leading-[1.0625rem]" },
-    { className: "[font-family:'FT_Polar',_serif] text-sm leading-5 max-md:text-[0.8125rem] max-md:leading-[1.1875rem]" }
+    { className: "text-foreground [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[1.25rem] max-md:text-xs max-md:leading-[1.0625rem]" },
+    { className: "[font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[1.25rem] max-md:text-xs max-md:leading-[1.0625rem]" },
+    { className: "[font-family:'Satoshi',_sans-serif] font-normal text-sm leading-5 max-md:text-[0.8125rem] max-md:leading-[1.1875rem]" }
 ];
 export const Tile_styles: TileStyles[] = [
     { className: "w-[37.3px]" },
@@ -25,9 +25,9 @@ export const Tile_styles: TileStyles[] = [
     { className: "w-[55.5px]" }
 ];
 export const NavLink2_styles: NavLink2Styles[] = [
-    { className: "text-foreground [font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]" },
-    { className: "[font-family:'Saans_Mono',_monospace] text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]" },
-    { className: "[font-family:'FT_Polar',_serif] text-sm leading-3.5 tracking-[0.14px] capitalize max-md:text-[0.8125rem] max-md:leading-[0.8125rem] max-md:tracking-[0.13px]" }
+    { className: "text-foreground [font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]" },
+    { className: "[font-family:'Satoshi',_sans-serif] font-normal text-[0.8125rem] font-medium leading-[0.8125rem] tracking-[0.13px] uppercase max-md:text-xs max-md:leading-[0.75rem] max-md:tracking-[0.12px]" },
+    { className: "[font-family:'Satoshi',_sans-serif] font-normal text-sm leading-3.5 tracking-[0.14px] capitalize max-md:text-[0.8125rem] max-md:leading-[0.8125rem] max-md:tracking-[0.13px]" }
 ];
 export const Logo2_styles: Logo2Styles[] = [
     { className: "h-[4.0625rem]", className2: "w-[6.8125rem] h-[4.0625rem]" },
