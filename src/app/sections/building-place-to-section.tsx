@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
+import { assetPath } from "../../lib/site";
 
 /** Featured Project 2: Lumina Living Case Study with actual website snapshot, official logo mark, and Chillax Gold heading. */
 export default function BuildingPlaceToSection() {
@@ -33,7 +34,7 @@ export default function BuildingPlaceToSection() {
         <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
           <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
             <img
-              src="/assets/portfolio/logos/lumina-logo.webp"
+              src={assetPath("/assets/portfolio/logos/lumina-logo.webp")}
               alt="Lumina Living"
               className="h-7 sm:h-8.5 md:h-10 w-auto object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
             />
@@ -69,7 +70,7 @@ export default function BuildingPlaceToSection() {
                 <img
                   className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                   alt="Lumina Living Architectural Showcase"
-                  src="/assets/portfolio/lumina_hero.webp"
+                  src={assetPath("/assets/portfolio/lumina_hero.webp")}
                 />
               </motion.div>
               {/* Subtle Contrast Gradient */}
@@ -86,7 +87,7 @@ export default function BuildingPlaceToSection() {
                     {/* Official Lumina Living Logo */}
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
                       <img
-                        src="/assets/portfolio/logos/lumina-logo.webp"
+                        src={assetPath("/assets/portfolio/logos/lumina-logo.webp")}
                         alt="Lumina Living Logo"
                         className="w-full h-full object-contain"
                       />

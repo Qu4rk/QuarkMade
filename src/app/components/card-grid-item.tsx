@@ -1,4 +1,5 @@
 import React from "react";
+import { assetPath } from "../../lib/site";
 
 export type CardGridItemData = {
   variant: string;
@@ -26,7 +27,7 @@ export default function CardGridItem({ d }: { d: CardGridItemData }) {
             <img
               className="w-full h-full block absolute inset-0 object-cover align-middle transition-transform duration-700 ease-out group-hover:scale-105"
               alt={d.title}
-              src={d.image}
+              src={assetPath(d.image)}
             />
           </div>
         </div>

@@ -5,12 +5,13 @@ import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Carousel, Card } from "../components/ui/apple-cards-carousel";
 import ProjectBadge from "../components/ProjectBadge";
 import Button from "../components/Button";
+import { assetPath } from "../../lib/site";
 
 const galleryData = [
   {
     category: "CHRONOTOMI / HAUTE HORLOGERIE",
     title: "Precision Timepiece Showcase & Dial Inspection",
-    src: "/assets/portfolio/chronotomi_collection.webp",
+    src: assetPath("/assets/portfolio/chronotomi_collection.webp"),
     link: "http://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
@@ -47,7 +48,7 @@ const galleryData = [
   {
     category: "LUMINA LIVING / SPATIAL ARCHITECTURE",
     title: "Curated Interior Identity & Signature Living",
-    src: "/assets/portfolio/lumina_signature_living.webp",
+    src: assetPath("/assets/portfolio/lumina_signature_living.webp"),
     link: "http://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
@@ -58,18 +59,18 @@ const galleryData = [
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              01 / Materiality & Light
+              01 / Spatial Curation
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Editorial typography featuring Satoshi and clean modern hierarchy matched with tactile interior photography.
+              Dynamic floorplan visualization and ambient interior light transition showcases.
             </p>
           </div>
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
             <span className="text-[#D4AF37] [font-family:'Satoshi',_sans-serif] text-xs font-bold uppercase tracking-wider block mb-2">
-              02 / Spatial Platform
+              02 / Material Honesty
             </span>
             <p className="text-sm text-white/80 [font-family:'Satoshi',_sans-serif]">
-              Interactive floorplan navigation with panoramic viewpoint transitions and seamless inquiry concierge.
+              Ultra-high-definition textures for travertine, brushed bronze, and smoked oak finishes.
             </p>
           </div>
         </div>
@@ -84,7 +85,7 @@ const galleryData = [
   {
     category: "QUIETIDE / WEBGL EXPERIENCE",
     title: "Contemplative Pacing & WebGL Shaders",
-    src: "/assets/portfolio/quietide_capture_space.webp",
+    src: assetPath("/assets/portfolio/quietide_capture_space.webp"),
     link: "https://qu4rk.github.io/quietide-website/",
     projectName: "QuieTide",
     content: (
@@ -121,7 +122,7 @@ const galleryData = [
   {
     category: "CHRONOTOMI / THE STANDARD",
     title: "The Standard of Precision & Advisory",
-    src: "/assets/portfolio/chronotomi_standard.webp",
+    src: assetPath("/assets/portfolio/chronotomi_standard.webp"),
     link: "http://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
@@ -158,7 +159,7 @@ const galleryData = [
   {
     category: "LUMINA LIVING / RESIDENTIAL SANCTUARY",
     title: "Atmospheric Lighting & Spatial Harmony",
-    src: "/assets/portfolio/lumina_atmosphere.webp",
+    src: assetPath("/assets/portfolio/lumina_atmosphere.webp"),
     link: "http://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
@@ -195,7 +196,7 @@ const galleryData = [
   {
     category: "QUIETIDE / COASTAL STILLNESS",
     title: "Quiet Seas, Clear Mind Experience",
-    src: "/assets/portfolio/quietide_hero.webp",
+    src: assetPath("/assets/portfolio/quietide_hero.webp"),
     link: "https://qu4rk.github.io/quietide-website/",
     projectName: "QuieTide",
     content: (

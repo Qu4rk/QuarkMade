@@ -11,6 +11,7 @@ import React, {
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../../hooks/use-outside-click";
+import { assetPath } from "../../../lib/site";
 
 export type CardType = {
   src: string;
@@ -492,7 +493,7 @@ export const Carousel = ({
                       {/* Razor-Sharp Media Frame */}
                       <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black/40 shadow-2xl group">
                         <img
-                          src={activeCard.src}
+                          src={assetPath(activeCard.src)}
                           alt={activeCard.title}
                           className="w-full h-auto object-cover max-h-[48vh] sm:max-h-[52vh] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         />
@@ -540,7 +541,7 @@ export const Card = ({
       {/* Background Image with Zoom on Hover */}
       <div className="absolute inset-0 h-full w-full overflow-hidden">
         <img
-          src={card.src}
+          src={assetPath(card.src)}
           alt={card.title}
           className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
         />

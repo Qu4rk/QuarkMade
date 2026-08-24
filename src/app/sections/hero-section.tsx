@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import RotatingText from "../components/RotatingText";
 import SeamlessVideo from "../components/SeamlessVideo";
 import TextLoop from "../components/ui/TextLoop";
+import { assetPath } from "../../lib/site";
 
 /**
  * Immersive, multi-layered Hero Section featuring:
@@ -63,8 +64,8 @@ export default function HeroSection() {
         {/* Layer 1: Hardware-Accelerated Video Background with Zero-Overhead Looping */}
         <div className="h-full w-full block absolute inset-0 overflow-hidden pointer-events-none transform-gpu [contain:paint]">
           <SeamlessVideo
-            src="/assets/branding/hero_vid.mp4"
-            poster="/assets/branding/hero-sunset.webp"
+            src={assetPath("/assets/branding/hero_vid.mp4")}
+            poster={assetPath("/assets/branding/hero-sunset.webp")}
             className="object-center align-middle scale-105"
           />
         </div>
