@@ -170,7 +170,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 32 }}
               animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
               transition={{ duration: 1.0, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="[font-family:'Satoshi',_sans-serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-2xl"
+              className="[font-family:'Satoshi',_sans-serif] text-[1.85rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-4 gap-y-1.5 text-center drop-shadow-2xl"
               data-component="heading"
             >
               <span className="inline-block text-white">
@@ -214,7 +214,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="[font-family:'Satoshi',_sans-serif] text-base sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-md px-2"
+              className="[font-family:'Satoshi',_sans-serif] text-sm sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-md px-2"
             >
               We architect bespoke digital flagships, interactive worlds, and luxury spaces engineered to elevate modern brands.
             </motion.p>
@@ -224,12 +224,12 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 22 }}
               animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
               transition={{ duration: 0.9, delay: 0.60, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap justify-center items-center gap-4 mt-2"
+              className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-2 w-full sm:w-auto"
             >
-              <Button href="#works" variant="gold">
+              <Button href="#works" variant="gold" className="w-full sm:w-auto justify-center">
                 Explore Selected Works
               </Button>
-              <Button href="#inquire" variant="secondary-inverse">
+              <Button href="#inquire" variant="secondary-inverse" className="w-full sm:w-auto justify-center">
                 Start a Project
               </Button>
             </motion.div>

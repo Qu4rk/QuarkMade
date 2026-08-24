@@ -535,7 +535,7 @@ export const Card = ({
     <motion.button
       layoutId={layout ? `card-${card.title}` : undefined}
       onClick={handleOpen}
-      className="rounded-3xl bg-[#0B0A12] w-[21rem] aspect-[16/10] sm:w-[30rem] sm:aspect-[16/9] md:w-[38rem] lg:w-[44rem] overflow-hidden flex flex-col items-start justify-between relative z-10 cursor-pointer shadow-2xl border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 group text-left p-5 sm:p-7 md:p-8 shrink-0"
+      className="rounded-3xl bg-[#0B0A12] w-[84vw] max-w-[21rem] aspect-[16/10] sm:w-[30rem] sm:max-w-none sm:aspect-[16/9] md:w-[38rem] lg:w-[44rem] overflow-hidden flex flex-col items-start justify-between relative z-10 cursor-pointer shadow-2xl border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 group text-left p-5 sm:p-7 md:p-8 shrink-0"
     >
       {/* Background Image with Zoom on Hover */}
       <div className="absolute inset-0 h-full w-full overflow-hidden">

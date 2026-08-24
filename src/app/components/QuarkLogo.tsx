@@ -22,11 +22,10 @@ export default function QuarkLogo({
   shimmer = true,
 }: QuarkLogoProps) {
   return (
-    <div className={`inline-flex items-center gap-3.5 select-none ${className}`}>
+    <div className={`inline-flex items-center gap-2 sm:gap-3.5 select-none shrink-0 ${className}`}>
       {/* Official Circular Quark "Q" Logo Emblem */}
       <div
-        className="relative flex items-center justify-center shrink-0 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-105"
-        style={{ width: size, height: size }}
+        className="relative flex items-center justify-center shrink-0 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-105 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11"
       >
         <img
           src="/assets/branding/quark-logo.webp"
@@ -39,7 +38,7 @@ export default function QuarkLogo({
 
       {/* Brand Title Lockup with Single-Element Composite Shimmer */}
       {showText && (
-        <div className="flex flex-col justify-center text-left">
+        <div className="flex flex-col justify-center text-left min-w-0">
           <style>{`
             @keyframes quark-unified-shimmer {
               0% {
@@ -76,7 +75,7 @@ export default function QuarkLogo({
               animation: quark-unified-shimmer 1.5s linear infinite;
             }
           `}</style>
-          <span className="[font-family:'Chillax',_sans-serif] font-medium text-base sm:text-lg md:text-[1.25rem] leading-none tracking-[0.12em] uppercase inline-block drop-shadow-[0_0_14px_rgba(212,175,55,0.18)] select-none">
+          <span className="[font-family:'Chillax',_sans-serif] font-medium text-[13.5px] xs:text-[15px] sm:text-lg md:text-[1.25rem] leading-none tracking-[0.1em] sm:tracking-[0.12em] uppercase inline-block drop-shadow-[0_0_14px_rgba(212,175,55,0.18)] select-none whitespace-nowrap">
             {shimmer ? (
               <span className="quark-shimmer-unified">
                 QUARKMADE
@@ -88,7 +87,7 @@ export default function QuarkLogo({
               </>
             )}
           </span>
-          <span className="[font-family:'Satoshi',_sans-serif] font-normal text-[9.5px] leading-none tracking-[0.26em] uppercase opacity-75 mt-1 text-inherit">
+          <span className="[font-family:'Satoshi',_sans-serif] font-normal text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] leading-none tracking-[0.22em] sm:tracking-[0.26em] uppercase opacity-75 mt-0.5 sm:mt-1 text-inherit whitespace-nowrap">
             DIGITAL CRAFT
           </span>
         </div>

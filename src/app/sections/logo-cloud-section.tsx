@@ -6,29 +6,29 @@ import { textLinkData } from "../content";
 /** Footer Section for QuarkMade. */
 export default function LogoCloudSection() {
   return (
-    <footer className="block bg-transparent text-white pt-20 pb-12 px-6 border-t border-white/10 relative z-1" id="footer">
-      <div className="flex flex-col gap-14 mx-auto w-full max-w-screen">
+    <footer className="block bg-transparent text-white pt-16 md:pt-20 pb-12 px-6 max-md:pt-12 max-md:px-4 max-md:pb-10 border-t border-white/10 relative z-1" id="footer">
+      <div className="flex flex-col gap-12 md:gap-14 mx-auto w-full max-w-screen">
         {/* Top Footer: Brand Statement & Client Logo Tags */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-white/10">
           <div className="flex flex-col gap-3 max-w-md">
-            <QuarkLogo size={52} showText={true} />
+            <QuarkLogo size={48} showText={true} />
             <p className="[font-family:'Satoshi',_sans-serif] text-sm text-white/70 leading-relaxed mt-2 font-normal">
               QuarkMade is a boutique digital craft studio designing bespoke, high-performance web experiences and interactive flagships.
             </p>
           </div>
 
           {/* Contact Channels: WhatsApp & Email Standalone Icons */}
-          <div className="flex items-center gap-6 md:gap-8">
+          <div className="flex items-center gap-4 md:gap-6">
             {/* WhatsApp Icon (Outlined Vector matching user provided icon) */}
             <a
               href="https://wa.me/35799057690"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact via WhatsApp (+357 99 057690)"
-              className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110 p-1 flex items-center justify-center"
+              className="text-white/70 hover:text-white transition-all duration-300 hover:scale-105 min-w-[44px] min-h-[44px] p-2.5 rounded-full border border-white/10 hover:border-[#25D366]/50 bg-white/[0.04] flex items-center justify-center"
             >
               <svg
-                className="w-6 h-6 fill-current"
+                className="w-5 h-5 fill-current"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -44,10 +44,10 @@ export default function LogoCloudSection() {
             <a
               href="mailto:liasides.elias@gmail.com"
               aria-label="Send an Email"
-              className="text-white/70 hover:text-white transition-all duration-300 hover:scale-110 p-1 flex items-center justify-center"
+              className="text-white/70 hover:text-white transition-all duration-300 hover:scale-105 min-w-[44px] min-h-[44px] p-2.5 rounded-full border border-white/10 hover:border-[#D4AF37]/50 bg-white/[0.04] flex items-center justify-center"
             >
               <svg
-                className="w-6 h-6 fill-none stroke-current"
+                className="w-5 h-5 fill-none stroke-current"
                 viewBox="0 0 24 24"
                 strokeWidth="1.8"
                 strokeLinecap="round"

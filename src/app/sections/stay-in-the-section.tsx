@@ -142,7 +142,7 @@ export default function StayInTheSection() {
           <form
             onSubmit={handleSubmit}
             data-reveal
-            className="w-full max-w-2xl flex flex-col gap-6 p-6 sm:p-8 md:p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
+            className="w-full max-w-2xl flex flex-col gap-6 p-5 sm:p-8 md:p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
           >
             {/* Luminous Animated Border Beam Tracing along perimeter */}
             <BorderBeam size={340} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
@@ -164,7 +164,7 @@ export default function StayInTheSection() {
                     placeholder="Elena Vance"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal"
                   />
                 </div>
 
@@ -179,7 +179,7 @@ export default function StayInTheSection() {
                     placeholder="elena@brand.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal"
                   />
                 </div>
 
@@ -193,7 +193,7 @@ export default function StayInTheSection() {
                     placeholder="e.g. Vance Studio"
                     value={formData.brand}
                     onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal"
                   />
                 </div>
 
@@ -207,7 +207,7 @@ export default function StayInTheSection() {
                     placeholder="https://yoursite.com"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal"
                   />
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function StayInTheSection() {
               <span className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
                 2. What Are We Building?
               </span>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
                 {PROJECT_TYPES.map((type) => {
                   const isSelected = formData.projectType === type;
                   return (
@@ -226,15 +226,15 @@ export default function StayInTheSection() {
                       key={type}
                       type="button"
                       onClick={() => setFormData({ ...formData, projectType: type })}
-                      className={`flex items-center justify-between p-3 text-left transition-all duration-200 cursor-pointer border [font-family:'Satoshi',_sans-serif] rounded-none ${
+                      className={`flex items-center justify-between p-2.5 sm:p-3 text-left transition-all duration-200 cursor-pointer border [font-family:'Satoshi',_sans-serif] rounded-none ${
                         isSelected
                           ? "bg-[#4442DB]/25 text-white border-[#D4AF37] shadow-[0_0_15px_rgba(68,66,219,0.35)] font-semibold"
                           : "bg-white/[0.03] text-white/70 border-white/10 hover:border-white/30 hover:text-white font-normal"
                       }`}
                     >
-                      <span className="text-xs leading-tight">{type}</span>
+                      <span className="text-[11.5px] sm:text-xs leading-tight">{type}</span>
                       <span
-                        className={`text-xs ml-1.5 transition-colors shrink-0 ${
+                        className={`text-xs ml-1 transition-colors shrink-0 ${
                           isSelected ? "text-[#D4AF37] opacity-100" : "text-white/20 opacity-40"
                         }`}
                       >
@@ -259,7 +259,7 @@ export default function StayInTheSection() {
                   id="inquiry-budget"
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal cursor-pointer rounded-none"
+                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal cursor-pointer rounded-none"
                 >
                   {BUDGET_TIERS.map((tier) => (
                     <option key={tier} value={tier} className="bg-[#0B0A12] text-white py-1">
@@ -277,7 +277,7 @@ export default function StayInTheSection() {
                   id="inquiry-timeline"
                   value={formData.timeline}
                   onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal cursor-pointer rounded-none"
+                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm font-normal cursor-pointer rounded-none"
                 >
                   {TIMELINE_OPTIONS.map((opt) => (
                     <option key={opt} value={opt} className="bg-[#0B0A12] text-white py-1">
@@ -299,7 +299,7 @@ export default function StayInTheSection() {
                 placeholder="Tell us about your brand goals, target audience, specific features (e.g. 3D WebGL, bespoke checkout, animations), or websites you admire..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="p-3.5 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm resize-none font-normal"
+                className="p-3.5 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-[16px] sm:text-sm resize-none font-normal"
               />
             </div>
 
