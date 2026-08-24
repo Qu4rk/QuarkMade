@@ -5,22 +5,69 @@ import Button from "../components/Button";
 import ProjectBadge from "../components/ProjectBadge";
 import BorderBeam from "../components/ui/BorderBeam";
 
-/** Project Inquiry and Client Commission Section with WebGL Topography Background. */
+const PROJECT_TYPES = [
+  "Flagship Website",
+  "Luxury E-Commerce",
+  "3D / Interactive WebGL",
+  "Full Rebrand & Platform",
+  "Web Application / SaaS",
+  "Other / Custom Scope",
+];
+
+const BUDGET_TIERS = [
+  "€600 – €1,500",
+  "€1,500 – €3,500",
+  "€3,500 – €7,500",
+  "€7,500+",
+];
+
+const TIMELINE_OPTIONS = [
+  "1 – 2 Months",
+  "2 – 3 Months",
+  "< 1 Month (Urgent)",
+  "Flexible",
+];
+
+/** Project Inquiry and Client Commission Section with Comprehensive Quote Specifications. */
 export default function StayInTheSection() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    brand: "",
+    website: "",
+    projectType: "Flagship Website",
+    budget: "€1,500 – €3,500",
+    timeline: "1 – 2 Months",
+    message: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.name && formData.email) {
       setSubmitted(true);
+
+      // Pre-format mailto payload for instant client direct communication
+      const subject = encodeURIComponent(`[Project Inquiry] ${formData.brand || formData.name} - ${formData.projectType}`);
+      const body = encodeURIComponent(
+        `Hi Elias,\n\nI would like to inquire about a new project with QuarkMade:\n\n` +
+        `• Name: ${formData.name}\n` +
+        `• Email: ${formData.email}\n` +
+        `• Brand / Company: ${formData.brand || "N/A"}\n` +
+        `• Current Website: ${formData.website || "N/A"}\n` +
+        `• Project Type: ${formData.projectType}\n` +
+        `• Estimated Budget: ${formData.budget}\n` +
+        `• Target Timeline: ${formData.timeline}\n\n` +
+        `• Project Details / Vision:\n${formData.message || "Looking forward to discussing further."}\n`
+      );
+
+      // Open email client safely
+      window.location.href = `mailto:liasides.elias@gmail.com?subject=${subject}&body=${body}`;
     }
   };
 
   return (
     <section className="block bg-transparent text-white py-24 md:py-32 px-6 max-md:py-16 max-md:px-4 relative overflow-hidden" id="inquire">
-
-
       {/* Radial Obsidian Vignette Overlay for Crisp Readability */}
       <div
         className="absolute inset-0 z-1 pointer-events-none"
@@ -36,85 +83,252 @@ export default function StayInTheSection() {
 
       <div className="flex flex-col items-center gap-12 mx-auto w-full max-w-4xl relative z-10">
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-2xl">
-          <ProjectBadge label="COMMISSIONS & INQUIRIES" />
+          <ProjectBadge label="COMMISSIONS & QUOTES" />
           <h2 className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-white mt-2" data-component="heading">
             Start a project with <span className="[font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">QuarkMade</span>
           </h2>
           <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 leading-relaxed">
-            Have a project in mind? We partner with ambitious founders, luxury brands, and visionary teams to engineer digital flagships that set new benchmarks.
+            Tell us about your brand vision, scope, and timeline. We will review your project requirements and prepare a bespoke quote within 24 hours.
           </p>
+          <div className="flex items-center gap-2 text-xs [font-family:'Satoshi',_sans-serif] text-white/70 pt-1">
+            <span>Prefer direct messaging?</span>
+            <a
+              href="https://wa.me/35799057690?text=Hi%20Elias,%20I'd%20like%20to%20discuss%20a%20new%20website%20project%20with%20QuarkMade."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[#25D366] hover:text-[#4ade80] font-medium underline underline-offset-4 decoration-[#25D366]/40 hover:decoration-[#25D366] transition-colors"
+            >
+              <span>Chat on WhatsApp (+357 99 057690)</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
 
         {submitted ? (
-          <div data-reveal className="p-8 rounded-2xl bg-white/10 border border-[#D4AF37]/50 text-center max-w-md backdrop-blur-md relative overflow-hidden">
-            <BorderBeam size={220} duration={8} colorFrom="#D4AF37" colorTo="#F3E5AB" />
-            <div className="text-3xl mb-2 text-[#D4AF37]">✦</div>
-            <h3 className="[font-family:'Satoshi',_sans-serif] text-lg font-bold uppercase tracking-wider text-white mb-2">
-              Inquiry Received
-            </h3>
-            <p className="[font-family:'Satoshi',_sans-serif] text-white/80 text-sm font-normal">
-              Thank you for reaching out. We will review your project brief and get back to you within 24 hours.
-            </p>
+          <div data-reveal className="p-8 md:p-10 rounded-2xl bg-white/10 border border-[#D4AF37]/50 text-center max-w-lg backdrop-blur-md relative overflow-hidden flex flex-col items-center gap-5">
+            <BorderBeam size={240} duration={8} colorFrom="#D4AF37" colorTo="#F3E5AB" />
+            <div className="w-12 h-12 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] text-xl shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+              ✦
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="[font-family:'Chillax',_sans-serif] text-2xl font-medium text-white tracking-wide">
+                Inquiry Transmitted
+              </h3>
+              <p className="[font-family:'Satoshi',_sans-serif] text-white/80 text-sm font-normal leading-relaxed">
+                Thank you, <span className="text-[#F3E5AB] font-medium">{formData.name}</span>. Your project brief has been formatted and routed to <span className="text-[#D4AF37]">liasides.elias@gmail.com</span>.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a
+                href={`https://wa.me/35799057690?text=${encodeURIComponent(`Hi Elias, I just submitted an inquiry on QuarkMade for ${formData.brand || formData.name}.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-2.5 px-5 bg-[#25D366]/20 border border-[#25D366]/50 text-[#25D366] hover:bg-[#25D366]/30 text-xs font-semibold uppercase tracking-wider transition-colors rounded-none"
+              >
+                <span>WhatsApp Escalation</span>
+                <span>→</span>
+              </a>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="py-2.5 px-4 text-xs font-medium uppercase tracking-wider text-white/60 hover:text-white transition-colors"
+              >
+                Submit another inquiry
+              </button>
+            </div>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
             data-reveal
-            className="w-full max-w-xl flex flex-col gap-4 p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
+            className="w-full max-w-2xl flex flex-col gap-6 p-6 sm:p-8 md:p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
           >
             {/* Luminous Animated Border Beam Tracing along perimeter */}
-            <BorderBeam size={300} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
+            <BorderBeam size={340} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-1">
-              <div className="flex flex-col gap-2">
-                <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-name">
-                  Your Name
-                </label>
-                <input
-                  id="inquiry-name"
-                  type="text"
-                  required
-                  placeholder="Elena Vance"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
-                />
-              </div>
+            {/* Block 1: Client & Brand Contact Info */}
+            <div className="flex flex-col gap-4 relative z-1">
+              <span className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
+                1. Client & Brand Profile
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-name">
+                    Your Name <span className="text-[#D4AF37]">*</span>
+                  </label>
+                  <input
+                    id="inquiry-name"
+                    type="text"
+                    required
+                    placeholder="Elena Vance"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                  />
+                </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-email">
-                  Email Address
-                </label>
-                <input
-                  id="inquiry-email"
-                  type="email"
-                  required
-                  placeholder="elena@brand.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-10 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
-                />
+                <div className="flex flex-col gap-1.5">
+                  <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-email">
+                    Work Email <span className="text-[#D4AF37]">*</span>
+                  </label>
+                  <input
+                    id="inquiry-email"
+                    type="email"
+                    required
+                    placeholder="elena@brand.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-brand">
+                    Brand / Company Name
+                  </label>
+                  <input
+                    id="inquiry-brand"
+                    type="text"
+                    placeholder="e.g. Vance Studio"
+                    value={formData.brand}
+                    onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-website">
+                    Current Website <span className="text-white/40 text-[10px] lowercase">(optional)</span>
+                  </label>
+                  <input
+                    id="inquiry-website"
+                    type="text"
+                    placeholder="https://yoursite.com"
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    className="h-11 px-4 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 relative z-1">
-              <label className="[font-family:'Satoshi',_sans-serif] text-xs uppercase tracking-wider text-white/70 font-normal" htmlFor="inquiry-message">
-                Project Scope / Timeline
+            {/* Block 2: Project Scope Selection Grid Cards */}
+            <div className="flex flex-col gap-3 relative z-1 pt-2 border-t border-white/10">
+              <span className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase">
+                2. What Are We Building?
+              </span>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                {PROJECT_TYPES.map((type) => {
+                  const isSelected = formData.projectType === type;
+                  return (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, projectType: type })}
+                      className={`flex items-center justify-between p-3 text-left transition-all duration-200 cursor-pointer border [font-family:'Satoshi',_sans-serif] rounded-none ${
+                        isSelected
+                          ? "bg-[#4442DB]/25 text-white border-[#D4AF37] shadow-[0_0_15px_rgba(68,66,219,0.35)] font-semibold"
+                          : "bg-white/[0.03] text-white/70 border-white/10 hover:border-white/30 hover:text-white font-normal"
+                      }`}
+                    >
+                      <span className="text-xs leading-tight">{type}</span>
+                      <span
+                        className={`text-xs ml-1.5 transition-colors shrink-0 ${
+                          isSelected ? "text-[#D4AF37] opacity-100" : "text-white/20 opacity-40"
+                        }`}
+                      >
+                        ✦
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Block 3: Investment Budget & Timeline */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-1 pt-2 border-t border-white/10">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline justify-between">
+                  <label className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase" htmlFor="inquiry-budget">
+                    3. Estimated Budget
+                  </label>
+                  <span className="text-[10px] text-white/40 uppercase">Min. €600</span>
+                </div>
+                <select
+                  id="inquiry-budget"
+                  value={formData.budget}
+                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal cursor-pointer rounded-none"
+                >
+                  {BUDGET_TIERS.map((tier) => (
+                    <option key={tier} value={tier} className="bg-[#0B0A12] text-white py-1">
+                      {tier}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase" htmlFor="inquiry-timeline">
+                  Target Launch Window
+                </label>
+                <select
+                  id="inquiry-timeline"
+                  value={formData.timeline}
+                  onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                  className="h-11 px-3 bg-[#12111A] border border-white/20 text-white focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm font-normal cursor-pointer rounded-none"
+                >
+                  {TIMELINE_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt} className="bg-[#0B0A12] text-white py-1">
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Block 4: Project Vision & Brief */}
+            <div className="flex flex-col gap-2 relative z-1 pt-2 border-t border-white/10">
+              <label className="[font-family:'Satoshi',_sans-serif] text-[11px] font-semibold tracking-[0.2em] text-[#D4AF37] uppercase" htmlFor="inquiry-message">
+                4. Project Brief & Key Objectives
               </label>
               <textarea
                 id="inquiry-message"
-                rows={3}
-                placeholder="Tell us about your brand, vision, or desired launch date..."
+                rows={4}
+                placeholder="Tell us about your brand goals, target audience, specific features (e.g. 3D WebGL, bespoke checkout, animations), or websites you admire..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="p-3 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm resize-none font-normal"
+                className="p-3.5 rounded-none bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] transition-colors [font-family:'Satoshi',_sans-serif] text-sm resize-none font-normal"
               />
             </div>
 
-            <div className="flex justify-end mt-2 relative z-1">
-              <Button type="submit" variant="gold" className="w-full md:w-auto">
-                Submit Project Inquiry
-              </Button>
+            {/* Block 5: Actions & Submission (2-Col Grid Alignment) */}
+            <div className="flex flex-col gap-3 pt-3 relative z-1 border-t border-white/10">
+              <div className="flex items-center gap-2 text-white/50 text-xs [font-family:'Satoshi',_sans-serif]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+                <span>Quotes responded to within 24h</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a
+                  href="https://wa.me/35799057690?text=Hi%20Elias,%20I'd%20like%20to%20discuss%20a%20new%20website%20project%20with%20QuarkMade."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 h-9 px-4 py-3 bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 hover:border-[#25D366] text-[#25D366] [font-family:'Satoshi',_sans-serif] text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase rounded-none transition-all duration-200 w-full whitespace-nowrap shadow-[0_0_15px_rgba(37,211,102,0.15)]"
+                >
+                  <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.38 17.07L2 22L7.09 20.67C8.54 21.52 10.22 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM3.85 12C3.85 7.5 7.5 3.85 12 3.85C16.5 3.85 20.15 7.5 20.15 12C20.15 16.5 16.5 20.15 12 20.15C10.42 20.15 8.95 19.7 7.7 18.92L7.35 18.7L4.35 19.49L5.16 16.58L4.92 16.2C4.24 14.94 3.85 13.51 3.85 12ZM8.6 7.4C8.42 7.4 8.16 7.46 7.93 7.71C7.7 7.96 7.05 8.57 7.05 9.8C7.05 11.03 7.95 12.21 8.08 12.38C8.2 12.54 9.82 15.04 12.3 16.11C12.89 16.37 13.35 16.52 13.71 16.63C14.3 16.82 14.84 16.79 15.27 16.73C15.75 16.66 16.74 16.13 16.95 15.55C17.16 14.97 17.16 14.47 17.1 14.37C17.04 14.27 16.88 14.21 16.63 14.09C16.38 13.97 15.18 13.38 14.96 13.3C14.74 13.22 14.58 13.18 14.42 13.43C14.26 13.68 13.79 14.23 13.65 14.39C13.51 14.55 13.37 14.57 13.12 14.45C12.87 14.33 12.08 14.07 11.14 13.23C10.41 12.58 9.92 11.78 9.78 11.53C9.64 11.28 9.76 11.15 9.88 11.03C9.99 10.92 10.13 10.74 10.25 10.6C10.37 10.46 10.41 10.36 10.49 10.2C10.57 10.04 10.53 9.9 10.47 9.78C10.41 9.66 9.94 8.5 9.74 8.03C9.54 7.57 9.35 7.63 9.2 7.62C9.05 7.61 8.89 7.61 8.73 7.61L8.6 7.4Z"
+                    />
+                  </svg>
+                  <span className="whitespace-nowrap">Chat on WhatsApp</span>
+                </a>
+                <Button type="submit" variant="gold" className="w-full whitespace-nowrap" showIcon={true}>
+                  Request Project Quote
+                </Button>
+              </div>
             </div>
           </form>
         )}
