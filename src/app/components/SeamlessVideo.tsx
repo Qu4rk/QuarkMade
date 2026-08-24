@@ -22,15 +22,18 @@ export default function SeamlessVideo({
   className = "",
   fadeDuration = 1.4,
 }: SeamlessVideoProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
   const activeStreamRef = useRef<1 | 2>(1);
   const isFadingRef = useRef(false);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const v1 = video1Ref.current;
     const v2 = video2Ref.current;
-    if (!v1 || !v2) return;
+    const container = containerRef.current;
+    if (!v1 || !v2 || !container) return;
 
     v1.muted = true;
     v2.muted = true;
@@ -46,12 +49,28 @@ export default function SeamlessVideo({
     v2.style.opacity = "0";
     v1.play().catch(() => {});
 
+    // Viewport-aware playback observer: pause decoding when hero is off-screen
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const inView = entry.isIntersecting;
+        isVisibleRef.current = inView;
+        const currentActive = activeStreamRef.current === 1 ? v1 : v2;
+        if (inView) {
+          currentActive.play().catch(() => {});
+        } else {
+          currentActive.pause();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(container);
+
     const handleCrossfade = (
       activeVideo: HTMLVideoElement,
       incomingVideo: HTMLVideoElement,
       targetStream: 1 | 2
     ) => {
-      if (isFadingRef.current) return;
+      if (isFadingRef.current || !isVisibleRef.current) return;
       if (!activeVideo.duration || isNaN(activeVideo.duration)) return;
 
       const remaining = activeVideo.duration - activeVideo.currentTime;
@@ -98,6 +117,7 @@ export default function SeamlessVideo({
     v2.addEventListener("timeupdate", onV2TimeUpdate, { passive: true });
 
     return () => {
+      io.disconnect();
       v1.removeEventListener("timeupdate", onV1TimeUpdate);
       v2.removeEventListener("timeupdate", onV2TimeUpdate);
       v1.pause();
@@ -106,7 +126,7 @@ export default function SeamlessVideo({
   }, [fadeDuration]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-foreground [contain:paint]">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-foreground [contain:strict]">
       {/* Stream 1 */}
       <video
         ref={video1Ref}
@@ -114,7 +134,7 @@ export default function SeamlessVideo({
         playsInline
         preload="auto"
         poster={poster}
-        className={`absolute inset-0 w-full h-full object-cover object-center will-change-transform transform-gpu transition-opacity ease-in-out [backface-visibility:hidden] ${className}`}
+        className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity ease-in-out [backface-visibility:hidden] ${className}`}
       >
         <source src={src} type="video/mp4" />
       </video>
@@ -125,7 +145,7 @@ export default function SeamlessVideo({
         muted
         playsInline
         preload="auto"
-        className={`absolute inset-0 w-full h-full object-cover object-center will-change-transform transform-gpu transition-opacity ease-in-out [backface-visibility:hidden] ${className}`}
+        className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity ease-in-out [backface-visibility:hidden] ${className}`}
       >
         <source src={src} type="video/mp4" />
       </video>

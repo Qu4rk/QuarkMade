@@ -40,7 +40,6 @@ export default function Page() {
           mouseStrength={1.2}
           mouseRadius={0.35}
           mouseDampening={0.12}
-          mixBlendMode="screen"
         />
       </div>
 

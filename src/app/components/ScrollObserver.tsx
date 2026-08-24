@@ -59,6 +59,7 @@ export default function ScrollObserver() {
     window.addEventListener("resize", computeOffsets, { passive: true });
 
     let ticking = false;
+    let isHeaderScrolled = false;
     const header = document.getElementById("header");
 
     const onScroll = () => {
@@ -67,19 +68,30 @@ export default function ScrollObserver() {
           const scrollY = window.scrollY;
           const windowHeight = window.innerHeight;
 
-          // Parallax transform calculation using cached geometry
+          // Parallax transform calculation: only update elements near the viewport
           for (let i = 0; i < elementOffsets.length; i++) {
             const item = elementOffsets[i];
-            const relativeOffset = (scrollY + windowHeight / 2 - (item.top + item.height / 2)) * item.speed;
-            item.el.style.transform = `translate3d(0, ${relativeOffset.toFixed(1)}px, 0)`;
+            const inView =
+              scrollY + windowHeight > item.top - 200 &&
+              scrollY < item.top + item.height + 200;
+
+            if (inView) {
+              const relativeOffset =
+                (scrollY + windowHeight / 2 - (item.top + item.height / 2)) * item.speed;
+              item.el.style.transform = `translate3d(0, ${relativeOffset.toFixed(1)}px, 0)`;
+            }
           }
 
-          // Header Theme Switcher
+          // Header Theme Switcher (only mutate DOM when state toggles)
           if (header) {
-            if (scrollY > 40) {
-              header.classList.add("scrolled");
-            } else {
-              header.classList.remove("scrolled");
+            const shouldBeScrolled = scrollY > 40;
+            if (shouldBeScrolled !== isHeaderScrolled) {
+              isHeaderScrolled = shouldBeScrolled;
+              if (shouldBeScrolled) {
+                header.classList.add("scrolled");
+              } else {
+                header.classList.remove("scrolled");
+              }
             }
           }
 

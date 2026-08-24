@@ -18,33 +18,34 @@ import TextLoop from "../components/ui/TextLoop";
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
 
-  // Scroll-linked cinema exit transform (Directly hardware-composited for 120fps zero-lag performance)
+  // 21st.dev 3D Cinema Container Scroll choreography (Hardware-composited for 120 FPS)
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 50]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 0.95, 0.4]);
+  const cardRotateX = useTransform(scrollYProgress, [0, 1], [0, -8]);
+  const cardScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const cardY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -35]);
 
   return (
     <section
       ref={heroRef}
-      className="block relative bg-background overflow-hidden select-none"
+      className="block relative bg-background overflow-hidden select-none [perspective:1200px] [isolation:isolate]"
       id="hero"
     >
       <motion.div
         style={{
-          scale: heroScale,
-          y: heroY,
-          opacity: heroOpacity,
-          transformOrigin: "center bottom",
+          rotateX: cardRotateX,
+          scale: cardScale,
+          y: cardY,
+          transformOrigin: "center top",
         }}
-        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2rem] border-b border-white/10 bg-foreground will-change-transform transform-gpu [contain:paint]"
+        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2.5rem] border-b border-white/15 bg-foreground shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8)] will-change-transform transform-gpu [contain:paint] [isolation:isolate]"
       >
         {/* Layer 1: Hardware-Accelerated Video Background with Zero-Overhead Looping */}
-        <div className="h-full w-full block absolute inset-0 overflow-hidden pointer-events-none will-change-transform transform-gpu [contain:paint]">
+        <div className="h-full w-full block absolute inset-0 overflow-hidden pointer-events-none transform-gpu [contain:paint]">
           <SeamlessVideo
             src="/assets/branding/hero_vid.mp4"
             poster="/assets/branding/hero-sunset.webp"
@@ -53,7 +54,7 @@ export default function HeroSection() {
         </div>
 
         {/* Layer 2: Ambient Twilight Horizon Bloom */}
-        <div className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden will-change-transform transform-gpu [contain:paint]">
+        <div className="h-full block absolute top-0 inset-x-0 z-2 pointer-events-none overflow-hidden [contain:paint]">
           {/* Warm amber-violet celestial glow */}
           <div
             className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full opacity-60 pointer-events-none"
@@ -82,14 +83,17 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Layer 4: Vertically Centered Editorial Hero Content */}
-        <div className="h-full flex flex-col justify-center items-center pt-24 pb-16 px-6 relative z-3 mx-auto max-w-screen max-md:pt-20 max-md:pb-12 max-md:px-4">
+        {/* Layer 4: Vertically Centered Editorial Hero Content with Subtle Parallax Float */}
+        <motion.div
+          style={{ y: contentY }}
+          className="h-full flex flex-col justify-center items-center pt-24 pb-16 px-6 relative z-3 mx-auto max-w-screen max-md:pt-20 max-md:pb-12 max-md:px-4 [isolation:isolate]"
+        >
           <div
             data-reveal
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-5 md:gap-6 text-white"
           >
             {/* React Bits TextLoop: Weaving through the sunset clouds */}
-            <div className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto">
+            <div className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto [isolation:isolate]">
               <div
                 className="w-full relative overflow-hidden"
                 style={{
@@ -117,7 +121,7 @@ export default function HeroSection() {
                   ribbonBorderColor="rgba(255, 255, 255, 0.18)"
                   ribbonWidth={40}
                   pauseOnHover={true}
-                  className="w-full drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+                  className="w-full"
                 />
               </div>
 
@@ -206,7 +210,7 @@ export default function HeroSection() {
               </Button>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Layer 6: Subtle Animated Scroll Indicator */}
         <motion.a
