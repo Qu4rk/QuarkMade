@@ -32,7 +32,6 @@ type SubmitState = "idle" | "sending" | "sent";
 
 /** Project Inquiry and Client Commission Section with Comprehensive Quote Specifications. */
 export default function StayInTheSection() {
-  const [submitted, setSubmitted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [formData, setFormData] = useState({
     name: "",
@@ -75,8 +74,21 @@ export default function StayInTheSection() {
       if (!res.ok) throw new Error("Submission failed");
 
       setSubmitState("sent");
-      // Brief success flash, then transition to confirmation card
-      setTimeout(() => setSubmitted(true), 1200);
+      // Clear form inputs
+      setFormData({
+        name: "",
+        email: "",
+        brand: "",
+        website: "",
+        projectType: "Flagship Website",
+        budget: "€1,500 – €3,500",
+        timeline: "1 – 2 Months",
+        message: "",
+      });
+      // Revert button back to idle after 5 seconds
+      setTimeout(() => {
+        setSubmitState("idle");
+      }, 5000);
     } catch {
       // Fallback: open mailto if FormSubmit fails
       const subject = encodeURIComponent(`[Project Inquiry] ${formData.brand || formData.name} - ${formData.projectType}`);
@@ -92,7 +104,10 @@ export default function StayInTheSection() {
         `• Project Details / Vision:\n${formData.message || "Looking forward to discussing further."}\n`
       );
       window.location.href = `mailto:liasides.elias@gmail.com?subject=${subject}&body=${body}`;
-      setSubmitted(true);
+      setSubmitState("sent");
+      setTimeout(() => {
+        setSubmitState("idle");
+      }, 5000);
     }
   };
 
@@ -134,48 +149,13 @@ export default function StayInTheSection() {
           </div>
         </div>
 
-        {submitted ? (
-          <div data-reveal className="p-8 md:p-10 rounded-2xl bg-white/10 border border-[#D4AF37]/50 text-center max-w-lg backdrop-blur-md relative overflow-hidden flex flex-col items-center gap-5">
-            <BorderBeam size={240} duration={8} colorFrom="#D4AF37" colorTo="#F3E5AB" />
-            <div className="w-12 h-12 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] text-xl shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-              ✦
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="[font-family:'Chillax',_sans-serif] text-2xl font-medium text-white tracking-wide">
-                Inquiry Transmitted
-              </h3>
-              <p className="[font-family:'Satoshi',_sans-serif] text-white/80 text-sm font-normal leading-relaxed">
-                Thank you, <span className="text-[#F3E5AB] font-medium">{formData.name}</span>. Your project brief has been formatted and routed to <span className="text-[#D4AF37]">liasides.elias@gmail.com</span>.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <a
-                href={`https://wa.me/35799057690?text=${encodeURIComponent(`Hi Elias, I just submitted an inquiry on QuarkMade for ${formData.brand || formData.name}.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-2.5 px-5 bg-[#25D366]/20 border border-[#25D366]/50 text-[#25D366] hover:bg-[#25D366]/30 text-xs font-semibold uppercase tracking-wider transition-colors rounded-none"
-              >
-                <span>WhatsApp Escalation</span>
-                <span>→</span>
-              </a>
-              <button
-                type="button"
-                onClick={() => setSubmitted(false)}
-                className="py-2.5 px-4 text-xs font-medium uppercase tracking-wider text-white/60 hover:text-white transition-colors"
-              >
-                Submit another inquiry
-              </button>
-            </div>
-          </div>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            data-reveal
-            className="w-full max-w-2xl flex flex-col gap-6 p-5 sm:p-8 md:p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
-          >
-            {/* Luminous Animated Border Beam Tracing along perimeter */}
-            <BorderBeam size={340} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
+        <form
+          onSubmit={handleSubmit}
+          data-reveal
+          className="w-full max-w-2xl flex flex-col gap-6 p-5 sm:p-8 md:p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden"
+        >
+          {/* Luminous Animated Border Beam Tracing along perimeter */}
+          <BorderBeam size={340} duration={10} colorFrom="#4442DB" colorTo="#D4AF37" />
 
             {/* Block 1: Client & Brand Contact Info */}
             <div className="flex flex-col gap-4 relative z-1">
@@ -339,6 +319,23 @@ export default function StayInTheSection() {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
                 <span>Quotes responded to within 24h</span>
               </div>
+
+              {/* Inline Success Notice */}
+              <AnimatePresence>
+                {submitState === "sent" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -6 }}
+                    animate={{ opacity: 1, height: "auto", y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                    className="p-3 bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-center text-xs [font-family:'Satoshi',_sans-serif] text-[#F3E5AB] flex items-center justify-center gap-2"
+                  >
+                    <span className="text-[#D4AF37]">✦</span>
+                    <span>Inquiry transmitted successfully to <strong className="text-white font-medium">liasides.elias@gmail.com</strong>. We will review and reply within 24 hours.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a
                   href="https://wa.me/35799057690?text=Hi%20Elias,%20I'd%20like%20to%20discuss%20a%20new%20website%20project%20with%20QuarkMade."
@@ -406,24 +403,37 @@ export default function StayInTheSection() {
                       <motion.span
                         key="sent"
                         className="inline-flex items-center gap-2"
-                        initial={{ opacity: 0, scale: 0.5 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "backOut" }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
                       >
-                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          {/* Animated circular outline */}
+                          <motion.circle
+                            cx="12"
+                            cy="12"
+                            r="9.5"
+                            stroke="#0b0a12"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0, rotate: -90 }}
+                            animate={{ pathLength: 1, rotate: 0 }}
+                            transition={{ duration: 0.35, ease: "easeInOut" }}
+                          />
+                          {/* Animated inner checkmark */}
                           <motion.path
-                            d="M5 13l4 4L19 7"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
+                            d="M7.5 12.2l3 3 6-6"
+                            stroke="#0b0a12"
+                            strokeWidth="2.2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
-                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
                           />
                         </svg>
-                        <span>Inquiry Sent ✦</span>
+                        <span>Inquiry Sent</span>
                       </motion.span>
                     )}
                   </AnimatePresence>
@@ -431,7 +441,6 @@ export default function StayInTheSection() {
               </div>
             </div>
           </form>
-        )}
       </div>
     </section>
   );
