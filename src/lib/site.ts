@@ -3,6 +3,7 @@ export const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "").replace(/
 
 /**
  * Normalizes an asset path by prefixing the base path (e.g. for GitHub Pages).
+ * Safe against double-prefixing.
  */
 export function assetPath(path: string): string {
   if (!path) return "";
@@ -13,6 +14,9 @@ export function assetPath(path: string): string {
     path.startsWith("blob:") ||
     path.startsWith("//")
   ) {
+    return path;
+  }
+  if (BASE_PATH && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`))) {
     return path;
   }
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
