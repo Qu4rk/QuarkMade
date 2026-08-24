@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../components/Button";
+import { motion, AnimatePresence } from "motion/react";
 import ProjectBadge from "../components/ProjectBadge";
 import BorderBeam from "../components/ui/BorderBeam";
 
@@ -28,9 +28,12 @@ const TIMELINE_OPTIONS = [
   "Flexible",
 ];
 
+type SubmitState = "idle" | "sending" | "sent";
+
 /** Project Inquiry and Client Commission Section with Comprehensive Quote Specifications. */
 export default function StayInTheSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,12 +45,40 @@ export default function StayInTheSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.email) {
-      setSubmitted(true);
+    if (!formData.name || !formData.email || submitState !== "idle") return;
 
-      // Pre-format mailto payload for instant client direct communication
+    setSubmitState("sending");
+
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        "Brand / Company": formData.brand || "N/A",
+        "Current Website": formData.website || "N/A",
+        "Project Type": formData.projectType,
+        "Estimated Budget": formData.budget,
+        "Target Timeline": formData.timeline,
+        "Project Brief": formData.message || "Looking forward to discussing further.",
+        _subject: `[QuarkMade Inquiry] ${formData.brand || formData.name} — ${formData.projectType}`,
+        _captcha: "false",
+        _template: "table",
+      };
+
+      const res = await fetch("https://formsubmit.co/ajax/liasides.elias@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+
+      setSubmitState("sent");
+      // Brief success flash, then transition to confirmation card
+      setTimeout(() => setSubmitted(true), 1200);
+    } catch {
+      // Fallback: open mailto if FormSubmit fails
       const subject = encodeURIComponent(`[Project Inquiry] ${formData.brand || formData.name} - ${formData.projectType}`);
       const body = encodeURIComponent(
         `Hi Elias,\n\nI would like to inquire about a new project with QuarkMade:\n\n` +
@@ -60,9 +91,8 @@ export default function StayInTheSection() {
         `• Target Timeline: ${formData.timeline}\n\n` +
         `• Project Details / Vision:\n${formData.message || "Looking forward to discussing further."}\n`
       );
-
-      // Open email client safely
       window.location.href = `mailto:liasides.elias@gmail.com?subject=${subject}&body=${body}`;
+      setSubmitted(true);
     }
   };
 
@@ -325,9 +355,79 @@ export default function StayInTheSection() {
                   </svg>
                   <span className="whitespace-nowrap">Chat on WhatsApp</span>
                 </a>
-                <Button type="submit" variant="gold" className="w-full whitespace-nowrap" showIcon={true}>
-                  Request Project Quote
-                </Button>
+                <motion.button
+                  type="submit"
+                  disabled={submitState !== "idle"}
+                  className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] text-[13px] font-semibold leading-[13px] tracking-[0.13px] uppercase h-9 px-4 py-3 rounded-none transition-colors duration-200 ease-out outline-none select-none w-full bg-[#d4af37] text-[#0b0a12] hover:bg-[#e5c158] shadow-[0_0_15px_rgba(212,175,55,0.3)] disabled:cursor-not-allowed overflow-hidden relative"
+                  data-component="button"
+                  whileTap={submitState === "idle" ? { scale: 0.97 } : {}}
+                  animate={
+                    submitState === "sending"
+                      ? { scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 1.2, ease: "easeInOut" } }
+                      : submitState === "sent"
+                        ? { scale: [1, 1.05, 1], transition: { duration: 0.4, ease: "easeOut" } }
+                        : { scale: 1 }
+                  }
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {submitState === "idle" && (
+                      <motion.span
+                        key="idle"
+                        className="inline-flex items-center gap-2"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <svg className="w-auto h-3 block shrink-0 overflow-hidden" fill="none" height="12" viewBox="0 0 7 12" width="7" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M-5.20146e-07 0.100448L-4.38375e-09 11.8997C-6.3316e-10 11.9855 0.100519 12.0315 0.165009 11.9754L6.96568 6.07593C7.01144 6.0361 7.01144 5.96442 6.96568 5.92459L0.165008 0.0247822C0.100518 -0.0316963 -5.23897e-07 0.0146446 -5.20146e-07 0.100448Z" fill="currentColor" />
+                        </svg>
+                        <span>Request Project Quote</span>
+                      </motion.span>
+                    )}
+                    {submitState === "sending" && (
+                      <motion.span
+                        key="sending"
+                        className="inline-flex items-center gap-2"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <motion.span
+                          className="inline-block w-3.5 h-3.5 border-2 border-[#0b0a12]/30 border-t-[#0b0a12] rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ repeat: Infinity, duration: 0.7, ease: "linear" }}
+                        />
+                        <span>Transmitting…</span>
+                      </motion.span>
+                    )}
+                    {submitState === "sent" && (
+                      <motion.span
+                        key="sent"
+                        className="inline-flex items-center gap-2"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "backOut" }}
+                      >
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <motion.path
+                            d="M5 13l4 4L19 7"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                          />
+                        </svg>
+                        <span>Inquiry Sent ✦</span>
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
               </div>
             </div>
           </form>
