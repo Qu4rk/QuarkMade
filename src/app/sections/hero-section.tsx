@@ -107,7 +107,7 @@ export default function HeroSection() {
         >
           <div
             data-reveal
-            className="flex flex-col items-center text-center max-w-5xl mx-auto gap-5 md:gap-6 text-white"
+            className="flex flex-col items-center text-center max-w-6xl mx-auto gap-5 md:gap-6 text-white"
           >
             {/* React Bits TextLoop: Weaving through the sunset clouds */}
             <motion.div
@@ -171,41 +171,43 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 32 }}
               animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
               transition={{ duration: 1.0, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="[font-family:'Satoshi',_sans-serif] text-[1.85rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-4 gap-y-1.5 text-center drop-shadow-2xl"
+              className="[font-family:'Satoshi',_sans-serif] text-[1.65rem] xs:text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[4rem] xl:text-[4.75rem] font-normal leading-[1.12] tracking-tight flex flex-col items-center justify-center text-center drop-shadow-2xl w-full max-w-6xl"
               data-component="heading"
             >
-              <span className="inline-block text-white">
-                Crafting
+              <span className="inline-flex flex-wrap items-baseline justify-center gap-x-2.5 sm:gap-x-3.5 leading-tight">
+                <span className="inline-block text-white">
+                  Crafting
+                </span>
+
+                <RotatingText
+                  texts={[
+                    "digital flagships",
+                    "interactive worlds",
+                    "luxury experiences",
+                    "bespoke websites",
+                    "digital sanctuaries",
+                  ]}
+                  colors={[
+                    "#F3E5AB", // 1. Champagne Gold
+                    "#A594F9", // 2. Electric Iris / Violet
+                    "#FFB38A", // 3. Sunset Amber / Coral
+                    "#80E9DE", // 4. Celestial Aqua / Mint
+                    "#F472B6", // 5. Sunlit Orchid / Rose
+                  ]}
+                  mainClassName="[font-family:'Chillax',_sans-serif] font-medium tracking-normal inline-flex transition-colors duration-300 drop-shadow-[0_0_24px_rgba(212,175,55,0.35)]"
+                  staggerFrom="last"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-120%", opacity: 0 }}
+                  staggerDuration={0.02}
+                  splitLevelClassName="overflow-hidden pb-0.5"
+                  transition={{ type: "spring", damping: 28, stiffness: 280 }}
+                  widthTransition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
+                  rotationInterval={2800}
+                />
               </span>
 
-              <RotatingText
-                texts={[
-                  "digital flagships",
-                  "interactive worlds",
-                  "luxury experiences",
-                  "bespoke websites",
-                  "digital sanctuaries",
-                ]}
-                colors={[
-                  "#F3E5AB", // 1. Champagne Gold
-                  "#A594F9", // 2. Electric Iris / Violet
-                  "#FFB38A", // 3. Sunset Amber / Coral
-                  "#80E9DE", // 4. Celestial Aqua / Mint
-                  "#F472B6", // 5. Sunlit Orchid / Rose
-                ]}
-                mainClassName="[font-family:'Chillax',_sans-serif] font-medium tracking-normal inline-flex transition-colors duration-300 drop-shadow-[0_0_24px_rgba(212,175,55,0.35)]"
-                staggerFrom="last"
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-120%", opacity: 0 }}
-                staggerDuration={0.02}
-                splitLevelClassName="overflow-hidden pb-0.5"
-                transition={{ type: "spring", damping: 28, stiffness: 280 }}
-                widthTransition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
-                rotationInterval={2800}
-              />
-
-              <span className="inline-block text-white">
+              <span className="inline-block text-white mt-1 sm:mt-1.5">
                 that command attention.
               </span>
             </motion.h1>
