@@ -39,11 +39,13 @@ export default function Preloader() {
 
     rafId = requestAnimationFrame(updateCounter);
 
-    // Release scroll at exit start (1.8s)
+    // Release scroll & dispatch page reveal event as curtain opens (1.8s)
     const scrollTimer = setTimeout(() => {
       if (typeof window !== "undefined") {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
+        document.body.classList.add("page-revealed");
+        window.dispatchEvent(new CustomEvent("page-revealed"));
         const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
         if (lenis) lenis.start();
       }
@@ -52,6 +54,10 @@ export default function Preloader() {
     // Unmount after curtain completely clears (2.6s)
     const removeTimer = setTimeout(() => {
       setActive(false);
+      if (typeof window !== "undefined") {
+        document.body.classList.add("page-revealed");
+        window.dispatchEvent(new CustomEvent("page-revealed"));
+      }
     }, 2600);
 
     return () => {

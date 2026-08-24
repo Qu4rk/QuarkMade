@@ -17,6 +17,22 @@ import TextLoop from "../components/ui/TextLoop";
  */
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    if (typeof document !== "undefined" && document.body.classList.contains("page-revealed")) {
+      setIsRevealed(true);
+      return;
+    }
+    const handleReveal = () => setIsRevealed(true);
+    window.addEventListener("page-revealed", handleReveal);
+    // Fallback in case preloader is bypassed
+    const fallback = setTimeout(() => setIsRevealed(true), 2400);
+    return () => {
+      window.removeEventListener("page-revealed", handleReveal);
+      clearTimeout(fallback);
+    };
+  }, []);
 
   // 21st.dev 3D Cinema Container Scroll choreography (Hardware-composited for 120 FPS)
   const { scrollYProgress } = useScroll({
@@ -93,7 +109,12 @@ export default function HeroSection() {
             className="flex flex-col items-center text-center max-w-5xl mx-auto gap-5 md:gap-6 text-white"
           >
             {/* React Bits TextLoop: Weaving through the sunset clouds */}
-            <div className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto [isolation:isolate]">
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={isRevealed ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
+              transition={{ duration: 1.1, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-5xl relative mb-6 sm:mb-8 md:mb-12 select-none pointer-events-auto [isolation:isolate]"
+            >
               <div
                 className="w-full relative overflow-hidden"
                 style={{
@@ -142,10 +163,13 @@ export default function HeroSection() {
                     "radial-gradient(ellipse at 80% 50%, rgba(56, 32, 78, 0.7) 0%, rgba(42, 24, 84, 0.3) 50%, transparent 75%)",
                 }}
               />
-            </div>
+            </motion.div>
 
             {/* Main Headline: Satoshi Regular + Chillax Rotating Text */}
-            <h1
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+              transition={{ duration: 1.0, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
               className="[font-family:'Satoshi',_sans-serif] text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-normal leading-[1.14] tracking-tight flex flex-wrap items-baseline justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-center drop-shadow-2xl"
               data-component="heading"
             >
@@ -183,13 +207,13 @@ export default function HeroSection() {
               <span className="inline-block text-white">
                 that command attention.
               </span>
-            </h1>
+            </motion.h1>
 
             {/* Editorial Sub-Ethos Descriptor */}
             <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="[font-family:'Satoshi',_sans-serif] text-base sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed tracking-wide drop-shadow-md px-2"
             >
               We architect bespoke digital flagships, interactive worlds, and luxury spaces engineered to elevate modern brands.
@@ -197,9 +221,9 @@ export default function HeroSection() {
 
             {/* CTA Action Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 22 }}
+              animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+              transition={{ duration: 0.9, delay: 0.60, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-wrap justify-center items-center gap-4 mt-2"
             >
               <Button href="#works" variant="gold">
@@ -215,9 +239,9 @@ export default function HeroSection() {
         {/* Layer 6: Subtle Animated Scroll Indicator */}
         <motion.a
           href="#works"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+          transition={{ duration: 1.0, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
           className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
         >
           <span className="[font-family:'Satoshi',_sans-serif] text-[10px] tracking-[0.3em] uppercase font-normal">

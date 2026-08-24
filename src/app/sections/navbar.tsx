@@ -1,15 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import QuarkLogo from "../components/QuarkLogo";
 import Icon2 from "../svgs/svg-icon2";
 
 /** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and streamlined actions. */
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    if (typeof document !== "undefined" && document.body.classList.contains("page-revealed")) {
+      setIsRevealed(true);
+      return;
+    }
+    const handleReveal = () => setIsRevealed(true);
+    window.addEventListener("page-revealed", handleReveal);
+    // Fallback in case preloader is bypassed
+    const fallback = setTimeout(() => setIsRevealed(true), 2400);
+    return () => {
+      window.removeEventListener("page-revealed", handleReveal);
+      clearTimeout(fallback);
+    };
+  }, []);
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -28 }}
+      animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -28 }}
+      transition={{ duration: 0.9, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300 py-4 md:py-5 bg-transparent"
       id="header"
     >
@@ -130,7 +150,7 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
