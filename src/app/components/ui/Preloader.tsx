@@ -24,7 +24,12 @@ export default function Preloader() {
       if (lenis) lenis.stop();
     }
 
-    // Release scroll & dispatch page reveal event as curtain opens (1.8s)
+    // Calculate remaining time from absolute page navigation
+    const elapsed = typeof performance !== "undefined" ? performance.now() : 0;
+    const remainingReveal = Math.max(0, 1800 - elapsed);
+    const remainingUnmount = Math.max(0, 2600 - elapsed);
+
+    // Release scroll & dispatch page reveal event as curtain opens (1.8s from page start)
     const scrollTimer = setTimeout(() => {
       if (typeof window !== "undefined") {
         document.documentElement.style.overflow = "";
@@ -34,16 +39,16 @@ export default function Preloader() {
         const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
         if (lenis) lenis.start();
       }
-    }, 1800);
+    }, remainingReveal);
 
-    // Unmount after curtain completely clears (2.6s)
+    // Unmount after curtain completely clears (2.6s from page start)
     const removeTimer = setTimeout(() => {
       setActive(false);
       if (typeof window !== "undefined") {
         document.body.classList.add("page-revealed");
         window.dispatchEvent(new CustomEvent("page-revealed"));
       }
-    }, 2600);
+    }, remainingUnmount);
 
     return () => {
       clearTimeout(scrollTimer);
@@ -268,6 +273,15 @@ export default function Preloader() {
                   }
                 }
                 requestAnimationFrame(tick);
+
+                setTimeout(function() {
+                  try {
+                    document.documentElement.style.overflow = '';
+                    document.body.style.overflow = '';
+                    document.body.classList.add('page-revealed');
+                    window.dispatchEvent(new CustomEvent('page-revealed'));
+                  } catch (e) {}
+                }, 1800);
               } catch (e) {}
             })();
           `,

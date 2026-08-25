@@ -21,14 +21,22 @@ export default function HeroSection() {
   const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
-    if (typeof document !== "undefined" && document.body.classList.contains("page-revealed")) {
-      setIsRevealed(true);
-      return;
+    if (typeof document !== "undefined") {
+      const now = typeof performance !== "undefined" ? performance.now() : 0;
+      if (document.body.classList.contains("page-revealed") || now >= 1800) {
+        setIsRevealed(true);
+        return;
+      }
     }
+
     const handleReveal = () => setIsRevealed(true);
     window.addEventListener("page-revealed", handleReveal);
-    // Fallback in case preloader is bypassed
-    const fallback = setTimeout(() => setIsRevealed(true), 2400);
+
+    // Fallback synchronized with 1.8s curtain opening
+    const now = typeof performance !== "undefined" ? performance.now() : 0;
+    const remaining = Math.max(0, 1800 - now);
+    const fallback = setTimeout(() => setIsRevealed(true), remaining);
+
     return () => {
       window.removeEventListener("page-revealed", handleReveal);
       clearTimeout(fallback);
