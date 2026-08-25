@@ -43,7 +43,7 @@ export default function PartnerWithUsSection() {
           </p>
         </div>
 
-        <ProjectBadge label="FEATURED PROJECT 01 / HAUTE HORLOGERIE & TIMEPIECE FLAGSHIP" />
+        <ProjectBadge label="TIMEPIECE FLAGSHIP" />
 
         {/* 3D Parallax Card Frame */}
         <div className="w-full flex justify-center [perspective:1200px]">

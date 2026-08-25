@@ -50,7 +50,7 @@ export default function BuildingPlaceToSection() {
           </p>
         </div>
 
-        <ProjectBadge label="FEATURED PROJECT 02 / MODERN REAL ESTATE & SPATIAL PLATFORM" />
+        <ProjectBadge label="REAL ESTATE PLATFORM" />
 
         {/* 3D Parallax Card Frame */}
         <div className="w-full flex justify-center [perspective:1200px]">

@@ -50,7 +50,7 @@ export default function RootedInHistorySection() {
           </p>
         </div>
 
-        <ProjectBadge label="FEATURED PROJECT 03 / MEDITERRANEAN DIGITAL SANCTUARY" />
+        <ProjectBadge label="DIGITAL SANCTUARY" />
 
         {/* 3D Parallax Card Frame */}
         <div className="w-full flex justify-center [perspective:1200px]">

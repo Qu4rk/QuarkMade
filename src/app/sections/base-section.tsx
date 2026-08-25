@@ -254,7 +254,7 @@ export default function BaseSection() {
       <div className="flex flex-col gap-10 mx-auto w-full max-w-screen">
         {/* Header with ProjectBadge and Studio Journal Heading */}
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
-          <ProjectBadge label="VISUAL ARCHIVE / SNAPSHOT GALLERY & CRAFT ESSAYS" />
+          <ProjectBadge label="VISUAL ARCHIVE" />
           
           <h2 className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground mt-2" data-component="heading">
             <span className="block">
