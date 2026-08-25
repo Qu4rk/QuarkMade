@@ -140,45 +140,6 @@ export default function Preloader() {
         }
       `}</style>
 
-      {/* Instant Frame 0 Execution Script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              try {
-                if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-                window.scrollTo(0, 0);
-                document.documentElement.style.overflow = 'hidden';
-                document.body.style.overflow = 'hidden';
-
-                var bar = document.getElementById('quark-preloader-bar');
-                var num = document.getElementById('quark-preloader-num');
-                if (!bar || !num) return;
-
-                var start = performance.now();
-                var duration = 1600;
-
-                function tick(now) {
-                  var elapsed = now - start;
-                  var progress = Math.min(1, elapsed / duration);
-                  // Smooth ease-out cubic
-                  var ease = 1 - Math.pow(1 - progress, 3);
-                  var val = Math.min(94, Math.floor(ease * 94));
-                  
-                  if (bar) bar.style.width = val + '%';
-                  if (num) num.textContent = (val < 10 ? '0' + val : val) + '%';
-
-                  if (progress < 1 && !document.body.classList.contains('page-revealed')) {
-                    requestAnimationFrame(tick);
-                  }
-                }
-                requestAnimationFrame(tick);
-              } catch (e) {}
-            })();
-          `,
-        }}
-      />
-
       {/* Top Shutter Curtain Panel */}
       <div
         className={`absolute inset-x-0 top-0 h-[50.5%] bg-[#0B0A12] z-10 will-change-transform transition-transform duration-800 ease-[cubic-bezier(0.83,0,0.17,1)] ${
@@ -291,6 +252,44 @@ export default function Preloader() {
           </span>
         </div>
       </div>
+
+      {/* Instant Frame 0 Execution Script (Executed immediately after DOM nodes are parsed) */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+                window.scrollTo(0, 0);
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+
+                var bar = document.getElementById('quark-preloader-bar');
+                var num = document.getElementById('quark-preloader-num');
+                if (!bar || !num) return;
+
+                var start = performance.now();
+                var duration = 1600;
+
+                function tick(now) {
+                  var elapsed = now - start;
+                  var progress = Math.min(1, elapsed / duration);
+                  var ease = 1 - Math.pow(1 - progress, 3);
+                  var val = Math.min(94, Math.floor(ease * 94));
+                  
+                  if (bar) bar.style.width = val + '%';
+                  if (num) num.textContent = (val < 10 ? '0' + val : val) + '%';
+
+                  if (progress < 1 && !document.body.classList.contains('page-revealed')) {
+                    requestAnimationFrame(tick);
+                  }
+                }
+                requestAnimationFrame(tick);
+              } catch (e) {}
+            })();
+          `,
+        }}
+      />
     </div>
   );
 }
