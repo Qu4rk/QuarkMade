@@ -78,16 +78,12 @@ export default function NotFound() {
       </header>
 
       {/* Main Center Editorial Lockup */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center py-12 sm:py-16 md:py-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center py-10 sm:py-14 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column: Editorial Headline & Actions */}
           <div className="lg:col-span-7 flex flex-col items-start gap-6 text-left">
-            <div className="flex items-center gap-3">
-              <ProjectBadge label="404 — COORDINATE OUT OF ORBIT" />
-            </div>
-
-            <h1 className="[font-family:'Chillax',_sans-serif] text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] font-medium text-white tracking-tight leading-[1.05] drop-shadow-2xl">
+            <h1 className="[font-family:'Chillax',_sans-serif] text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-medium text-white tracking-tight leading-[1.05] drop-shadow-2xl">
               Lost in <br className="hidden sm:inline" />
               <span className="text-white/95">Digital Space.</span>
             </h1>
@@ -97,7 +93,7 @@ export default function NotFound() {
             </p>
 
             {/* Primary & Secondary Action CTAs */}
-            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <Link
                 href="/"
                 className="inline-flex items-center justify-center py-3.5 px-7 [font-family:'Satoshi',_sans-serif] font-semibold text-xs sm:text-[0.8125rem] uppercase tracking-[0.14em] bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_20px_rgba(68,66,219,0.4)] transition-all duration-200 text-center"
@@ -113,10 +109,10 @@ export default function NotFound() {
             </div>
 
             {/* Quick Links Hub */}
-            <div className="pt-6 border-t border-white/10 w-full flex flex-wrap items-center gap-x-6 gap-y-2 text-xs [font-family:'Satoshi',_sans-serif] tracking-wider uppercase text-white/50">
+            <div className="pt-6 border-t border-white/10 w-full flex flex-wrap items-center gap-x-6 gap-y-2.5 text-xs [font-family:'Satoshi',_sans-serif] tracking-wider uppercase text-white/50">
               <span className="text-white/30 font-medium">Quick Routes:</span>
               <Link href="/#philosophy" className="hover:text-[#D4AF37] transition-colors">
-                Studio Philosophy
+                Philosophy
               </Link>
               <Link href="/#works" className="hover:text-[#D4AF37] transition-colors">
                 Selected Works
@@ -136,12 +132,12 @@ export default function NotFound() {
           </div>
 
           {/* Right Column: Architectural 404 Watermark & Spatial Emblem */}
-          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end relative select-none pointer-events-none">
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end relative select-none pointer-events-none mt-6 lg:mt-0">
             <div className="relative flex items-center justify-center animate-float-gentle">
               
               {/* Massive Ambient Backdrop 404 */}
               <div
-                className="[font-family:'Chillax',_sans-serif] font-semibold text-[10rem] sm:text-[14rem] md:text-[16rem] lg:text-[18rem] leading-none tracking-tighter opacity-15 select-none"
+                className="[font-family:'Chillax',_sans-serif] font-semibold text-[8rem] xs:text-[10rem] sm:text-[14rem] md:text-[16rem] lg:text-[18rem] leading-none tracking-tighter opacity-15 select-none"
                 style={{
                   background: "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(68,66,219,0.3) 60%, transparent 100%)",
                   WebkitBackgroundClip: "text",
@@ -153,7 +149,7 @@ export default function NotFound() {
 
               {/* Center Floating Orbital Ring Lockup */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full border border-white/15 bg-[#0B0A12]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(68,66,219,0.35)] flex items-center justify-center p-5">
+                <div className="relative w-24 h-24 sm:w-36 sm:h-36 rounded-full border border-white/15 bg-[#0B0A12]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(68,66,219,0.35)] flex items-center justify-center p-4 sm:p-5">
                   <svg
                     className="w-full h-full"
                     viewBox="0 0 100 100"
