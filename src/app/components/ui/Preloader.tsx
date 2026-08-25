@@ -2,6 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import {
+  getPreloaderTimeline,
+  PRELOADER_CURTAIN_DURATION_MS,
+} from "../../lib/preloader-timeline";
 
 /**
  * 100% GPU-Composited Studio Preloader for QuarkMade:
@@ -44,21 +48,22 @@ export default function Preloader() {
     const lenis = (window as unknown as { __lenis?: { stop: () => void } }).__lenis;
     lenis?.stop();
 
-    // Calculate remaining time from absolute page navigation
-    const elapsed = typeof performance !== "undefined" ? performance.now() : 0;
-    const remainingReveal = Math.max(0, 1800 - elapsed);
-    const remainingUnmount = Math.max(0, 2600 - elapsed);
+    // CSS animation delays begin at component mount, so its lifecycle must
+    // use that same clock rather than the earlier page-navigation clock.
+    const mountedAt = performance.now();
+    const timeline = getPreloaderTimeline(mountedAt);
 
     // Release scroll & dispatch page reveal event as curtain opens (1.8s from page start)
     const scrollTimer = setTimeout(() => {
       revealPage();
-    }, remainingReveal);
+    }, timeline.revealAt - mountedAt);
 
-    // Unmount after curtain completely clears (2.6s from page start)
+    // A small fallback prevents an overlay from getting stuck if an animation
+    // event is suppressed, while animationend remains the normal cleanup path.
     const removeTimer = setTimeout(() => {
       setActive(false);
       revealPage();
-    }, remainingUnmount);
+    }, timeline.removeAt - mountedAt + 200);
 
     return () => {
       clearTimeout(scrollTimer);
@@ -69,6 +74,11 @@ export default function Preloader() {
       activeLenis?.start();
     };
   }, [active, prefersReducedMotion]);
+
+  const handleCurtainEnd = (event: React.AnimationEvent<HTMLDivElement>) => {
+    if (event.animationName !== "q-shutter-top") return;
+    setActive(false);
+  };
 
   if (!active) return null;
 
@@ -117,15 +127,16 @@ export default function Preloader() {
       <div
         className="absolute inset-x-0 top-0 h-1/2 bg-[#0B0A12] z-10 will-change-transform border-b border-white/[0.02]"
         style={{
-          animation: "q-shutter-top 0.75s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards",
+          animation: `q-shutter-top ${PRELOADER_CURTAIN_DURATION_MS / 1000}s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards`,
         }}
+        onAnimationEnd={handleCurtainEnd}
       />
 
       {/* Bottom Shutter Curtain Panel */}
       <div
         className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0B0A12] z-10 will-change-transform border-t border-white/[0.02]"
         style={{
-          animation: "q-shutter-bottom 0.75s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards",
+          animation: `q-shutter-bottom ${PRELOADER_CURTAIN_DURATION_MS / 1000}s cubic-bezier(0.83, 0, 0.17, 1) 1.8s forwards`,
         }}
       />
 
@@ -282,14 +293,6 @@ export default function Preloader() {
                 }
                 requestAnimationFrame(tick);
 
-                setTimeout(function() {
-                  try {
-                    document.documentElement.style.overflow = '';
-                    document.body.style.overflow = '';
-                    document.body.classList.add('page-revealed');
-                    window.dispatchEvent(new CustomEvent('page-revealed'));
-                  } catch (e) {}
-                }, 1800);
               } catch (e) {}
             })();
           `,

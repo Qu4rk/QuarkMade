@@ -14,8 +14,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (typeof document !== "undefined") {
-      const now = typeof performance !== "undefined" ? performance.now() : 0;
-      if (document.body.classList.contains("page-revealed") || now >= 1800) {
+      if (document.body.classList.contains("page-revealed")) {
         setIsRevealed(true);
         return;
       }
@@ -24,14 +23,8 @@ export default function Navbar() {
     const handleReveal = () => setIsRevealed(true);
     window.addEventListener("page-revealed", handleReveal);
 
-    // Fallback synchronized with 1.8s curtain opening
-    const now = typeof performance !== "undefined" ? performance.now() : 0;
-    const remaining = Math.max(0, 1800 - now);
-    const fallback = setTimeout(() => setIsRevealed(true), remaining);
-
     return () => {
       window.removeEventListener("page-revealed", handleReveal);
-      clearTimeout(fallback);
     };
   }, []);
 
