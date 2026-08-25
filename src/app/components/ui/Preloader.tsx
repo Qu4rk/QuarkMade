@@ -233,7 +233,7 @@ export default function Preloader() {
         </div>
 
         {/* Bottom Progress Counter */}
-        <div className="flex items-center gap-3 pt-1.5">
+        <div className="flex items-center gap-3 pt-1.5" suppressHydrationWarning={true}>
           <span className="[font-family:'Satoshi',_sans-serif] text-[10px] md:text-[11px] font-medium text-white/40 tracking-[0.24em] uppercase">
             INITIALIZING
           </span>
@@ -242,11 +242,13 @@ export default function Preloader() {
               id="quark-preloader-bar"
               className="h-full bg-gradient-to-r from-[#4442DB] via-[#A594F9] to-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-[width] duration-75 ease-out"
               style={{ width: "4%" }}
+              suppressHydrationWarning={true}
             />
           </div>
           <span
             id="quark-preloader-num"
             className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#D4AF37] tabular-nums tracking-wider min-w-[2.5rem] text-right"
+            suppressHydrationWarning={true}
           >
             04%
           </span>
@@ -275,7 +277,7 @@ export default function Preloader() {
                   var elapsed = now - start;
                   var progress = Math.min(1, elapsed / duration);
                   var ease = 1 - Math.pow(1 - progress, 3);
-                  var val = Math.min(94, Math.floor(ease * 94));
+                  var val = Math.min(96, Math.floor(ease * 96));
                   
                   if (bar) bar.style.width = val + '%';
                   if (num) num.textContent = (val < 10 ? '0' + val : val) + '%';
