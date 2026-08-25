@@ -4,26 +4,19 @@ import React, { useEffect, useState, useRef } from "react";
 
 /**
  * Ultra-Fidelity Studio Preloader for QuarkMade:
- * - Frame 0 Immediate Render: Pure CSS keyframe animations start the instant HTML is parsed (zero JS hydration delay)
- * - Embedded Vector Emblem: Authentic 4K SVG Quark "Q" emblem with radiant electric purple glow
+ * - Zero-Latency Frame 0 Execution: Instant inline script starts the progress bar & counter the exact millisecond HTML parses
+ * - Embedded 4K Vector Emblem: Authentic SVG Quark "Q" emblem with radiant electric purple halo
  * - Shimmer Brand Typography: Chillax "QUARKMADE" with luxury sweep shimmer & Satoshi studio descriptor
- * - Asset-Aware React Hydration: Smoothly completes to 100% once fonts & assets are verified
+ * - Asset-Aware React Hydration: Smoothly hands off to React to complete at 100% and part the obsidian shutters
  * - Seamless Pitch-Black Curtains: 50.5% overlapping obsidian shutters with zero seam line
  */
 export default function Preloader() {
   const [active, setActive] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
-  const [displayPercent, setDisplayPercent] = useState(0);
-
-  const targetProgressRef = useRef(0);
-  const currentProgressRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
+  const isExitingRef = useRef(false);
 
   useEffect(() => {
-    setIsHydrated(true);
-
-    // Lock scroll and force top restoration on hard reload
+    // Notify the global window that React is ready
     if (typeof window !== "undefined") {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
@@ -35,22 +28,13 @@ export default function Preloader() {
       if (lenis) lenis.stop();
     }
 
-    const startTime = performance.now();
-    const minDisplayDuration = 1800; // Luxury display pacing (ms)
     let isMounted = true;
-
-    // Track real assets
     let fontsReady = false;
-    let domReady = false;
 
-    // 1. Initial stage: Start moving immediately
-    targetProgressRef.current = 30;
-
-    // 2. Web Fonts Ready (Chillax & Satoshi)
+    // Check fonts
     if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
         fontsReady = true;
-        targetProgressRef.current = Math.max(targetProgressRef.current, 75);
       }).catch(() => {
         fontsReady = true;
       });
@@ -58,101 +42,46 @@ export default function Preloader() {
       fontsReady = true;
     }
 
-    // 3. Document / Window Load
-    if (typeof document !== "undefined") {
-      if (document.readyState === "complete") {
-        domReady = true;
-      } else {
-        const handleLoad = () => {
-          domReady = true;
-        };
-        window.addEventListener("load", handleLoad, { once: true });
-      }
-    }
+    // React completes progress and triggers exit
+    const exitTimer = setTimeout(() => {
+      if (!isMounted || isExitingRef.current) return;
+      isExitingRef.current = true;
 
-    // 4. Smooth progress animation loop
-    const updateLoop = (now: number) => {
-      if (!isMounted) return;
+      // Finish progress bar to 100%
+      const barEl = document.getElementById("quark-preloader-bar");
+      const numEl = document.getElementById("quark-preloader-num");
+      if (barEl) barEl.style.width = "100%";
+      if (numEl) numEl.textContent = "100%";
 
-      const elapsed = now - startTime;
+      // Hold for 160ms at 100%, then trigger curtain open
+      setTimeout(() => {
+        if (!isMounted) return;
+        setIsExiting(true);
 
-      // Increment progress targets organically based on elapsed time and assets
-      if (elapsed > 400 && targetProgressRef.current < 55) {
-        targetProgressRef.current = 55;
-      }
-      if (elapsed > 850 && targetProgressRef.current < 82) {
-        targetProgressRef.current = 82;
-      }
-      if (elapsed > 1300 && targetProgressRef.current < 95) {
-        targetProgressRef.current = 95;
-      }
+        // Dispatch page revealed as shutter starts parting
+        setTimeout(() => {
+          if (typeof window !== "undefined") {
+            document.documentElement.style.overflow = "";
+            document.body.style.overflow = "";
+            document.body.classList.add("page-revealed");
+            window.dispatchEvent(new CustomEvent("page-revealed"));
+            const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
+            if (lenis) lenis.start();
+          }
+        }, 250);
 
-      // Check if all criteria and minimum duration are met
-      const allAssetsLoaded = fontsReady && (domReady || elapsed > 1200);
-      const minTimeElapsed = elapsed >= minDisplayDuration;
-
-      if (allAssetsLoaded && minTimeElapsed) {
-        targetProgressRef.current = 100;
-      }
-
-      // Smooth interpolation toward target
-      const diff = targetProgressRef.current - currentProgressRef.current;
-      const speed = currentProgressRef.current > 85 ? 0.12 : 0.08;
-      currentProgressRef.current += diff * speed;
-
-      if (Math.abs(100 - currentProgressRef.current) < 0.4 && targetProgressRef.current === 100) {
-        currentProgressRef.current = 100;
-      }
-
-      const rounded = Math.min(100, Math.floor(currentProgressRef.current));
-      setDisplayPercent(rounded);
-
-      if (currentProgressRef.current < 100) {
-        rafRef.current = requestAnimationFrame(updateLoop);
-      } else {
-        // Complete -> Trigger shutter exit
+        // Unmount component once shutters completely clear
         setTimeout(() => {
           if (isMounted) {
-            triggerExitSequence();
+            setActive(false);
           }
-        }, 150);
-      }
-    };
-
-    rafRef.current = requestAnimationFrame(updateLoop);
-
-    // Fallback safety timeout
-    const safetyTimeout = setTimeout(() => {
-      targetProgressRef.current = 100;
-    }, 4000);
-
-    const triggerExitSequence = () => {
-      setIsExiting(true);
-
-      // Dispatch page revealed as shutter starts parting
-      setTimeout(() => {
-        if (typeof window !== "undefined") {
-          document.documentElement.style.overflow = "";
-          document.body.style.overflow = "";
-          document.body.classList.add("page-revealed");
-          window.dispatchEvent(new CustomEvent("page-revealed"));
-          const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
-          if (lenis) lenis.start();
-        }
-      }, 250);
-
-      // Unmount component once shutters completely clear
-      setTimeout(() => {
-        if (isMounted) {
-          setActive(false);
-        }
-      }, 1100);
-    };
+        }, 1100);
+      }, 160);
+    }, 1700);
 
     return () => {
       isMounted = false;
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      clearTimeout(safetyTimeout);
+      clearTimeout(exitTimer);
       if (typeof window !== "undefined") {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
@@ -166,17 +95,11 @@ export default function Preloader() {
 
   return (
     <div
+      id="quark-preloader-root"
       className="fixed inset-0 z-[99999] select-none pointer-events-none overflow-hidden flex items-center justify-center bg-[#0B0A12]"
       aria-hidden="true"
     >
       <style>{`
-        @keyframes preloader-bar-glide {
-          0% { width: 6%; }
-          25% { width: 35%; }
-          50% { width: 65%; }
-          75% { width: 85%; }
-          100% { width: 100%; }
-        }
         @keyframes preloader-shimmer {
           0% {
             background-position: -150% 0, 0 0;
@@ -215,11 +138,46 @@ export default function Preloader() {
           0%, 100% { transform: scale(1); opacity: 0.7; }
           50% { transform: scale(1.08); opacity: 1; }
         }
-        @keyframes preloader-emblem-rotate {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
       `}</style>
+
+      {/* Instant Frame 0 Execution Script */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+                window.scrollTo(0, 0);
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+
+                var bar = document.getElementById('quark-preloader-bar');
+                var num = document.getElementById('quark-preloader-num');
+                if (!bar || !num) return;
+
+                var start = performance.now();
+                var duration = 1600;
+
+                function tick(now) {
+                  var elapsed = now - start;
+                  var progress = Math.min(1, elapsed / duration);
+                  // Smooth ease-out cubic
+                  var ease = 1 - Math.pow(1 - progress, 3);
+                  var val = Math.min(94, Math.floor(ease * 94));
+                  
+                  if (bar) bar.style.width = val + '%';
+                  if (num) num.textContent = (val < 10 ? '0' + val : val) + '%';
+
+                  if (progress < 1 && !document.body.classList.contains('page-revealed')) {
+                    requestAnimationFrame(tick);
+                  }
+                }
+                requestAnimationFrame(tick);
+              } catch (e) {}
+            })();
+          `,
+        }}
+      />
 
       {/* Top Shutter Curtain Panel */}
       <div
@@ -320,18 +278,16 @@ export default function Preloader() {
           </span>
           <div className="w-24 sm:w-28 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
             <div
-              className={`h-full bg-gradient-to-r from-[#4442DB] via-[#A594F9] to-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)] ${
-                isHydrated ? "transition-[width] duration-75 ease-out" : ""
-              }`}
-              style={
-                isHydrated
-                  ? { width: `${displayPercent}%` }
-                  : { animation: "preloader-bar-glide 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards" }
-              }
+              id="quark-preloader-bar"
+              className="h-full bg-gradient-to-r from-[#4442DB] via-[#A594F9] to-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-[width] duration-75 ease-out"
+              style={{ width: "4%" }}
             />
           </div>
-          <span className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#D4AF37] tabular-nums tracking-wider min-w-[2.5rem] text-right">
-            {displayPercent < 10 ? `0${displayPercent}` : displayPercent}%
+          <span
+            id="quark-preloader-num"
+            className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#D4AF37] tabular-nums tracking-wider min-w-[2.5rem] text-right"
+          >
+            04%
           </span>
         </div>
       </div>
