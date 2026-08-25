@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import QuarkLogo from "../components/QuarkLogo";
 
 /** Sleek top navigation bar with QuarkMade branding, dynamic scroll theme, and streamlined actions. */
@@ -188,14 +189,14 @@ export default function Navbar() {
         </div>
 
         {/* Center Brand Logo (QuarkMade "Q" Emblem) */}
-        <a
+        <Link
           className="flex justify-center items-center basis-1/5 cursor-pointer max-lg:flex-1 max-lg:min-w-0 group px-2 text-center"
           data-component="link"
           href="/"
           aria-label="QuarkMade Home"
         >
           <QuarkLogo size={42} showText={true} />
-        </a>
+        </Link>
 
         {/* Mobile Right CTA */}
         <div className="hidden min-w-0 justify-end items-center basis-1/5 max-lg:flex shrink-0">

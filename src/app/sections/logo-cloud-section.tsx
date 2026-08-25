@@ -1,5 +1,4 @@
-"use client";
-
+import Link from "next/link";
 import QuarkLogo from "../components/QuarkLogo";
 import { textLinkData } from "../content";
 
@@ -67,15 +66,29 @@ export default function LogoCloudSection() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 [font-family:'Satoshi',_sans-serif] text-xs font-normal tracking-[0.12px] uppercase">
-            {textLinkData.map((d, i) => (
-              <a
-                key={i}
-                href={d.href}
-                className="text-white/70 hover:text-[#D4AF37] transition-colors"
-              >
-                {d.text}
-              </a>
-            ))}
+            {textLinkData.map((d, i) => {
+              const isExternal = d.href.startsWith("http") || d.href.startsWith("mailto:");
+              if (isExternal) {
+                return (
+                  <a
+                    key={i}
+                    href={d.href}
+                    className="text-white/70 hover:text-[#D4AF37] transition-colors"
+                  >
+                    {d.text}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={i}
+                  href={d.href}
+                  className="text-white/70 hover:text-[#D4AF37] transition-colors"
+                >
+                  {d.text}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
