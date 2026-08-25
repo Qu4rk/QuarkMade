@@ -6,6 +6,42 @@ import { textLinkData } from "../content";
 export default function LogoCloudSection() {
   return (
     <footer className="block bg-transparent text-white pt-16 md:pt-20 pb-12 px-6 max-md:pt-12 max-md:px-4 max-md:pb-10 border-t border-white/10 relative z-1" id="footer">
+      <style>{`
+        @keyframes quark-footer-shimmer {
+          0% {
+            background-position: -150% 0, 0 0;
+          }
+          100% {
+            background-position: 250% 0, 0 0;
+          }
+        }
+        .quark-footer-shimmer-text {
+          background-image:
+            linear-gradient(
+              90deg,
+              transparent 0%,
+              transparent 35%,
+              #F3E5AB 45%,
+              #FFFFFF 50%,
+              #A594F9 55%,
+              transparent 65%,
+              transparent 100%
+            ),
+            linear-gradient(
+              90deg,
+              #FFFFFF 0%,
+              #FFFFFF 45%,
+              #D4AF37 55%,
+              #4442DB 100%
+            );
+          background-size: 250% 100%, 100% 100%;
+          background-repeat: no-repeat, no-repeat;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: quark-footer-shimmer 2.2s linear infinite;
+        }
+      `}</style>
       <div className="flex flex-col gap-12 md:gap-14 mx-auto w-full max-w-screen">
         {/* Top Footer: Brand Statement & Client Logo Tags */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-white/10">
@@ -62,7 +98,11 @@ export default function LogoCloudSection() {
         {/* Bottom Footer: Links & Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           <p className="[font-family:'Satoshi',_sans-serif] text-xs font-normal text-white/60">
-            © {new Date().getFullYear()} QuarkMade. All Rights Reserved. Crafted with Next.js & Tailwind.
+            © {new Date().getFullYear()} QuarkMade. All Rights Reserved. Brought to life by{" "}
+            <span className="[font-family:'Chillax',_sans-serif] font-medium tracking-[0.04em] text-white inline-block drop-shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+              <span className="quark-footer-shimmer-text">Quark</span>
+            </span>
+            .
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 [font-family:'Satoshi',_sans-serif] text-xs font-normal tracking-[0.12px] uppercase">
