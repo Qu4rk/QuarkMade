@@ -6,7 +6,8 @@ import { assetPath } from "../../../lib/site";
 /**
  * High-Craft Asset-Aware Studio Preloader for QuarkMade:
  * - Real asset synchronization (Web Fonts, Document ReadyState, Critical Hero Assets)
- * - Smooth physics-interpolated progress counter with calibrated luxury threshold
+ * - Smooth physics-interpolated progress counter with calibrated luxury threshold (~1.6s)
+ * - Authentic Quark "Q" emblem with radiant pulse + luxury shimmer typography
  * - Seamless pitch-black obsidian shutter curtains (zero seam artifacts)
  * - Coordinated Lenis scroll locking and synchronous page reveal dispatch
  */
@@ -20,8 +21,11 @@ export default function Preloader() {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Lock scroll immediately
+    // Lock scroll and reset scroll restoration on hard reload
     if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
       window.scrollTo(0, 0);
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
@@ -30,34 +34,34 @@ export default function Preloader() {
     }
 
     const startTime = performance.now();
-    const minDisplayDuration = 1200; // Minimum luxury display window (ms)
+    const minDisplayDuration = 1600; // Calibrated luxury playback threshold (ms)
     let isMounted = true;
 
-    // Track real assets
+    // Track real asset readiness
     let fontsReady = false;
     let heroImageReady = false;
     let domReady = false;
 
     // 1. Initial stage: Start moving immediately
-    targetProgressRef.current = 20;
+    targetProgressRef.current = 18;
 
     // 2. Preload Hero Image
     const heroImg = new Image();
     heroImg.src = assetPath("/assets/branding/hero-sunset.webp");
     heroImg.onload = () => {
       heroImageReady = true;
-      targetProgressRef.current = Math.max(targetProgressRef.current, fontsReady ? 80 : 55);
+      targetProgressRef.current = Math.max(targetProgressRef.current, fontsReady ? 82 : 58);
     };
     heroImg.onerror = () => {
       heroImageReady = true;
-      targetProgressRef.current = Math.max(targetProgressRef.current, 50);
+      targetProgressRef.current = Math.max(targetProgressRef.current, 55);
     };
 
-    // 3. Web Fonts Ready
+    // 3. Web Fonts Ready (Chillax & Satoshi)
     if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
         fontsReady = true;
-        targetProgressRef.current = Math.max(targetProgressRef.current, heroImageReady ? 85 : 60);
+        targetProgressRef.current = Math.max(targetProgressRef.current, heroImageReady ? 88 : 64);
       }).catch(() => {
         fontsReady = true;
       });
@@ -77,34 +81,37 @@ export default function Preloader() {
       }
     }
 
-    // 5. Physics-based smooth progress interpolation
+    // 5. Smooth physics-based progress interpolation
     const updateLoop = (now: number) => {
       if (!isMounted) return;
 
       const elapsed = now - startTime;
 
-      // Gradually advance target based on time & asset state
-      if (elapsed > 400 && targetProgressRef.current < 45) {
-        targetProgressRef.current = 45;
+      // Increment progress targets organically based on elapsed time and assets
+      if (elapsed > 350 && targetProgressRef.current < 42) {
+        targetProgressRef.current = 42;
       }
-      if (elapsed > 800 && targetProgressRef.current < 75) {
-        targetProgressRef.current = 75;
+      if (elapsed > 750 && targetProgressRef.current < 72) {
+        targetProgressRef.current = 72;
+      }
+      if (elapsed > 1150 && targetProgressRef.current < 92) {
+        targetProgressRef.current = 92;
       }
 
-      // Check if all criteria are satisfied
-      const allAssetsLoaded = (fontsReady && (heroImageReady || elapsed > 900) && (domReady || elapsed > 1000));
+      // Check if all criteria and minimum duration are met
+      const allAssetsLoaded = fontsReady && (heroImageReady || elapsed > 1000) && (domReady || elapsed > 1200);
       const minTimeElapsed = elapsed >= minDisplayDuration;
 
       if (allAssetsLoaded && minTimeElapsed) {
         targetProgressRef.current = 100;
       }
 
-      // Smooth interpolation toward target
+      // Smooth interpolation
       const diff = targetProgressRef.current - currentProgressRef.current;
-      const speed = currentProgressRef.current > 85 ? 0.12 : 0.08;
+      const speed = currentProgressRef.current > 85 ? 0.10 : 0.07;
       currentProgressRef.current += diff * speed;
 
-      if (Math.abs(100 - currentProgressRef.current) < 0.4 && targetProgressRef.current === 100) {
+      if (Math.abs(100 - currentProgressRef.current) < 0.35 && targetProgressRef.current === 100) {
         currentProgressRef.current = 100;
       }
 
@@ -114,17 +121,21 @@ export default function Preloader() {
       if (currentProgressRef.current < 100) {
         rafRef.current = requestAnimationFrame(updateLoop);
       } else {
-        // Complete -> Trigger shutter exit
-        triggerExitSequence();
+        // Complete -> Trigger shutter exit after brief moment at 100%
+        setTimeout(() => {
+          if (isMounted) {
+            triggerExitSequence();
+          }
+        }, 120);
       }
     };
 
     rafRef.current = requestAnimationFrame(updateLoop);
 
-    // Fallback safety timeout (ensure preloader unblocks under any slow network condition)
+    // Fallback safety timeout
     const safetyTimeout = setTimeout(() => {
       targetProgressRef.current = 100;
-    }, 3200);
+    }, 3800);
 
     const triggerExitSequence = () => {
       setIsExiting(true);
@@ -146,7 +157,7 @@ export default function Preloader() {
         if (isMounted) {
           setActive(false);
         }
-      }, 1050);
+      }, 1100);
     };
 
     return () => {
@@ -166,36 +177,60 @@ export default function Preloader() {
 
   return (
     <div
-      className="fixed inset-0 z-[99999] select-none pointer-events-none overflow-hidden flex items-center justify-center"
+      className="fixed inset-0 z-[99999] select-none pointer-events-none overflow-hidden flex items-center justify-center bg-[#0B0A12]"
       aria-hidden="true"
     >
       <style>{`
-        @keyframes q-ring-spin-outer {
-          0% { stroke-dashoffset: 252; transform: rotate(-90deg); }
-          50% { stroke-dashoffset: 60; transform: rotate(90deg); }
-          100% { stroke-dashoffset: 0; transform: rotate(270deg); }
+        @keyframes preloader-shimmer {
+          0% {
+            background-position: -150% 0, 0 0;
+          }
+          100% {
+            background-position: 250% 0, 0 0;
+          }
         }
-        @keyframes q-ring-spin-inner {
-          0% { stroke-dashoffset: 170; transform: rotate(90deg); }
-          50% { stroke-dashoffset: 40; transform: rotate(-90deg); }
-          100% { stroke-dashoffset: 0; transform: rotate(-270deg); }
+        .preloader-shimmer-text {
+          background-image:
+            linear-gradient(
+              90deg,
+              transparent 0%,
+              transparent 35%,
+              #F3E5AB 45%,
+              #FFFFFF 50%,
+              #A594F9 55%,
+              transparent 65%,
+              transparent 100%
+            ),
+            linear-gradient(
+              90deg,
+              #FFFFFF 0%,
+              #FFFFFF 52%,
+              #D4AF37 56%,
+              #D4AF37 100%
+            );
+          background-size: 250% 100%, 100% 100%;
+          background-repeat: no-repeat, no-repeat;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: preloader-shimmer 1.8s linear infinite;
         }
-        @keyframes q-leg-draw {
-          0% { stroke-dashoffset: 50; opacity: 0; }
-          100% { stroke-dashoffset: 0; opacity: 1; }
+        @keyframes preloader-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.7; }
+          50% { transform: scale(1.08); opacity: 1; }
         }
       `}</style>
 
       {/* Top Shutter Curtain Panel */}
       <div
-        className={`absolute inset-x-0 top-0 h-[50.5%] bg-[#0B0A12] z-10 will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.83,0,0.17,1)] ${
+        className={`absolute inset-x-0 top-0 h-[50.5%] bg-[#0B0A12] z-10 will-change-transform transition-transform duration-800 ease-[cubic-bezier(0.83,0,0.17,1)] ${
           isExiting ? "-translate-y-full" : "translate-y-0"
         }`}
       />
 
       {/* Bottom Shutter Curtain Panel */}
       <div
-        className={`absolute inset-x-0 bottom-0 h-[50.5%] bg-[#0B0A12] z-10 will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.83,0,0.17,1)] ${
+        className={`absolute inset-x-0 bottom-0 h-[50.5%] bg-[#0B0A12] z-10 will-change-transform transition-transform duration-800 ease-[cubic-bezier(0.83,0,0.17,1)] ${
           isExiting ? "translate-y-full" : "translate-y-0"
         }`}
       />
@@ -206,81 +241,35 @@ export default function Preloader() {
           isExiting ? "opacity-0 scale-95 blur-sm" : "opacity-100 scale-100 blur-0"
         }`}
       >
-        {/* Row: Vector Emblem + Divider + Typography */}
+        {/* Row: Official Emblem + Divider + Typography */}
         <div className="flex items-center justify-center gap-5 sm:gap-6">
-          {/* Authentic Quark "Q" Vector Emblem with Dual Glowing Rings */}
+          {/* Official Quark "Q" Emblem with Ambient Halo */}
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shrink-0">
-            <svg
-              className="w-full h-full drop-shadow-[0_0_18px_rgba(68,66,219,0.4)]"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Outer White Orbital Ring */}
-              <circle
-                cx="50"
-                cy="50"
-                r="40"
-                stroke="#FFFFFF"
-                strokeWidth="5"
-                strokeLinecap="round"
-                strokeDasharray="251.32"
-                style={{
-                  transformBox: "fill-box",
-                  transformOrigin: "50% 50%",
-                  animation: "q-ring-spin-outer 1.3s cubic-bezier(0.83, 0, 0.17, 1) infinite alternate",
-                }}
+            {/* Ambient Radial Glow Ring */}
+            <div
+              className="absolute inset-0 rounded-full bg-[#4442DB]/30 blur-md pointer-events-none"
+              style={{ animation: "preloader-pulse 2s ease-in-out infinite" }}
+            />
+            <div className="relative w-full h-full rounded-full overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_20px_rgba(68,66,219,0.35)] flex items-center justify-center bg-[#0B0A12]">
+              <img
+                src={assetPath("/assets/branding/quark-logo.webp")}
+                alt="QuarkMade Logo"
+                width={56}
+                height={56}
+                className="w-full h-full object-contain p-1.5"
               />
-
-              {/* Inner Electric Purple Vortex Ring */}
-              <circle
-                cx="50"
-                cy="50"
-                r="27"
-                stroke="#4442DB"
-                strokeWidth="5.5"
-                strokeLinecap="round"
-                strokeDasharray="169.64"
-                style={{
-                  transformBox: "fill-box",
-                  transformOrigin: "50% 50%",
-                  animation: "q-ring-spin-inner 1.4s cubic-bezier(0.83, 0, 0.17, 1) 0.05s infinite alternate",
-                }}
-              />
-
-              {/* Outer Diagonal Leg (#FFFFFF) */}
-              <path
-                d="M52 52 L86 86"
-                stroke="#FFFFFF"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeDasharray="48"
-                style={{
-                  animation: "q-leg-draw 0.5s cubic-bezier(0.83, 0, 0.17, 1) forwards",
-                }}
-              />
-
-              {/* Inner Parallel Diagonal Leg (#4442DB) */}
-              <path
-                d="M46 58 L72 84"
-                stroke="#4442DB"
-                strokeWidth="5.5"
-                strokeLinecap="round"
-                strokeDasharray="36"
-                style={{
-                  animation: "q-leg-draw 0.5s cubic-bezier(0.83, 0, 0.17, 1) 0.05s forwards",
-                }}
-              />
-            </svg>
+            </div>
           </div>
 
           {/* Vertical Hairline Divider */}
           <div className="w-[1.5px] h-10 sm:h-12 bg-gradient-to-b from-[#D4AF37] via-white/40 to-[#4442DB] shrink-0 opacity-80" />
 
-          {/* Brand Typography Lockup */}
+          {/* Brand Typography Lockup with Shimmer */}
           <div className="flex flex-col items-start justify-center text-left whitespace-nowrap min-w-[160px] sm:min-w-[190px]">
-            <div className="[font-family:'Chillax',_sans-serif] font-medium text-lg sm:text-2xl text-white tracking-[0.14em] uppercase leading-none">
-              QUARK<span className="text-[#D4AF37] ml-0.5 font-semibold">MADE</span>
+            <div className="[font-family:'Chillax',_sans-serif] font-medium text-lg sm:text-2xl leading-none tracking-[0.14em] uppercase inline-block drop-shadow-[0_0_16px_rgba(212,175,55,0.25)] select-none">
+              <span className="preloader-shimmer-text">
+                QUARKMADE
+              </span>
             </div>
             <div className="[font-family:'Satoshi',_sans-serif] font-normal text-[9.5px] sm:text-[11px] text-white/70 tracking-[0.32em] uppercase mt-1.5 leading-none">
               DIGITAL CRAFT STUDIO
