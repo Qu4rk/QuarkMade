@@ -1,27 +1,29 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { assetPath } from "../../../lib/site";
 
 /**
- * High-Craft Asset-Aware Studio Preloader for QuarkMade:
- * - Real asset synchronization (Web Fonts, Document ReadyState, Critical Hero Assets)
- * - Smooth physics-interpolated progress counter with calibrated luxury threshold (~1.6s)
- * - Authentic Quark "Q" emblem with radiant pulse + luxury shimmer typography
- * - Seamless pitch-black obsidian shutter curtains (zero seam artifacts)
- * - Coordinated Lenis scroll locking and synchronous page reveal dispatch
+ * Ultra-Fidelity Studio Preloader for QuarkMade:
+ * - Frame 0 Immediate Render: Pure CSS keyframe animations start the instant HTML is parsed (zero JS hydration delay)
+ * - Embedded Vector Emblem: Authentic 4K SVG Quark "Q" emblem with radiant electric purple glow
+ * - Shimmer Brand Typography: Chillax "QUARKMADE" with luxury sweep shimmer & Satoshi studio descriptor
+ * - Asset-Aware React Hydration: Smoothly completes to 100% once fonts & assets are verified
+ * - Seamless Pitch-Black Curtains: 50.5% overlapping obsidian shutters with zero seam line
  */
 export default function Preloader() {
   const [active, setActive] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
-  const [displayProgress, setDisplayProgress] = useState(0);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [displayPercent, setDisplayPercent] = useState(0);
 
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Lock scroll and reset scroll restoration on hard reload
+    setIsHydrated(true);
+
+    // Lock scroll and force top restoration on hard reload
     if (typeof window !== "undefined") {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
@@ -34,34 +36,21 @@ export default function Preloader() {
     }
 
     const startTime = performance.now();
-    const minDisplayDuration = 1600; // Calibrated luxury playback threshold (ms)
+    const minDisplayDuration = 1800; // Luxury display pacing (ms)
     let isMounted = true;
 
-    // Track real asset readiness
+    // Track real assets
     let fontsReady = false;
-    let heroImageReady = false;
     let domReady = false;
 
     // 1. Initial stage: Start moving immediately
-    targetProgressRef.current = 18;
+    targetProgressRef.current = 30;
 
-    // 2. Preload Hero Image
-    const heroImg = new Image();
-    heroImg.src = assetPath("/assets/branding/hero-sunset.webp");
-    heroImg.onload = () => {
-      heroImageReady = true;
-      targetProgressRef.current = Math.max(targetProgressRef.current, fontsReady ? 82 : 58);
-    };
-    heroImg.onerror = () => {
-      heroImageReady = true;
-      targetProgressRef.current = Math.max(targetProgressRef.current, 55);
-    };
-
-    // 3. Web Fonts Ready (Chillax & Satoshi)
+    // 2. Web Fonts Ready (Chillax & Satoshi)
     if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
         fontsReady = true;
-        targetProgressRef.current = Math.max(targetProgressRef.current, heroImageReady ? 88 : 64);
+        targetProgressRef.current = Math.max(targetProgressRef.current, 75);
       }).catch(() => {
         fontsReady = true;
       });
@@ -69,7 +58,7 @@ export default function Preloader() {
       fontsReady = true;
     }
 
-    // 4. Document / Window Load
+    // 3. Document / Window Load
     if (typeof document !== "undefined") {
       if (document.readyState === "complete") {
         domReady = true;
@@ -81,52 +70,52 @@ export default function Preloader() {
       }
     }
 
-    // 5. Smooth physics-based progress interpolation
+    // 4. Smooth progress animation loop
     const updateLoop = (now: number) => {
       if (!isMounted) return;
 
       const elapsed = now - startTime;
 
       // Increment progress targets organically based on elapsed time and assets
-      if (elapsed > 350 && targetProgressRef.current < 42) {
-        targetProgressRef.current = 42;
+      if (elapsed > 400 && targetProgressRef.current < 55) {
+        targetProgressRef.current = 55;
       }
-      if (elapsed > 750 && targetProgressRef.current < 72) {
-        targetProgressRef.current = 72;
+      if (elapsed > 850 && targetProgressRef.current < 82) {
+        targetProgressRef.current = 82;
       }
-      if (elapsed > 1150 && targetProgressRef.current < 92) {
-        targetProgressRef.current = 92;
+      if (elapsed > 1300 && targetProgressRef.current < 95) {
+        targetProgressRef.current = 95;
       }
 
       // Check if all criteria and minimum duration are met
-      const allAssetsLoaded = fontsReady && (heroImageReady || elapsed > 1000) && (domReady || elapsed > 1200);
+      const allAssetsLoaded = fontsReady && (domReady || elapsed > 1200);
       const minTimeElapsed = elapsed >= minDisplayDuration;
 
       if (allAssetsLoaded && minTimeElapsed) {
         targetProgressRef.current = 100;
       }
 
-      // Smooth interpolation
+      // Smooth interpolation toward target
       const diff = targetProgressRef.current - currentProgressRef.current;
-      const speed = currentProgressRef.current > 85 ? 0.10 : 0.07;
+      const speed = currentProgressRef.current > 85 ? 0.12 : 0.08;
       currentProgressRef.current += diff * speed;
 
-      if (Math.abs(100 - currentProgressRef.current) < 0.35 && targetProgressRef.current === 100) {
+      if (Math.abs(100 - currentProgressRef.current) < 0.4 && targetProgressRef.current === 100) {
         currentProgressRef.current = 100;
       }
 
       const rounded = Math.min(100, Math.floor(currentProgressRef.current));
-      setDisplayProgress(rounded);
+      setDisplayPercent(rounded);
 
       if (currentProgressRef.current < 100) {
         rafRef.current = requestAnimationFrame(updateLoop);
       } else {
-        // Complete -> Trigger shutter exit after brief moment at 100%
+        // Complete -> Trigger shutter exit
         setTimeout(() => {
           if (isMounted) {
             triggerExitSequence();
           }
-        }, 120);
+        }, 150);
       }
     };
 
@@ -135,7 +124,7 @@ export default function Preloader() {
     // Fallback safety timeout
     const safetyTimeout = setTimeout(() => {
       targetProgressRef.current = 100;
-    }, 3800);
+    }, 4000);
 
     const triggerExitSequence = () => {
       setIsExiting(true);
@@ -181,6 +170,13 @@ export default function Preloader() {
       aria-hidden="true"
     >
       <style>{`
+        @keyframes preloader-bar-glide {
+          0% { width: 6%; }
+          25% { width: 35%; }
+          50% { width: 65%; }
+          75% { width: 85%; }
+          100% { width: 100%; }
+        }
         @keyframes preloader-shimmer {
           0% {
             background-position: -150% 0, 0 0;
@@ -219,6 +215,10 @@ export default function Preloader() {
           0%, 100% { transform: scale(1); opacity: 0.7; }
           50% { transform: scale(1.08); opacity: 1; }
         }
+        @keyframes preloader-emblem-rotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
       `}</style>
 
       {/* Top Shutter Curtain Panel */}
@@ -241,23 +241,59 @@ export default function Preloader() {
           isExiting ? "opacity-0 scale-95 blur-sm" : "opacity-100 scale-100 blur-0"
         }`}
       >
-        {/* Row: Official Emblem + Divider + Typography */}
+        {/* Row: Embedded Vector Emblem + Divider + Typography */}
         <div className="flex items-center justify-center gap-5 sm:gap-6">
-          {/* Official Quark "Q" Emblem with Ambient Halo */}
+          {/* Authentic Vector Quark "Q" Emblem with Ambient Halo */}
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shrink-0">
             {/* Ambient Radial Glow Ring */}
             <div
-              className="absolute inset-0 rounded-full bg-[#4442DB]/30 blur-md pointer-events-none"
-              style={{ animation: "preloader-pulse 2s ease-in-out infinite" }}
+              className="absolute -inset-1 rounded-full bg-[#4442DB]/35 blur-md pointer-events-none"
+              style={{ animation: "preloader-pulse 2.2s ease-in-out infinite" }}
             />
-            <div className="relative w-full h-full rounded-full overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_20px_rgba(68,66,219,0.35)] flex items-center justify-center bg-[#0B0A12]">
-              <img
-                src={assetPath("/assets/branding/quark-logo.webp")}
-                alt="QuarkMade Logo"
-                width={56}
-                height={56}
-                className="w-full h-full object-contain p-1.5"
-              />
+            
+            <div className="relative w-full h-full rounded-full overflow-hidden border border-[#D4AF37]/35 shadow-[0_0_22px_rgba(68,66,219,0.45)] flex items-center justify-center bg-[#0B0A12] p-2">
+              <svg
+                className="w-full h-full"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Outer White Orbital Ring */}
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="38"
+                  stroke="#FFFFFF"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
+
+                {/* Inner Electric Purple Vortex Ring */}
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="25"
+                  stroke="#4442DB"
+                  strokeWidth="5.5"
+                  strokeLinecap="round"
+                />
+
+                {/* Outer Diagonal Leg (#FFFFFF) */}
+                <path
+                  d="M50 50 L84 84"
+                  stroke="#FFFFFF"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
+
+                {/* Inner Parallel Diagonal Leg (#4442DB) */}
+                <path
+                  d="M44 56 L70 82"
+                  stroke="#4442DB"
+                  strokeWidth="5.5"
+                  strokeLinecap="round"
+                />
+              </svg>
             </div>
           </div>
 
@@ -271,7 +307,7 @@ export default function Preloader() {
                 QUARKMADE
               </span>
             </div>
-            <div className="[font-family:'Satoshi',_sans-serif] font-normal text-[9.5px] sm:text-[11px] text-white/70 tracking-[0.32em] uppercase mt-1.5 leading-none">
+            <div className="[font-family:'Satoshi',_sans-serif] font-normal text-[9.5px] sm:text-[11px] text-white/75 tracking-[0.32em] uppercase mt-1.5 leading-none">
               DIGITAL CRAFT STUDIO
             </div>
           </div>
@@ -282,14 +318,20 @@ export default function Preloader() {
           <span className="[font-family:'Satoshi',_sans-serif] text-[10px] md:text-[11px] font-medium text-white/40 tracking-[0.24em] uppercase">
             INITIALIZING
           </span>
-          <div className="w-24 sm:w-28 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          <div className="w-24 sm:w-28 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
             <div
-              className="h-full bg-gradient-to-r from-[#4442DB] via-[#A594F9] to-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-[width] duration-75 ease-out"
-              style={{ width: `${displayProgress}%` }}
+              className={`h-full bg-gradient-to-r from-[#4442DB] via-[#A594F9] to-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)] ${
+                isHydrated ? "transition-[width] duration-75 ease-out" : ""
+              }`}
+              style={
+                isHydrated
+                  ? { width: `${displayPercent}%` }
+                  : { animation: "preloader-bar-glide 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards" }
+              }
             />
           </div>
           <span className="[font-family:'Satoshi',_sans-serif] text-[11px] md:text-xs font-semibold text-[#D4AF37] tabular-nums tracking-wider min-w-[2.5rem] text-right">
-            {displayProgress < 10 ? `0${displayProgress}` : displayProgress}%
+            {displayPercent < 10 ? `0${displayPercent}` : displayPercent}%
           </span>
         </div>
       </div>
