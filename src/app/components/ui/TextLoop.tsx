@@ -10,6 +10,7 @@ import React, {
   useState,
 } from "react";
 import { gsap } from "gsap";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import "./TextLoop.css";
 
 const VIEW_W = 1200;
@@ -104,6 +105,7 @@ export default function TextLoop({
   const pathRef = useRef<SVGPathElement>(null);
   const measureRef = useRef<SVGTextElement>(null);
   const textPathRef = useRef<SVGTextPathElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const [metrics, setMetrics] = useState({ pathLength: 0, unitWidth: 0, reps: 4 });
 
@@ -170,9 +172,7 @@ export default function TextLoop({
     const textPath = textPathRef.current;
     if (!textPath || !unitWidth) return undefined;
 
-    const prefersReduced =
-      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced || speed <= 0) return undefined;
+    if (prefersReducedMotion || speed <= 0) return undefined;
 
     // Zero-pop seamless wrap: startOffset moves exactly one unitWidth distance
     const isForward = direction === "forward";
@@ -226,7 +226,7 @@ export default function TextLoop({
         root.removeEventListener("pointerleave", speedUp);
       }
     };
-  }, [metrics, speed, direction, pauseOnHover]);
+  }, [metrics, speed, direction, pauseOnHover, prefersReducedMotion]);
 
   const loopText = useMemo(() => unit.repeat(metrics.reps), [unit, metrics.reps]);
 

@@ -11,6 +11,7 @@ import React, {
   useState,
 } from "react";
 import { motion, AnimatePresence, TargetAndTransition, Transition } from "motion/react";
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion";
 
 import "./RotatingText.css";
 
@@ -68,6 +69,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   } = props;
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const measureRef = useRef<HTMLSpanElement>(null);
   const [currentWidth, setCurrentWidth] = useState<number | undefined>(undefined);
 
@@ -200,10 +202,10 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   );
 
   useEffect(() => {
-    if (!auto) return;
+    if (!auto || prefersReducedMotion) return;
     const intervalId = setInterval(next, rotationInterval);
     return () => clearInterval(intervalId);
-  }, [next, rotationInterval, auto]);
+  }, [next, rotationInterval, auto, prefersReducedMotion]);
 
   return (
     <motion.span

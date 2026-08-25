@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import "./Ferrofluid.css";
 
 const MAX_COLORS = 8;
@@ -244,6 +245,7 @@ export default function Ferrofluid({
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef<number>(0);
   const isVisibleRef = useRef<boolean>(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -329,7 +331,7 @@ export default function Ferrofluid({
       }
     };
 
-    if (mouseInteraction) {
+    if (mouseInteraction && !prefersReducedMotion && !paused) {
       window.addEventListener("pointermove", onPointerMove, { passive: true });
     }
 
@@ -338,9 +340,8 @@ export default function Ferrofluid({
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
 
-    const loop = (t: number) => {
-      rafRef.current = requestAnimationFrame(loop);
-      if (!isVisibleRef.current || paused) return;
+    const renderFrame = (t: number) => {
+      if (!isVisibleRef.current) return;
 
       uniforms.iTime.value = t * 0.001;
       if (mouseDampening > 0) {
@@ -366,11 +367,23 @@ export default function Ferrofluid({
         }
       }
     };
-    rafRef.current = requestAnimationFrame(loop);
+
+    const loop = (t: number) => {
+      renderFrame(t);
+      rafRef.current = requestAnimationFrame(loop);
+    };
+
+    if (prefersReducedMotion || paused) {
+      renderFrame(0);
+    } else {
+      rafRef.current = requestAnimationFrame(loop);
+    }
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (mouseInteraction) window.removeEventListener("pointermove", onPointerMove);
+      if (mouseInteraction && !prefersReducedMotion && !paused) {
+        window.removeEventListener("pointermove", onPointerMove);
+      }
       document.removeEventListener("visibilitychange", onVisibilityChange);
       ro.disconnect();
       if (canvas.parentElement === container) {
@@ -409,6 +422,7 @@ export default function Ferrofluid({
     mouseStrength,
     mouseRadius,
     mouseDampening,
+    prefersReducedMotion,
   ]);
 
   return (

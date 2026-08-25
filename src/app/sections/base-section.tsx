@@ -12,7 +12,7 @@ const galleryData = [
     category: "CHRONOTOMI / HAUTE HORLOGERIE",
     title: "Precision Timepiece Showcase & Dial Inspection",
     src: assetPath("/assets/portfolio/chronotomi_collection.webp"),
-    link: "http://www.chronotomi.com/",
+    link: "https://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
@@ -38,7 +38,7 @@ const galleryData = [
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="http://www.chronotomi.com/" variant="gold">
+          <Button href="https://www.chronotomi.com/" variant="gold">
             Visit Live Site (Chronotomi)
           </Button>
         </div>
@@ -49,7 +49,7 @@ const galleryData = [
     category: "LUMINA LIVING / SPATIAL ARCHITECTURE",
     title: "Curated Interior Identity & Signature Living",
     src: assetPath("/assets/portfolio/lumina_signature_living.webp"),
-    link: "http://www.lumina-living.net/",
+    link: "https://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
@@ -75,7 +75,7 @@ const galleryData = [
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="http://www.lumina-living.net/" variant="gold">
+          <Button href="https://www.lumina-living.net/" variant="gold">
             Visit Live Site (Lumina Living)
           </Button>
         </div>
@@ -123,7 +123,7 @@ const galleryData = [
     category: "CHRONOTOMI / THE STANDARD",
     title: "The Standard of Precision & Advisory",
     src: assetPath("/assets/portfolio/chronotomi_standard.webp"),
-    link: "http://www.chronotomi.com/",
+    link: "https://www.chronotomi.com/",
     projectName: "Chronotomi",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
@@ -149,7 +149,7 @@ const galleryData = [
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="http://www.chronotomi.com/" variant="gold">
+          <Button href="https://www.chronotomi.com/" variant="gold">
             Visit Live Site (Chronotomi)
           </Button>
         </div>
@@ -160,7 +160,7 @@ const galleryData = [
     category: "LUMINA LIVING / RESIDENTIAL SANCTUARY",
     title: "Atmospheric Lighting & Spatial Harmony",
     src: assetPath("/assets/portfolio/lumina_atmosphere.webp"),
-    link: "http://www.lumina-living.net/",
+    link: "https://www.lumina-living.net/",
     projectName: "Lumina Living",
     content: (
       <div className="space-y-6 text-white/90 leading-relaxed">
@@ -186,7 +186,7 @@ const galleryData = [
           </div>
         </div>
         <div className="flex flex-wrap gap-4 pt-4">
-          <Button href="http://www.lumina-living.net/" variant="gold">
+          <Button href="https://www.lumina-living.net/" variant="gold">
             Visit Live Site (Lumina Living)
           </Button>
         </div>
@@ -256,11 +256,11 @@ export default function BaseSection() {
         <div data-reveal className="flex flex-col items-center gap-4 text-center max-w-3xl mx-auto">
           <ProjectBadge label="VISUAL ARCHIVE / SNAPSHOT GALLERY & CRAFT ESSAYS" />
           
-          <div className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground mt-2" data-component="heading">
-            <p className="block">
+          <h2 className="[font-family:'Satoshi',_sans-serif] text-4xl sm:text-5xl md:text-6xl font-normal leading-tight tracking-tight text-foreground mt-2" data-component="heading">
+            <span className="block">
               Snapshot Gallery
-            </p>
-          </div>
+            </span>
+          </h2>
           <div className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-foreground/75 leading-relaxed max-w-xl">
             <p className="block">
               An interactive visual archive of curated digital sanctuaries, spatial architectures, and kinetic flagships. Click any snapshot to inspect details.

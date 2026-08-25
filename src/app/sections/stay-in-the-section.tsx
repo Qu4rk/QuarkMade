@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import ProjectBadge from "../components/ProjectBadge";
 import BorderBeam from "../components/ui/BorderBeam";
+import { submitInquiryPayload } from "../lib/inquiry-delivery";
 
 const PROJECT_TYPES = [
   "Flagship Website",
@@ -28,11 +29,12 @@ const TIMELINE_OPTIONS = [
   "Flexible",
 ];
 
-type SubmitState = "idle" | "sending" | "sent";
+type SubmitState = "idle" | "sending" | "sent" | "error";
 
 /** Project Inquiry and Client Commission Section with Comprehensive Quote Specifications. */
 export default function StayInTheSection() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [fallbackHref, setFallbackHref] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -46,9 +48,15 @@ export default function StayInTheSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || submitState !== "idle") return;
+    if (
+      !formData.name ||
+      !formData.email ||
+      submitState === "sending" ||
+      submitState === "sent"
+    ) return;
 
     setSubmitState("sending");
+    setFallbackHref(null);
 
     try {
       const payload = {
@@ -65,13 +73,7 @@ export default function StayInTheSection() {
         _template: "table",
       };
 
-      const res = await fetch("https://formsubmit.co/ajax/liasides.elias@gmail.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error("Submission failed");
+      await submitInquiryPayload(payload);
 
       setSubmitState("sent");
       // Clear form inputs
@@ -90,7 +92,7 @@ export default function StayInTheSection() {
         setSubmitState("idle");
       }, 5000);
     } catch {
-      // Fallback: open mailto if FormSubmit fails
+      // Preserve the inquiry and offer an explicit, user-controlled email fallback.
       const subject = encodeURIComponent(`[Project Inquiry] ${formData.brand || formData.name} - ${formData.projectType}`);
       const body = encodeURIComponent(
         `Hi Elias,\n\nI would like to inquire about a new project with QuarkMade:\n\n` +
@@ -103,11 +105,8 @@ export default function StayInTheSection() {
         `• Target Timeline: ${formData.timeline}\n\n` +
         `• Project Details / Vision:\n${formData.message || "Looking forward to discussing further."}\n`
       );
-      window.location.href = `mailto:liasides.elias@gmail.com?subject=${subject}&body=${body}`;
-      setSubmitState("sent");
-      setTimeout(() => {
-        setSubmitState("idle");
-      }, 5000);
+      setFallbackHref(`mailto:liasides.elias@gmail.com?subject=${subject}&body=${body}`);
+      setSubmitState("error");
     }
   };
 
@@ -135,13 +134,13 @@ export default function StayInTheSection() {
           <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 leading-relaxed">
             Tell us about your brand vision, scope, and timeline. We will review your project requirements and prepare a bespoke quote within 24 hours.
           </p>
-          <div className="flex items-center gap-2 text-xs [font-family:'Satoshi',_sans-serif] text-white/70 pt-1">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs [font-family:'Satoshi',_sans-serif] text-white/70 pt-1">
             <span>Prefer direct messaging?</span>
             <a
               href="https://wa.me/35799057690?text=Hi%20Elias,%20I'd%20like%20to%20discuss%20a%20new%20website%20project%20with%20QuarkMade."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[#25D366] hover:text-[#4ade80] font-medium underline underline-offset-4 decoration-[#25D366]/40 hover:decoration-[#25D366] transition-colors"
+              className="inline-flex min-h-11 items-center gap-1.5 py-2 text-[#25D366] hover:text-[#4ade80] font-medium underline underline-offset-4 decoration-[#25D366]/40 hover:decoration-[#25D366] transition-colors"
             >
               <span>Chat on WhatsApp (+357 99 057690)</span>
               <span>→</span>
@@ -235,8 +234,9 @@ export default function StayInTheSection() {
                     <button
                       key={type}
                       type="button"
+                      aria-pressed={isSelected}
                       onClick={() => setFormData({ ...formData, projectType: type })}
-                      className={`flex items-center justify-between p-2.5 sm:p-3 text-left transition-all duration-200 cursor-pointer border [font-family:'Satoshi',_sans-serif] rounded-none ${
+                      className={`flex min-h-11 items-center justify-between p-2.5 sm:p-3 text-left transition-all duration-200 cursor-pointer border [font-family:'Satoshi',_sans-serif] rounded-none ${
                         isSelected
                           ? "bg-[#4442DB]/25 text-white border-[#D4AF37] shadow-[0_0_15px_rgba(68,66,219,0.35)] font-semibold"
                           : "bg-white/[0.03] text-white/70 border-white/10 hover:border-white/30 hover:text-white font-normal"
@@ -329,9 +329,32 @@ export default function StayInTheSection() {
                     exit={{ opacity: 0, height: 0, y: -6 }}
                     transition={{ duration: 0.3 }}
                     className="p-3 bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-center text-xs [font-family:'Satoshi',_sans-serif] text-[#F3E5AB] flex items-center justify-center gap-2"
+                    role="status"
+                    aria-live="polite"
                   >
                     <span className="text-[#D4AF37]">✦</span>
-                    <span>Inquiry transmitted successfully to <strong className="text-white font-medium">liasides.elias@gmail.com</strong>. We will review and reply within 24 hours.</span>
+                    <span>Inquiry accepted by our delivery service for <strong className="text-white font-medium">liasides.elias@gmail.com</strong>. We will review and reply within 24 hours.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {submitState === "error" && fallbackHref && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -6 }}
+                    animate={{ opacity: 1, height: "auto", y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                    className="p-3 bg-[#4442DB]/15 border border-[#A594F9]/50 text-center text-xs [font-family:'Satoshi',_sans-serif] text-white/85 flex flex-wrap items-center justify-center gap-1.5"
+                    role="alert"
+                  >
+                    <span>Automatic delivery was unavailable. Your details are still here.</span>
+                    <a
+                      href={fallbackHref}
+                      className="min-h-11 inline-flex items-center font-semibold text-[#F3E5AB] underline underline-offset-4"
+                    >
+                      Open a prepared email instead
+                    </a>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -341,7 +364,7 @@ export default function StayInTheSection() {
                   href="https://wa.me/35799057690?text=Hi%20Elias,%20I'd%20like%20to%20discuss%20a%20new%20website%20project%20with%20QuarkMade."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 h-9 px-4 py-3 bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 hover:border-[#25D366] text-[#25D366] [font-family:'Satoshi',_sans-serif] text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase rounded-none transition-all duration-200 w-full whitespace-nowrap shadow-[0_0_15px_rgba(37,211,102,0.15)]"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 hover:border-[#25D366] text-[#25D366] [font-family:'Satoshi',_sans-serif] text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase rounded-none transition-all duration-200 w-full whitespace-nowrap shadow-[0_0_15px_rgba(37,211,102,0.15)]"
                 >
                   <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                     <path
@@ -354,10 +377,10 @@ export default function StayInTheSection() {
                 </a>
                 <motion.button
                   type="submit"
-                  disabled={submitState !== "idle"}
-                  className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] text-[13px] font-semibold leading-[13px] tracking-[0.13px] uppercase h-9 px-4 py-3 rounded-none transition-colors duration-200 ease-out outline-none select-none w-full bg-[#d4af37] text-[#0b0a12] hover:bg-[#e5c158] shadow-[0_0_15px_rgba(212,175,55,0.3)] disabled:cursor-not-allowed overflow-hidden relative"
+                  disabled={submitState === "sending" || submitState === "sent"}
+                  className="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] text-[13px] font-semibold leading-[13px] tracking-[0.13px] uppercase px-4 py-3 rounded-none transition-colors duration-200 ease-out outline-none select-none w-full bg-[#d4af37] text-[#0b0a12] hover:bg-[#e5c158] shadow-[0_0_15px_rgba(212,175,55,0.3)] disabled:cursor-not-allowed overflow-hidden relative"
                   data-component="button"
-                  whileTap={submitState === "idle" ? { scale: 0.97 } : {}}
+                  whileTap={submitState === "idle" || submitState === "error" ? { scale: 0.97 } : {}}
                   animate={
                     submitState === "sending"
                       ? { scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 1.2, ease: "easeInOut" } }
@@ -367,7 +390,7 @@ export default function StayInTheSection() {
                   }
                 >
                   <AnimatePresence mode="wait" initial={false}>
-                    {submitState === "idle" && (
+                    {(submitState === "idle" || submitState === "error") && (
                       <motion.span
                         key="idle"
                         className="inline-flex items-center gap-2"

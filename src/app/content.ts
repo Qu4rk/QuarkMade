@@ -43,7 +43,7 @@ export const cards = [
       "An architectural real estate and living sanctuary platform crafted with panoramic media viewers, bespoke typography, and seamless property discovery.",
     tags: ["ARCHITECTURE", "RESIDENTIAL", "EDITORIAL"],
     image: assetPath("/assets/portfolio/lumina_signature_living.webp"),
-    link: "http://www.lumina-living.net/",
+    link: "https://www.lumina-living.net/",
   },
   {
     variant: "chronotomi",
@@ -52,7 +52,7 @@ export const cards = [
       "A bespoke luxury horology flagship featuring precision kinetic typography, interactive timepiece showcases, and editorial storytelling for collectors.",
     tags: ["HOROLOGY", "LUXURY", "INTERACTIVE"],
     image: assetPath("/assets/portfolio/chronotomi_collection.webp"),
-    link: "http://www.chronotomi.com/",
+    link: "https://www.chronotomi.com/",
   },
   {
     variant: "craft-philosophy",
@@ -94,13 +94,13 @@ export const logos = [
     name: "Lumina Living",
     label: "LUMINA LIVING",
     logo: assetPath("/assets/portfolio/logos/lumina-logo.webp"),
-    href: "http://www.lumina-living.net/",
+    href: "https://www.lumina-living.net/",
   },
   {
     name: "Chronotomi",
     label: "CHRONOTOMI",
     logo: assetPath("/assets/portfolio/logos/chronotomi-logo.webp"),
-    href: "http://www.chronotomi.com/",
+    href: "https://www.chronotomi.com/",
   },
   {
     name: "WebGL",
@@ -117,5 +117,4 @@ export const textLinkData = [
   { text: "Terms of Service", href: "/terms" },
   { text: "Contact", href: "mailto:liasides.elias@gmail.com" },
 ];
-
 

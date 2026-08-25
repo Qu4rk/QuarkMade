@@ -113,7 +113,7 @@ export default function LogoCloudSection() {
                   <a
                     key={i}
                     href={d.href}
-                    className="text-white/70 hover:text-[#D4AF37] transition-colors"
+                    className="inline-flex min-h-11 items-center px-1 text-white/70 hover:text-[#D4AF37] transition-colors"
                   >
                     {d.text}
                   </a>
@@ -123,7 +123,7 @@ export default function LogoCloudSection() {
                 <Link
                   key={i}
                   href={d.href}
-                  className="text-white/70 hover:text-[#D4AF37] transition-colors"
+                  className="inline-flex min-h-11 items-center px-1 text-white/70 hover:text-[#D4AF37] transition-colors"
                 >
                   {d.text}
                 </Link>

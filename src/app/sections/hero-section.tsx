@@ -253,7 +253,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           transition={{ duration: 1.0, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
+          className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex min-h-12 flex-col items-center justify-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
         >
           <span className="[font-family:'Satoshi',_sans-serif] text-[10px] tracking-[0.3em] uppercase font-normal">
             SCROLL

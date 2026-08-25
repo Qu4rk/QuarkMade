@@ -31,11 +31,14 @@ export default function RootedInHistorySection() {
 
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
         {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
-        <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
+        <h2 className="sr-only">QuieTide: The art of stillness</h2>
+        <div data-reveal aria-hidden="true" className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
           <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
             <img
-              src={assetPath("/assets/portfolio/logos/quietide-logo.webp")}
+              src={assetPath("/assets/portfolio/logos/quietide-logo-256.webp")}
               alt="QuieTide"
+              loading="lazy"
+              decoding="async"
               className="h-10 sm:h-12 md:h-14 w-auto object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
             />
             <span className="[font-family:'Chillax',_sans-serif] font-medium text-[2.75rem] sm:text-[3.5rem] md:text-[3.85rem] text-[#D4AF37] leading-none tracking-tight">
@@ -71,6 +74,8 @@ export default function RootedInHistorySection() {
                 className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                 alt="QuieTide Mediterranean Digital Sanctuary Showcase"
                 src={assetPath("/assets/portfolio/quietide_hero.webp")}
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
             {/* Subtle Contrast Gradient */}
@@ -87,8 +92,10 @@ export default function RootedInHistorySection() {
                   {/* Official QuieTide Logo Emblem */}
                   <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
                     <img
-                      src={assetPath("/assets/portfolio/logos/quietide-logo.webp")}
+                      src={assetPath("/assets/portfolio/logos/quietide-logo-256.webp")}
                       alt="QuieTide Logo"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain"
                     />
                   </div>

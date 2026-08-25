@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion";
 
 /**
  * Global ScrollObserver for QuarkMade:
@@ -9,35 +10,41 @@ import { useEffect } from "react";
  * 3. Native IntersectionObserver for entrance reveals.
  */
 export default function ScrollObserver() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   useEffect(() => {
     // 1. Intersection Observer for Scroll Reveals
     const revealElements = document.querySelectorAll("[data-reveal]");
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: "0px 0px 80px 0px" }
-    );
+    const revealObserver = prefersReducedMotion
+      ? null
+      : new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                revealObserver?.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: "0px 0px 80px 0px" }
+        );
 
     revealElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
+      if (prefersReducedMotion || rect.top < window.innerHeight) {
         el.classList.add("revealed");
       } else {
-        revealObserver.observe(el);
+        revealObserver?.observe(el);
       }
     });
 
     // 2. High-Performance Parallax without synchronous layout reflows
-    const parallaxElements = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-parallax]")
-    );
+    const parallaxElements = prefersReducedMotion
+      ? []
+      : Array.from(
+          document.querySelectorAll<HTMLElement>("[data-parallax]")
+        );
 
     // Cache element geometry on init and resize
     let elementOffsets: { el: HTMLElement; top: number; height: number; speed: number }[] = [];
@@ -59,12 +66,13 @@ export default function ScrollObserver() {
     window.addEventListener("resize", computeOffsets, { passive: true });
 
     let ticking = false;
+    let rafId = 0;
     let isHeaderScrolled = false;
     const header = document.getElementById("header");
 
     const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        rafId = window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
           const windowHeight = window.innerHeight;
 
@@ -107,10 +115,10 @@ export default function ScrollObserver() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", computeOffsets);
-      revealObserver.disconnect();
+      cancelAnimationFrame(rafId);
+      revealObserver?.disconnect();
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return null;
 }
-

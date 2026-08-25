@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef } from "react";
 import { useScroll } from "motion/react";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 
 export interface ScrollWordRevealProps {
   text: string;
@@ -16,6 +17,7 @@ export default function ScrollWordReveal({
 }: ScrollWordRevealProps) {
   const containerRef = useRef<HTMLParagraphElement>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -33,10 +35,24 @@ export default function ScrollWordReveal({
     const total = words.length;
     if (!spans.length || total === 0) return;
 
+    if (prefersReducedMotion) {
+      spans.forEach((span) => {
+        if (!span) return;
+        span.style.opacity = "1";
+        span.style.transform = "none";
+        span.style.willChange = "auto";
+      });
+      return;
+    }
+
     const ranges = words.map((_, i) => {
       const start = i / total;
       const end = Math.min(1, start + 1.2 / total);
       return { start, end, range: end - start };
+    });
+
+    spans.forEach((span) => {
+      if (span) span.style.willChange = "opacity, transform";
     });
 
     const updateWords = (p: number) => {
@@ -65,7 +81,7 @@ export default function ScrollWordReveal({
     return () => {
       unsubscribe();
     };
-  }, [scrollYProgress, words]);
+  }, [prefersReducedMotion, scrollYProgress, words]);
 
   return (
     <p ref={containerRef} className={`flex flex-wrap justify-center select-none ${className}`}>

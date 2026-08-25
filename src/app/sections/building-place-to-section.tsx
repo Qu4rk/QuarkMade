@@ -31,11 +31,14 @@ export default function BuildingPlaceToSection() {
 
       <div className="flex py-24 px-6 flex-col gap-16 mx-auto w-full max-w-screen max-md:py-16 max-md:px-4 max-md:gap-10 relative z-1">
         {/* Main Section Heading: Chillax Medium Gold Brand Title with Logo to the left */}
-        <div data-reveal className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
+        <h2 className="sr-only">Lumina Living: Architectural serenity</h2>
+        <div data-reveal aria-hidden="true" className="flex flex-col items-center justify-center gap-2 text-center max-w-4xl mx-auto" data-component="heading">
           <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap">
             <img
-              src={assetPath("/assets/portfolio/logos/lumina-logo.webp")}
+              src={assetPath("/assets/portfolio/logos/lumina-logo-256.webp")}
               alt="Lumina Living"
+              loading="lazy"
+              decoding="async"
               className="h-7 sm:h-8.5 md:h-10 w-auto object-contain shrink-0 drop-shadow-sm transition-transform duration-300 hover:scale-105"
             />
             <span className="[font-family:'Chillax',_sans-serif] font-medium text-[2.75rem] sm:text-[3.5rem] md:text-[3.85rem] text-[#D4AF37] leading-none tracking-tight">
@@ -71,6 +74,8 @@ export default function BuildingPlaceToSection() {
                   className="w-full h-full block absolute overflow-clip object-cover align-middle scale-105 transition-transform duration-700 group-hover:scale-100"
                   alt="Lumina Living Architectural Showcase"
                   src={assetPath("/assets/portfolio/lumina_hero.webp")}
+                  loading="lazy"
+                  decoding="async"
                 />
               </motion.div>
               {/* Subtle Contrast Gradient */}
@@ -87,8 +92,10 @@ export default function BuildingPlaceToSection() {
                     {/* Official Lumina Living Logo */}
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full p-2 bg-black/40 border border-[#D4AF37]/40 shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center backdrop-blur-md">
                       <img
-                        src={assetPath("/assets/portfolio/logos/lumina-logo.webp")}
+                        src={assetPath("/assets/portfolio/logos/lumina-logo-256.webp")}
                         alt="Lumina Living Logo"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -100,7 +107,7 @@ export default function BuildingPlaceToSection() {
                     </span>
                   </div>
                   <div className="flex flex-wrap justify-center items-center gap-5 max-md:gap-4">
-                    <Button href="http://www.lumina-living.net/" variant="gold">
+                    <Button href="https://www.lumina-living.net/" variant="gold">
                       Visit Live Site (Lumina-Living.net)
                     </Button>
                   </div>

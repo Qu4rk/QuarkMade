@@ -3,13 +3,13 @@
 import React, { useEffect, useRef } from "react";
 import {
   motion,
-  useAnimationFrame,
   useMotionTemplate,
   useMotionValue,
   useSpring,
   useTransform,
   MotionValue,
 } from "motion/react";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 
 function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ");
@@ -74,6 +74,7 @@ export const NoiseBackground = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   // Use spring animation for smooth movement
   const springX = useSpring(x, { stiffness: 100, damping: 30 });
@@ -120,9 +121,12 @@ export const NoiseBackground = ({
     velocityRef.current = generateRandomVelocityRef.current();
   }, [speed]);
 
-  // Animate using motion/react's useAnimationFrame
-  useAnimationFrame((time) => {
-    if (!animating || !containerRef.current) return;
+  useEffect(() => {
+    if (!animating || prefersReducedMotion) return;
+
+    let rafId = 0;
+    const animateGradient = (time: number) => {
+      if (!containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     const maxX = rect.width;
@@ -164,7 +168,12 @@ export const NoiseBackground = ({
 
     x.set(newX);
     y.set(newY);
-  });
+      rafId = requestAnimationFrame(animateGradient);
+    };
+
+    rafId = requestAnimationFrame(animateGradient);
+    return () => cancelAnimationFrame(rafId);
+  }, [animating, prefersReducedMotion, speed, x, y]);
 
   return (
     <div
@@ -172,7 +181,7 @@ export const NoiseBackground = ({
       className={cn(
         "group relative overflow-hidden rounded-full bg-[#0B0A12] p-[2px] backdrop-blur-sm",
         "shadow-[0px_0px_20px_0px_rgba(68,66,219,0.3)] border border-[#D4AF37]/30",
-        glimmer && "animate-[pillGlowGlimmer_3s_ease-in-out_infinite]",
+        glimmer && !prefersReducedMotion && "animate-[pillGlowGlimmer_3s_ease-in-out_infinite]",
         backdropBlur &&
           "after:absolute after:inset-0 after:h-full after:w-full after:backdrop-blur-lg after:content-['']",
         containerClassName
@@ -211,7 +220,7 @@ export const NoiseBackground = ({
         className="absolute inset-x-0 top-0 h-1 rounded-t-2xl opacity-80 blur-sm pointer-events-none"
         style={{
           background: `linear-gradient(to right, ${gradientColors.join(", ")})`,
-          x: animating ? topGradientX : 0,
+          x: animating && !prefersReducedMotion ? topGradientX : 0,
         }}
       />
 
@@ -226,7 +235,7 @@ export const NoiseBackground = ({
       </div>
 
       {/* Constant Specular Glimmer Light Wave */}
-      {glimmer && (
+      {glimmer && !prefersReducedMotion && (
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
           <div
             className="absolute inset-0 -translate-x-[150%] skew-x-[-20deg] pointer-events-none"

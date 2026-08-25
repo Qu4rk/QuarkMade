@@ -17,8 +17,10 @@ export default function PlaceWorthBelongingSection() {
       />
 
       <div className="flex flex-col gap-10 mx-auto w-full max-w-4xl text-center relative z-2">
+        <h2 className="sr-only">Digital spaces worth remembering.</h2>
         <div
           data-reveal
+          aria-hidden="true"
           className="[font-family:'Satoshi',_sans-serif] text-xs md:text-sm font-normal tracking-[0.25em] text-[#D4AF37] uppercase"
         >
           STUDIO MANIFESTO
@@ -26,6 +28,7 @@ export default function PlaceWorthBelongingSection() {
 
         <div
           data-reveal
+          aria-hidden="true"
           className="[font-family:'Satoshi',_sans-serif] text-3xl sm:text-5xl md:text-6xl text-foreground font-normal leading-tight tracking-tight"
           data-component="heading"
         >
@@ -54,4 +57,3 @@ export default function PlaceWorthBelongingSection() {
     </section>
   );
 }
-

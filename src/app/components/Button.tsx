@@ -14,7 +14,7 @@ interface ButtonProps {
 /**
  * Authentic QuarkMade CTA Button / Link Button:
  * - Font: "Saans Mono", monospace, 13px, font-weight 500, letter-spacing 0.13px, uppercase
- * - Height: 36px (h-9), padding: 12px 16px (px-4 py-3), rounded-none (0px border-radius)
+ * - Minimum rendered height: 44px for touch accessibility, padding: 12px 16px, square corners
  * - Color Palette: Purple (#4442DB), Gold (#D4AF37), White (#FFFFFF), Midnight Black (#0B0A12)
  */
 export default function Button({
@@ -39,7 +39,8 @@ export default function Button({
     variantClasses = "bg-[#0b0a12] text-white hover:bg-[#171524] border border-[#4442db]/30 hover:border-[#4442db] hover:text-[#d4af37]";
   }
 
-  const baseClasses = `inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] font-normal text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase h-9 px-4 py-3 rounded-none transition-all duration-200 ease-out outline-none select-none ${variantClasses} ${className}`;
+  // Mobile sections use a subtle scale transform, so 52px renders to at least a 44px hit area.
+  const baseClasses = `inline-flex min-h-[52px] md:min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap [font-family:'Satoshi',_sans-serif] font-normal text-[13px] font-medium leading-[13px] tracking-[0.13px] uppercase px-4 py-3 rounded-none transition-all duration-200 ease-out outline-none select-none ${variantClasses} ${className}`;
 
   if (href) {
     return (

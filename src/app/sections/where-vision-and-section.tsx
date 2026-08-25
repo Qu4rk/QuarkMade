@@ -19,6 +19,8 @@ export default function WhereVisionAndSection() {
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
                 src={assetPath("/assets/portfolio/craft_harbor_atmosphere.webp")}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="w-full h-full hidden absolute top-0 overflow-hidden max-md:block">
@@ -26,6 +28,8 @@ export default function WhereVisionAndSection() {
                 className="w-full h-full block absolute overflow-clip object-cover object-center align-middle"
                 alt="QuarkMade Creative Studio Craft"
                 src={assetPath("/assets/portfolio/craft_harbor_atmosphere.webp")}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -64,11 +68,11 @@ export default function WhereVisionAndSection() {
                 </NoiseBackground>
               </div>
 
-              <div className="block [font-family:'Satoshi',_sans-serif] font-normal text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
-                <p className="block">
+              <h2 className="block [font-family:'Satoshi',_sans-serif] font-normal text-[3.25rem] leading-[4rem] tracking-[0.31px] max-md:text-4xl max-md:leading-[2.6875rem]" data-component="heading">
+                <span className="block">
                   Where <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">vision</span>, <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">engineering</span>, and <span className="inline [font-family:'Chillax',_sans-serif] font-medium text-[#F3E5AB]">elegance</span> come together
-                </p>
-              </div>
+                </span>
+              </h2>
               <p className="[font-family:'Satoshi',_sans-serif] font-normal text-base md:text-lg text-white/80 max-w-xl">
                 We believe websites shouldn&apos;t just communicate information — they should create memorable sensory impressions that linger in the mind.
               </p>

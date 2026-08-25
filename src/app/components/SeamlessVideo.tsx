@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion";
 
 interface SeamlessVideoProps {
   src: string;
@@ -28,6 +29,7 @@ export default function SeamlessVideo({
   const activeStreamRef = useRef<1 | 2>(1);
   const isFadingRef = useRef(false);
   const isVisibleRef = useRef(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const v1 = video1Ref.current;
@@ -39,6 +41,9 @@ export default function SeamlessVideo({
     v2.muted = true;
     v1.playsInline = true;
     v2.playsInline = true;
+    activeStreamRef.current = 1;
+    isFadingRef.current = false;
+    isVisibleRef.current = true;
 
     // Apply transition duration style directly
     v1.style.transitionDuration = `${fadeDuration}s`;
@@ -47,6 +52,13 @@ export default function SeamlessVideo({
     // Initial state: v1 visible and playing, v2 hidden and paused
     v1.style.opacity = "1";
     v2.style.opacity = "0";
+
+    if (prefersReducedMotion) {
+      v1.pause();
+      v2.pause();
+      return;
+    }
+
     v1.play().catch(() => {});
 
     // Viewport-aware playback observer: pause decoding when hero is off-screen
@@ -64,6 +76,8 @@ export default function SeamlessVideo({
       { threshold: 0.05 }
     );
     io.observe(container);
+
+    let fadeTimer: ReturnType<typeof setTimeout> | null = null;
 
     const handleCrossfade = (
       activeVideo: HTMLVideoElement,
@@ -93,7 +107,7 @@ export default function SeamlessVideo({
         activeStreamRef.current = targetStream;
 
         // Once crossfade settles, pause the previous video to conserve hardware decoder bandwidth
-        setTimeout(() => {
+        fadeTimer = setTimeout(() => {
           activeVideo.pause();
           activeVideo.currentTime = 0;
           isFadingRef.current = false;
@@ -120,10 +134,11 @@ export default function SeamlessVideo({
       io.disconnect();
       v1.removeEventListener("timeupdate", onV1TimeUpdate);
       v2.removeEventListener("timeupdate", onV2TimeUpdate);
+      if (fadeTimer) clearTimeout(fadeTimer);
       v1.pause();
       v2.pause();
     };
-  }, [fadeDuration]);
+  }, [fadeDuration, prefersReducedMotion]);
 
   return (
     <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-foreground [contain:strict]">

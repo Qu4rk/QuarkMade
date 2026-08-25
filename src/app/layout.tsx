@@ -4,6 +4,7 @@ import "./motion.css";
 import type { ReactNode } from "react";
 import { SITE_ORIGIN, assetPath } from "../lib/site";
 import SmoothScroll from "./components/SmoothScroll";
+import MotionProvider from "./components/MotionProvider";
 
 export const metadata = {
   metadataBase: new URL(SITE_ORIGIN || "http://localhost:3000"),
@@ -29,7 +30,7 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: assetPath("/assets/branding/quark-logo.webp"),
+        url: assetPath("/icon.svg"),
       },
     ],
   },
@@ -38,6 +39,7 @@ export const metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -50,7 +52,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="min-h-screen block text-foreground [font-family:'Satoshi',_sans-serif] font-normal bg-background antialiased selection:bg-[#4442DB] selection:text-white">
-        <SmoothScroll>{children}</SmoothScroll>
+        <MotionProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </MotionProvider>
       </body>
     </html>
   );

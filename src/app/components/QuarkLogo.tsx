@@ -29,7 +29,7 @@ export default function QuarkLogo({
         className="relative flex items-center justify-center shrink-0 rounded-full overflow-hidden transition-transform duration-300 group-hover:scale-105 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11"
       >
         <img
-          src={assetPath("/assets/branding/quark-logo.webp")}
+          src={assetPath("/assets/branding/quark-logo-128.webp")}
           alt="QuarkMade Logo"
           width={size}
           height={size}

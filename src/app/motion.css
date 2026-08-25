@@ -224,3 +224,42 @@
 #header.scrolled .tab-inactive {
   color: rgba(255, 255, 255, 0.75) !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  [data-reveal].revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  [data-parallax] {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .quark-carousel-track {
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee,
+  .animate-pulse-glow,
+  .animate-glow,
+  .animate-fade-in-up,
+  .animate-border-beam,
+  .quark-shimmer-unified,
+  .quark-footer-shimmer-text,
+  .hero-light-leak,
+  .hero-star-flare,
+  .animate-float-gentle,
+  [class*="after:animate-border-beam"]::after,
+  #quark-preloader-root * {
+    animation: none !important;
+  }
+}

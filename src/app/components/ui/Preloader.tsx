@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 
 /**
  * 100% GPU-Composited Studio Preloader for QuarkMade:
@@ -10,19 +11,38 @@ import React, { useEffect, useState } from "react";
  */
 export default function Preloader() {
   const [active, setActive] = useState(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    // Lock scroll and reset scroll restoration on hard reload
-    if (typeof window !== "undefined") {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
-      }
-      window.scrollTo(0, 0);
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-      if (lenis) lenis.stop();
+    if (!active) return;
+
+    const originalDocOverflow = document.documentElement.style.overflow;
+    const originalBodyOverflow = document.body.style.overflow;
+
+    const revealPage = () => {
+      document.documentElement.style.overflow = originalDocOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.classList.add("page-revealed");
+      window.dispatchEvent(new CustomEvent("page-revealed"));
+      const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
+      lenis?.start();
+    };
+
+    if (prefersReducedMotion) {
+      revealPage();
+      setActive(false);
+      return;
     }
+
+    // Lock scroll and reset scroll restoration on hard reload
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    const lenis = (window as unknown as { __lenis?: { stop: () => void } }).__lenis;
+    lenis?.stop();
 
     // Calculate remaining time from absolute page navigation
     const elapsed = typeof performance !== "undefined" ? performance.now() : 0;
@@ -31,36 +51,24 @@ export default function Preloader() {
 
     // Release scroll & dispatch page reveal event as curtain opens (1.8s from page start)
     const scrollTimer = setTimeout(() => {
-      if (typeof window !== "undefined") {
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
-        document.body.classList.add("page-revealed");
-        window.dispatchEvent(new CustomEvent("page-revealed"));
-        const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
-        if (lenis) lenis.start();
-      }
+      revealPage();
     }, remainingReveal);
 
     // Unmount after curtain completely clears (2.6s from page start)
     const removeTimer = setTimeout(() => {
       setActive(false);
-      if (typeof window !== "undefined") {
-        document.body.classList.add("page-revealed");
-        window.dispatchEvent(new CustomEvent("page-revealed"));
-      }
+      revealPage();
     }, remainingUnmount);
 
     return () => {
       clearTimeout(scrollTimer);
       clearTimeout(removeTimer);
-      if (typeof window !== "undefined") {
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
-        const lenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
-        if (lenis) lenis.start();
-      }
+      document.documentElement.style.overflow = originalDocOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      const activeLenis = (window as unknown as { __lenis?: { start: () => void } }).__lenis;
+      activeLenis?.start();
     };
-  }, []);
+  }, [active, prefersReducedMotion]);
 
   if (!active) return null;
 
@@ -290,4 +298,3 @@ export default function Preloader() {
     </div>
   );
 }
-

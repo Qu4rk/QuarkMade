@@ -9,8 +9,8 @@ import React, {
   useCallback,
 } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion } from "motion/react";
-import { useOutsideClick } from "../../hooks/use-outside-click";
+import { motion } from "motion/react";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import { assetPath } from "../../../lib/site";
 
 export type CardType = {
@@ -51,7 +51,10 @@ export const Carousel = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
-  const modalContentRef = useRef<HTMLDivElement>(null);
+  const modalDialogRef = useRef<HTMLDivElement>(null);
+  const modalCloseRef = useRef<HTMLButtonElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -79,14 +82,20 @@ export const Carousel = ({
   const scrollLeft = () => {
     if (carouselRef.current) {
       const scrollAmount = isMobile() ? 340 : 640;
-      carouselRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
       const scrollAmount = isMobile() ? 340 : 640;
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
     }
   };
 
@@ -97,11 +106,11 @@ export const Carousel = ({
       const scrollPosition = (cardWidth + gap) * index;
       carouselRef.current.scrollTo({
         left: scrollPosition,
-        behavior: "smooth",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
       });
       setCurrentIndex(index);
     }
-  }, []);
+  }, [prefersReducedMotion]);
 
   const handleCardClose = useCallback(
     (index: number) => {
@@ -111,6 +120,7 @@ export const Carousel = ({
   );
 
   const openCard = useCallback((index: number) => {
+    openerRef.current = document.activeElement as HTMLElement | null;
     setOpenIndex(index);
   }, []);
 
@@ -119,6 +129,12 @@ export const Carousel = ({
       handleCardClose(openIndex);
     }
     setOpenIndex(null);
+    requestAnimationFrame(() => {
+      if (openerRef.current?.isConnected) {
+        openerRef.current.focus();
+      }
+      openerRef.current = null;
+    });
   }, [openIndex, handleCardClose]);
 
   const goToNextSnapshot = useCallback(() => {
@@ -155,34 +171,81 @@ export const Carousel = ({
         lenis.stop();
       }
 
+      const focusCloseButton = requestAnimationFrame(() => {
+        if (!modalDialogRef.current?.contains(document.activeElement)) {
+          modalCloseRef.current?.focus();
+        }
+      });
+
+      // Inert every sibling along the portal branch so assistive technology
+      // cannot reach the page behind the dialog.
+      const inertedSiblings: HTMLElement[] = [];
+      let activeBranch: HTMLElement | null = modalDialogRef.current;
+      while (activeBranch?.parentElement) {
+        const parent: HTMLElement = activeBranch.parentElement;
+        Array.from(parent.children).forEach((sibling) => {
+          if (
+            sibling !== activeBranch &&
+            sibling instanceof HTMLElement &&
+            !sibling.inert
+          ) {
+            sibling.inert = true;
+            inertedSiblings.push(sibling);
+          }
+        });
+        activeBranch = parent;
+        if (parent === document.body) break;
+      }
+
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
+          event.preventDefault();
           closeSnapshotModal();
         } else if (event.key === "ArrowRight") {
+          event.preventDefault();
           goToNextSnapshot();
         } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
           goToPrevSnapshot();
+        } else if (event.key === "Tab") {
+          const dialog = modalDialogRef.current;
+          if (!dialog) return;
+
+          const controls = Array.from(
+            dialog.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            )
+          ).filter((element) => element.getClientRects().length > 0);
+          if (controls.length === 0) return;
+
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
         }
       };
 
       window.addEventListener("keydown", handleKeyDown);
 
       return () => {
+        cancelAnimationFrame(focusCloseButton);
         window.removeEventListener("keydown", handleKeyDown);
         document.documentElement.style.overflow = originalDocOverflow;
         document.body.style.overflow = originalBodyOverflow;
+        inertedSiblings.forEach((sibling) => {
+          sibling.inert = false;
+        });
         if (lenis) {
           lenis.start();
         }
       };
     }
   }, [openIndex, closeSnapshotModal, goToNextSnapshot, goToPrevSnapshot]);
-
-  useOutsideClick(modalContentRef, () => {
-    if (openIndex !== null) {
-      closeSnapshotModal();
-    }
-  });
 
   const activeCard =
     cardsData && openIndex !== null ? cardsData[openIndex] : null;
@@ -199,7 +262,7 @@ export const Carousel = ({
       <div className="relative w-full">
         {/* Horizontal Carousel Track */}
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-6 md:py-10 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 md:px-8"
+          className="quark-carousel-track flex w-full overflow-x-scroll overscroll-x-auto py-6 md:py-10 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 md:px-8"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
@@ -228,7 +291,8 @@ export const Carousel = ({
         {/* Carousel Navigation Buttons */}
         <div className="flex justify-center items-center gap-4 mt-6">
           <button
-            className="relative z-40 h-11 w-11 rounded-full bg-white/5 hover:bg-[#4442DB] text-white/80 hover:text-white border border-white/10 hover:border-[#4442DB]/50 flex items-center justify-center disabled:opacity-20 disabled:hover:bg-white/5 disabled:hover:text-white/40 cursor-pointer disabled:cursor-not-allowed transition-all duration-300 shadow-md"
+            type="button"
+            className="relative z-40 h-12 w-12 rounded-full bg-white/5 hover:bg-[#4442DB] text-white/80 hover:text-white border border-white/10 hover:border-[#4442DB]/50 flex items-center justify-center disabled:opacity-20 disabled:hover:bg-white/5 disabled:hover:text-white/40 cursor-pointer disabled:cursor-not-allowed transition-all duration-300 shadow-md"
             disabled={!canScrollLeft}
             onClick={scrollLeft}
             aria-label="Scroll snapshots left"
@@ -248,7 +312,8 @@ export const Carousel = ({
             </svg>
           </button>
           <button
-            className="relative z-40 h-11 w-11 rounded-full bg-white/5 hover:bg-[#4442DB] text-white/80 hover:text-white border border-white/10 hover:border-[#4442DB]/50 flex items-center justify-center disabled:opacity-20 disabled:hover:bg-white/5 disabled:hover:text-white/40 cursor-pointer disabled:cursor-not-allowed transition-all duration-300 shadow-md"
+            type="button"
+            className="relative z-40 h-12 w-12 rounded-full bg-white/5 hover:bg-[#4442DB] text-white/80 hover:text-white border border-white/10 hover:border-[#4442DB]/50 flex items-center justify-center disabled:opacity-20 disabled:hover:bg-white/5 disabled:hover:text-white/40 cursor-pointer disabled:cursor-not-allowed transition-all duration-300 shadow-md"
             disabled={!canScrollRight}
             onClick={scrollRight}
             aria-label="Scroll snapshots right"
@@ -273,9 +338,9 @@ export const Carousel = ({
         {mounted &&
           cardsData &&
           createPortal(
-            <AnimatePresence mode="wait">
-              {openIndex !== null && activeCard && (
+            openIndex !== null && activeCard ? (
                 <div
+                  ref={modalDialogRef}
                   key="snapshot-modal-overlay"
                   data-lenis-prevent
                   className="fixed inset-0 h-screen w-screen z-[99999] overflow-y-auto overflow-x-hidden pt-6 pb-20 sm:py-12 md:py-16 px-3 sm:px-6 flex justify-center items-start overscroll-contain select-text"
@@ -284,6 +349,9 @@ export const Carousel = ({
                     backdropFilter: "blur(24px)",
                     WebkitBackdropFilter: "blur(24px)",
                   }}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby={`snapshot-modal-title-${openIndex}`}
                 >
                   {/* Backdrop Click Dismiss */}
                   <motion.div
@@ -365,7 +433,6 @@ export const Carousel = ({
                       duration: 0.35,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    ref={modalContentRef}
                     onClick={(e) => e.stopPropagation()}
                     className="relative w-full max-w-4xl bg-[#0F0E1A] border border-white/15 rounded-3xl text-white z-20 my-auto shadow-[0_20px_80px_rgba(0,0,0,0.95),0_0_40px_rgba(68,66,219,0.18)] overflow-hidden shrink-0"
                   >
@@ -393,8 +460,9 @@ export const Carousel = ({
                         {/* Mobile Prev / Next Controls */}
                         <div className="flex items-center bg-white/5 rounded-full border border-white/10 p-0.5 lg:hidden">
                           <button
+                            type="button"
                             onClick={goToPrevSnapshot}
-                            className="h-8 w-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            className="h-11 w-11 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                             aria-label="Previous snapshot"
                           >
                             <svg
@@ -412,8 +480,9 @@ export const Carousel = ({
                             </svg>
                           </button>
                           <button
+                            type="button"
                             onClick={goToNextSnapshot}
-                            className="h-8 w-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            className="h-11 w-11 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                             aria-label="Next snapshot"
                           >
                             <svg
@@ -459,8 +528,10 @@ export const Carousel = ({
 
                         {/* Close Modal Button */}
                         <button
+                          ref={modalCloseRef}
+                          type="button"
                           onClick={closeSnapshotModal}
-                          className="h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white/10 hover:bg-[#4442DB] text-white border border-white/20 hover:border-[#4442DB] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm group"
+                          className="h-11 w-11 rounded-full bg-white/10 hover:bg-[#4442DB] text-white border border-white/20 hover:border-[#4442DB] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm group"
                           aria-label="Close snapshot modal"
                           title="Close (Esc)"
                         >
@@ -485,7 +556,7 @@ export const Carousel = ({
                     <div className="p-5 sm:p-7 md:p-9 space-y-6">
                       {/* Title Heading */}
                       <div>
-                        <h2 className="[font-family:'Chillax',_sans-serif] text-2xl sm:text-3xl md:text-4xl font-medium text-white tracking-tight leading-tight">
+                        <h2 id={`snapshot-modal-title-${openIndex}`} className="[font-family:'Chillax',_sans-serif] text-2xl sm:text-3xl md:text-4xl font-medium text-white tracking-tight leading-tight">
                           {activeCard.title}
                         </h2>
                       </div>
@@ -495,6 +566,7 @@ export const Carousel = ({
                         <img
                           src={assetPath(activeCard.src)}
                           alt={activeCard.title}
+                          decoding="async"
                           className="w-full h-auto object-cover max-h-[48vh] sm:max-h-[52vh] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         />
                         {/* Subtle corner badge on media */}
@@ -508,8 +580,7 @@ export const Carousel = ({
                     </div>
                   </motion.div>
                 </div>
-              )}
-            </AnimatePresence>,
+              ) : null,
             document.body
           )}
       </div>
@@ -543,6 +614,8 @@ export const Card = ({
         <img
           src={assetPath(card.src)}
           alt={card.title}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
         />
       </div>
@@ -590,4 +663,3 @@ export const Card = ({
     </motion.button>
   );
 };
-
