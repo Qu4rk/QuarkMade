@@ -274,7 +274,7 @@ export default function Navbar() {
         <div className="hidden min-w-0 justify-end items-center basis-1/5 max-lg:flex shrink-0">
           <a
             href="#inquire"
-            className="inline-flex min-h-11 items-center justify-center py-1.5 px-3 [font-family:'Satoshi',_sans-serif] text-[0.72rem] sm:text-[0.75rem] font-semibold tracking-wider uppercase whitespace-nowrap bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] transition-all duration-150 shadow-[0_0_10px_rgba(68,66,219,0.3)] shrink-0"
+            className="inline-flex min-h-11 items-center justify-center px-3 [font-family:'Satoshi',_sans-serif] font-semibold text-[0.75rem] leading-[0.8125rem] tracking-[0.13px] uppercase whitespace-nowrap bg-[#4442DB] text-white border border-[#D4AF37]/40 hover:bg-[#5654E4] hover:border-[#D4AF37] shadow-[0_0_12px_rgba(68,66,219,0.35)] transition-all duration-150 shrink-0 active:scale-[0.98]"
             aria-hidden={isMobileMenuOpen}
             tabIndex={isMobileMenuOpen ? -1 : 0}
           >

@@ -7,6 +7,10 @@ import RotatingText from "../components/RotatingText";
 import SeamlessVideo from "../components/SeamlessVideo";
 import TextLoop from "../components/ui/TextLoop";
 import { assetPath } from "../../lib/site";
+import {
+  HERO_ROTATING_COLORS,
+  HERO_ROTATING_TEXTS,
+} from "../lib/hero-rotating-content";
 
 /**
  * Immersive, multi-layered Hero Section featuring:
@@ -60,7 +64,7 @@ export default function HeroSection() {
           y: cardY,
           transformOrigin: "center top",
         }}
-        className="h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-145 rounded-b-[2.5rem] border-b border-white/15 bg-foreground shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8)] will-change-transform transform-gpu [contain:paint] [isolation:isolate]"
+        className="quark-hero-card h-screen min-h-175 max-h-260 block relative z-1 overflow-hidden w-full max-md:h-[100svh] max-md:min-h-[100svh] rounded-b-[2.5rem] border-b border-white/15 bg-foreground shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8)] will-change-transform transform-gpu [contain:paint] [isolation:isolate]"
       >
         {/* Layer 1: Hardware-Accelerated Video Background with Zero-Overhead Looping */}
         <div className="h-full w-full block absolute inset-0 overflow-hidden pointer-events-none transform-gpu [contain:paint]">
@@ -108,7 +112,7 @@ export default function HeroSection() {
         >
           <div
             data-reveal
-            className="flex flex-col items-center text-center max-w-6xl mx-auto gap-5 md:gap-6 text-white"
+            className="desktop-hero-content flex flex-col items-center text-center max-w-6xl mx-auto gap-5 md:gap-6 text-white"
           >
             {/* React Bits TextLoop: Weaving through the sunset clouds */}
             <motion.div
@@ -181,20 +185,8 @@ export default function HeroSection() {
                 </span>
 
                 <RotatingText
-                  texts={[
-                    "digital flagships",
-                    "interactive worlds",
-                    "luxury experiences",
-                    "bespoke websites",
-                    "digital sanctuaries",
-                  ]}
-                  colors={[
-                    "#F3E5AB", // 1. Champagne Gold
-                    "#A594F9", // 2. Electric Iris / Violet
-                    "#FFB38A", // 3. Sunset Amber / Coral
-                    "#80E9DE", // 4. Celestial Aqua / Mint
-                    "#F472B6", // 5. Sunlit Orchid / Rose
-                  ]}
+                  texts={HERO_ROTATING_TEXTS}
+                  colors={HERO_ROTATING_COLORS}
                   mainClassName="[font-family:'Chillax',_sans-serif] font-medium tracking-normal inline-flex transition-colors duration-300 drop-shadow-[0_0_24px_rgba(212,175,55,0.35)]"
                   staggerFrom="last"
                   initial={{ y: "100%", opacity: 0 }}
@@ -238,6 +230,50 @@ export default function HeroSection() {
               </Button>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.95, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="mobile-hero-content relative z-3 h-full w-full flex-col justify-end px-5 pt-[max(6.5rem,calc(4.5rem+env(safe-area-inset-top)))] pb-[max(1.5rem,calc(1rem+env(safe-area-inset-bottom)))] text-white"
+          >
+            <div className="w-full max-w-sm">
+              <h1 className="mobile-hero-title flex flex-col text-left [font-family:'Satoshi',_sans-serif] text-[clamp(2rem,10vw,2.55rem)] font-normal leading-[0.94] tracking-[-0.04em] drop-shadow-2xl">
+                <span>Crafting</span>
+                <RotatingText
+                  texts={HERO_ROTATING_TEXTS}
+                  colors={HERO_ROTATING_COLORS}
+                  mainClassName="mobile-hero-rotator [font-family:'Chillax',_sans-serif] font-medium inline-flex max-w-full py-1 tracking-[-0.04em] drop-shadow-[0_0_22px_rgba(212,175,55,0.3)]"
+                  staggerFrom="last"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-120%", opacity: 0 }}
+                  staggerDuration={0.02}
+                  splitLevelClassName="overflow-hidden pb-0.5"
+                  transition={{ type: "spring", damping: 28, stiffness: 280 }}
+                  widthTransition={{ type: "spring", damping: 32, stiffness: 240, mass: 0.8 }}
+                  rotationInterval={2800}
+                />
+                <span className="mt-1 max-w-[17rem]">that command attention.</span>
+              </h1>
+
+              <p className="mobile-hero-copy mt-5 max-w-[19rem] [font-family:'Satoshi',_sans-serif] text-sm leading-relaxed tracking-wide text-white/85 drop-shadow-md">
+                We architect bespoke digital flagships, interactive worlds, and luxury spaces engineered to elevate modern brands.
+              </p>
+
+              <div className="mobile-hero-actions mt-7 flex w-full flex-col items-stretch gap-3">
+                <Button href="#works" variant="gold" className="hero-primary-action w-full justify-between px-5 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                  Explore Selected Works
+                </Button>
+                <a
+                  href="#inquire"
+                  className="inline-flex min-h-11 items-center self-start [font-family:'Satoshi',_sans-serif] text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-colors duration-300 hover:text-[#F3E5AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D4AF37]"
+                >
+                  Start a Project <span className="ml-2 text-[#D4AF37]">↗</span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Layer 6: Subtle Animated Scroll Indicator */}
@@ -246,7 +282,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           transition={{ duration: 1.0, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex min-h-12 flex-col items-center justify-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
+          className="hero-scroll-indicator absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-3 flex min-h-12 flex-col items-center justify-center gap-2 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
         >
           <span className="[font-family:'Satoshi',_sans-serif] text-[10px] tracking-[0.3em] uppercase font-normal">
             SCROLL
